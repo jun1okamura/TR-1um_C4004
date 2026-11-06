@@ -8,7 +8,7 @@ import pya as db
 import klayout_extract
 
 FRAME_GDS = "/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/TR-1um_frame_25x25.gds"
-STDCELL_SPICE_DIR = "/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/TR-1um_APRtools/stdcell/v59_4/simulation"
+STDCELL_SPICE_DIR = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/simulation"
 SRAM_SPICE = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/simulation/SRAM128.spice"
 DEF_PATH = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_core_4edge_routed.def"
 CHIP_GDS = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_chip.gds"
@@ -74,7 +74,7 @@ def build_lvs_spice():
     occ_sites = defaultdict(set)
 
     stdcell_ly = db.Layout()
-    stdcell_ly.read("/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/TR-1um_APRtools/stdcell/v59_4/TR-1um_STDCELL.gds")
+    stdcell_ly.read("/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/TR-1um_STDCELL.gds")
 
     for m in re.finditer(r"-\s+(\S+)\s+(\S+)\s+\+\s+(?:PLACED|FIXED)\s+\(\s*(\d+)\s+(\d+)\s*\)\s+N", comp_sec):
         inst, cell_name, cx, cy = m.group(1), m.group(2), int(m.group(3)), int(m.group(4))

@@ -1,6 +1,0 @@
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_Async_I2C/LEF/FILL3.sch
-.subckt FILL3 VDD GND
-*.PININFO GND:B VDD:B
-MM7 VDD GND VDD VDD PMOS w=21.2u l=8.6u
-MM2 GND VDD GND GND NMOS w=13.1u l=8.6u
-.ends

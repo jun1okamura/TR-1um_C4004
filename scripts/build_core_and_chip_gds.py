@@ -2,7 +2,7 @@ import re
 from collections import defaultdict
 import pya as db
 
-STDCELL_GDS = "/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/TR-1um_APRtools/stdcell/v59_4/TR-1um_STDCELL.gds"
+STDCELL_GDS = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/TR-1um_STDCELL.gds"
 FRAME_GDS = "/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/TR-1um_frame_25x25.gds"
 SRAM_GDS = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/SRAM128.gds"
 DEF_PATH = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_core_4edge_routed.def"

@@ -7,6 +7,7 @@ set or_dir "$repo_dir/openroad"
 read_lef "$or_dir/TR-1um_tech_or.lef"
 read_lef "$or_dir/TR-1um_cells_grt_fullobs.lef"
 read_lef "$or_dir/SRAM128_or.lef"
+read_liberty "$repo_dir/module/STDCELL/tr1um_typ_5v0_25c.lib"
 read_liberty "$repo_dir/module/SRAM128/SRAM128.lib"
 read_verilog "$or_dir/c4004_core_buffered_or.v"
 link_design c4004_core
