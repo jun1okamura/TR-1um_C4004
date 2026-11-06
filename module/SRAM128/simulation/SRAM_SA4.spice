@@ -1,0 +1,68 @@
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SRAM_SA4.sch
+.subckt SRAM_SA4 CE WR BLp[0] BLp[1] BLp[2] BLp[3] BLn[0] BLn[1] BLn[2] BLn[3] VDD VSS DO[0] DO[1] DO[2] DO[3] CEp
+*.PININFO CE:I VSS:B VDD:B WR:I DO[0:3]:O BLn[0:3]:B BLp[0:3]:B CEp:O
+xSA[0] VDD PRn DO[0] BLp[0] BLn[0] LATp VSS SA
+xSA[1] VDD PRn DO[1] BLp[1] BLn[1] LATp VSS SA
+xSA[2] VDD PRn DO[2] BLp[2] BLn[2] LATp VSS SA
+xSA[3] VDD PRn DO[3] BLp[3] BLn[3] LATp VSS SA
+xCTL PRn CE WR VDD VSS LATp CEp SACTR
+.ends
+
+* expanding   symbol:  SA.sym # of pins=7
+** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SA.sym
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SA.sch
+.subckt SA VDD PRn DO BLp BLn LATp VSS
+*.PININFO BLp:B BLn:B LATp:I VDD:B VSS:B DO:B PRn:I
+MXM1 SENp BLn net3 VSS NMOS w=5.4u l=1u
+MXM2 net1 SENp net2 VSS NMOS w=5.4u l=1u
+MXM3 SENn LATp VDD VDD PMOS w=6.8u l=1u
+MXM4 DO SENn VDD VDD PMOS w=10.8u l=1u
+MXM5 SENn SENp VDD VDD PMOS w=3.4u l=1u
+MXM6 net2 LATp VSS VSS NMOS w=10.8u l=1u
+MXM7 SENn BLp net1 VSS NMOS w=5.4u l=1u
+MXM8 net3 SENn net2 VSS NMOS w=5.4u l=1u
+MXM9 SENp LATp VDD VDD PMOS w=6.8u l=1u
+MXM11 SENp SENn VDD VDD PMOS w=3.4u l=1u
+MXM12 DO SENn VSS VSS NMOS w=6.8u l=1u
+MXM10 net4 SENp VDD VDD PMOS w=10.8u l=1u
+MXM13 net4 SENp VSS VSS NMOS w=6.8u l=1u
+MXM14 BLn PRn VDD VDD PMOS w=3.4u l=1.6u
+MXM15 BLp PRn VDD VDD PMOS w=3.4u l=1.6u
+MXM16 SENn SENp net2 VSS NMOS w=3.4u l=1u
+MXM17 SENp SENn net2 VSS NMOS w=3.4u l=1u
+.ends
+
+
+* expanding   symbol:  SACTR.sym # of pins=7
+** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SACTR.sym
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SACTR.sch
+.subckt SACTR PRn CE WR VDD VSS LATp CEp
+*.PININFO PRn:O CE:I VDD:B VSS:B LATp:O WR:I CEp:O
+MXM3 net1 CE VDD VDD PMOS w=3.4u l=1u
+MXM7 net1 CE VSS VSS NMOS w=3.4u l=1u
+MXM6 PRn net3 net2 VSS NMOS w=6.8u l=1u
+MXM8 PRn net1 VDD VDD PMOS w=6.8u l=1u
+MXM10 net2 net1 VSS VSS NMOS w=6.8u l=1u
+MXM11 PRn net3 VDD VDD PMOS w=6.8u l=1u
+MXM9 net3 PR_DLY VDD VDD PMOS w=3.4u l=2u
+MXM12 net3 PR_DLY VSS VSS NMOS w=3.4u l=2u
+MXM13 PR_DLY net1 VDD VDD PMOS w=3.4u l=1u
+MXM14 PR_DLY net1 VSS VSS NMOS w=3.4u l=10u
+MXM15 VDD PR_DLY VDD VDD PMOS w=6.8u l=9u
+MXM1 LATp net5 net6 VSS NMOS w=6.8u l=1u
+MXM4 LATp PRn VDD VDD PMOS w=6.8u l=1u
+MXM16 net6 PRn VSS VSS NMOS w=6.8u l=1u
+MXM21 net4 LAT_DLY VDD VDD PMOS w=3.4u l=2u
+MXM22 net4 LAT_DLY VSS VSS NMOS w=3.4u l=2u
+MXM23 LAT_DLY PRn VDD VDD PMOS w=3.4u l=1u
+MXM24 LAT_DLY PRn VSS VSS NMOS w=3.4u l=10u
+MXM25 VDD LAT_DLY VDD VDD PMOS w=6.8u l=8.8u
+MXM27 net5 WR net7 VDD PMOS w=3.4u l=1u
+MXM28 net5 net4 VSS VSS NMOS w=3.4u l=1u
+MXM17 net7 net4 VDD VDD PMOS w=3.4u l=1u
+MXM18 net5 WR VSS VSS NMOS w=3.4u l=1u
+MXM5 LATp net5 VDD VDD PMOS w=6.8u l=1u
+MXM2 CEp net1 VDD VDD PMOS w=3.4u l=1u
+MXM19 CEp net1 VSS VSS NMOS w=3.4u l=1u
+.ends
+

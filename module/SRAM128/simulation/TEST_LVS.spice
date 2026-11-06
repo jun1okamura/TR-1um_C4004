@@ -1,0 +1,6 @@
+** sch_path: /Users/okamura/Library/CloudStorage/Dropbox/91_OpenPDK/TR-1um/GDSII/TEST_LVS.sch
+**.subckt TEST_LVS
+XM1 net1 net2 net3 net4 NMOS w=3.4u l=1u as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 m=1
+XM2 net1 net2 net5 net6 PMOS w=3.4u l=1u as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 m=1
+**.ends
+.end

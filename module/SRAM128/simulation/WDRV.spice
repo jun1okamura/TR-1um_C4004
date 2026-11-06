@@ -1,0 +1,23 @@
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/WDRV.sch
+**.subckt WDRV VDD WRn BLp BLn WRp VSS DIN
+*.iopin BLp
+*.iopin BLn
+*.ipin DIN
+*.ipin WRn
+*.ipin WRp
+*.iopin VDD
+*.iopin VSS
+XXM1 BLp WRp net2 VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM2 net2 net3 VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM3 net1 net3 VDD VDD PMOS w=3.4u l=1u nrd=0 nrs=0
+XXM4 BLp WRn net1 VDD PMOS w=3.4u l=1u nrd=0 nrs=0
+XXM5 net3 net4 VDD VDD PMOS w=3.4u l=1u nrd=0 nrs=0
+XXM6 net3 net4 VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM7 BLn WRp net6 VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM8 net6 net4 VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM9 net5 net4 VDD VDD PMOS w=3.4u l=1u nrd=0 nrs=0
+XXM10 BLn WRn net5 VDD PMOS w=3.4u l=1u nrd=0 nrs=0
+XXM11 net4 DIN VDD VDD PMOS w=3.4u l=1u nrd=0 nrs=0
+XXM12 net4 DIN VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+**.ends
+.end

@@ -1,0 +1,10 @@
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/IP62_5_stdcell/NOR3.sch
+.subckt NOR3 B C VDD Y A GND
+*.PININFO A:I B:I Y:O VDD:B GND:B C:I
+MM7 net1 B VDD VDD PMOS w=10.2u l=1u
+MM2 net2 A net1 VDD PMOS w=10.2u l=1u
+MM3 Y C net2 VDD PMOS w=10.2u l=1u
+MM1 Y B GND GND NMOS w=3.4u l=1u
+MM4 Y C GND GND NMOS w=3.4u l=1u
+MM5 Y A GND GND NMOS w=3.4u l=1u
+.ends

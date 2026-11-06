@@ -1,0 +1,355 @@
+{
+  "top_cell": "OSS_FRAME",
+  "total_subckt_definitions": 42,
+  "chip_totals_extracted": {
+    "PMOS": 2885,
+    "NMOS": 3237,
+    "NMOSE": 30,
+    "total_mosfets": 6152,
+    "DN_diodes": 28,
+    "total_devices": 6180,
+    "total_fingers_uncombined": 6440,
+    "total_mosfet_fingers": 6412,
+    "total_flat_nets": 2892,
+    "top_level_nets": 28,
+    "top_level_ports": 16,
+    "c4004_core_nets": 677,
+    "c4004_core_ports": 21,
+    "sram128_top_nets": 44,
+    "sram128_flat_internal_nets": 540
+  },
+  "block_breakdown": {
+    "stdcell_logic": {
+      "cell_types": 26,
+      "instances": 624,
+      "PMOS": 2289,
+      "NMOS": 2283,
+      "total_devices": 4572
+    },
+    "stdcell_decap_fillers": {
+      "cell_types": 2,
+      "FILL2_instances": 13,
+      "FILL3_instances": 29,
+      "instances": 42,
+      "PMOS": 42,
+      "NMOS": 42,
+      "total_devices": 84
+    },
+    "sram128_macro": {
+      "instances": 1,
+      "SRAM_32x4": {
+        "PMOS": 320,
+        "NMOS": 704
+      },
+      "SRAM_SA4": {
+        "PMOS": 46,
+        "NMOS": 48
+      },
+      "SRAM_WD4": {
+        "PMOS": 30,
+        "NMOS": 30
+      },
+      "SRAM128_top_PDEC_ADB": {
+        "PMOS": 16,
+        "NMOS": 18
+      },
+      "PMOS": 412,
+      "NMOS": 800,
+      "total_devices": 1212
+    },
+    "io_pad_ring": {
+      "OSS_ESD_5V_DIO_instances": 14,
+      "OSS_ESD_5V_VDD_instances": 1,
+      "OSS_ESD_5V_VSS_instances": 1,
+      "total_pad_cells": 16,
+      "PMOS_extracted": 142,
+      "NMOS_extracted": 112,
+      "NMOSE_extracted": 30,
+      "DN_diodes": 28,
+      "total_extracted_devices": 312,
+      "total_physical_fingers": 572
+    }
+  },
+  "stdcell_table": [
+    {
+      "cell": "NAND2",
+      "instances": 97,
+      "pmos_per_cell": 2,
+      "nmos_per_cell": 2,
+      "mos_per_cell": 4,
+      "total_pmos": 194,
+      "total_nmos": 194,
+      "total_mos": 388
+    },
+    {
+      "cell": "BUF_X2",
+      "instances": 73,
+      "pmos_per_cell": 2,
+      "nmos_per_cell": 2,
+      "mos_per_cell": 4,
+      "total_pmos": 146,
+      "total_nmos": 146,
+      "total_mos": 292
+    },
+    {
+      "cell": "NOR2",
+      "instances": 66,
+      "pmos_per_cell": 2,
+      "nmos_per_cell": 2,
+      "mos_per_cell": 4,
+      "total_pmos": 132,
+      "total_nmos": 132,
+      "total_mos": 264
+    },
+    {
+      "cell": "OAI21",
+      "instances": 55,
+      "pmos_per_cell": 3,
+      "nmos_per_cell": 3,
+      "mos_per_cell": 6,
+      "total_pmos": 165,
+      "total_nmos": 165,
+      "total_mos": 330
+    },
+    {
+      "cell": "AOI21",
+      "instances": 48,
+      "pmos_per_cell": 3,
+      "nmos_per_cell": 3,
+      "mos_per_cell": 6,
+      "total_pmos": 144,
+      "total_nmos": 144,
+      "total_mos": 288
+    },
+    {
+      "cell": "NAND3",
+      "instances": 46,
+      "pmos_per_cell": 3,
+      "nmos_per_cell": 3,
+      "mos_per_cell": 6,
+      "total_pmos": 138,
+      "total_nmos": 138,
+      "total_mos": 276
+    },
+    {
+      "cell": "AOI22",
+      "instances": 35,
+      "pmos_per_cell": 4,
+      "nmos_per_cell": 4,
+      "mos_per_cell": 8,
+      "total_pmos": 140,
+      "total_nmos": 140,
+      "total_mos": 280
+    },
+    {
+      "cell": "INV_X1",
+      "instances": 31,
+      "pmos_per_cell": 1,
+      "nmos_per_cell": 1,
+      "mos_per_cell": 2,
+      "total_pmos": 31,
+      "total_nmos": 31,
+      "total_mos": 62
+    },
+    {
+      "cell": "FILL3",
+      "instances": 29,
+      "pmos_per_cell": 1,
+      "nmos_per_cell": 1,
+      "mos_per_cell": 2,
+      "total_pmos": 29,
+      "total_nmos": 29,
+      "total_mos": 58
+    },
+    {
+      "cell": "MUXDFFRB",
+      "instances": 29,
+      "pmos_per_cell": 19,
+      "nmos_per_cell": 19,
+      "mos_per_cell": 38,
+      "total_pmos": 551,
+      "total_nmos": 551,
+      "total_mos": 1102
+    },
+    {
+      "cell": "NOR3",
+      "instances": 24,
+      "pmos_per_cell": 3,
+      "nmos_per_cell": 3,
+      "mos_per_cell": 6,
+      "total_pmos": 72,
+      "total_nmos": 72,
+      "total_mos": 144
+    },
+    {
+      "cell": "OR2",
+      "instances": 15,
+      "pmos_per_cell": 3,
+      "nmos_per_cell": 3,
+      "mos_per_cell": 6,
+      "total_pmos": 45,
+      "total_nmos": 45,
+      "total_mos": 90
+    },
+    {
+      "cell": "AND2_X1",
+      "instances": 14,
+      "pmos_per_cell": 3,
+      "nmos_per_cell": 3,
+      "mos_per_cell": 6,
+      "total_pmos": 42,
+      "total_nmos": 42,
+      "total_mos": 84
+    },
+    {
+      "cell": "FILL2",
+      "instances": 13,
+      "pmos_per_cell": 1,
+      "nmos_per_cell": 1,
+      "mos_per_cell": 2,
+      "total_pmos": 13,
+      "total_nmos": 13,
+      "total_mos": 26
+    },
+    {
+      "cell": "NAND4",
+      "instances": 13,
+      "pmos_per_cell": 4,
+      "nmos_per_cell": 4,
+      "mos_per_cell": 8,
+      "total_pmos": 52,
+      "total_nmos": 52,
+      "total_mos": 104
+    },
+    {
+      "cell": "XNOR2",
+      "instances": 12,
+      "pmos_per_cell": 5,
+      "nmos_per_cell": 5,
+      "mos_per_cell": 10,
+      "total_pmos": 60,
+      "total_nmos": 60,
+      "total_mos": 120
+    },
+    {
+      "cell": "MUX2",
+      "instances": 9,
+      "pmos_per_cell": 6,
+      "nmos_per_cell": 6,
+      "mos_per_cell": 12,
+      "total_pmos": 54,
+      "total_nmos": 54,
+      "total_mos": 108
+    },
+    {
+      "cell": "OAI22",
+      "instances": 9,
+      "pmos_per_cell": 4,
+      "nmos_per_cell": 4,
+      "mos_per_cell": 8,
+      "total_pmos": 36,
+      "total_nmos": 36,
+      "total_mos": 72
+    },
+    {
+      "cell": "DFFRB",
+      "instances": 8,
+      "pmos_per_cell": 13,
+      "nmos_per_cell": 13,
+      "mos_per_cell": 26,
+      "total_pmos": 104,
+      "total_nmos": 104,
+      "total_mos": 208
+    },
+    {
+      "cell": "AND3_X1",
+      "instances": 7,
+      "pmos_per_cell": 4,
+      "nmos_per_cell": 4,
+      "mos_per_cell": 8,
+      "total_pmos": 28,
+      "total_nmos": 28,
+      "total_mos": 56
+    },
+    {
+      "cell": "BUFTH",
+      "instances": 7,
+      "pmos_per_cell": 4,
+      "nmos_per_cell": 4,
+      "mos_per_cell": 8,
+      "total_pmos": 28,
+      "total_nmos": 28,
+      "total_mos": 56
+    },
+    {
+      "cell": "NOR4",
+      "instances": 7,
+      "pmos_per_cell": 4,
+      "nmos_per_cell": 4,
+      "mos_per_cell": 8,
+      "total_pmos": 28,
+      "total_nmos": 28,
+      "total_mos": 56
+    },
+    {
+      "cell": "INV_X2",
+      "instances": 6,
+      "pmos_per_cell": 1,
+      "nmos_per_cell": 1,
+      "mos_per_cell": 2,
+      "total_pmos": 6,
+      "total_nmos": 6,
+      "total_mos": 12
+    },
+    {
+      "cell": "XOR2",
+      "instances": 4,
+      "pmos_per_cell": 5,
+      "nmos_per_cell": 5,
+      "mos_per_cell": 10,
+      "total_pmos": 20,
+      "total_nmos": 20,
+      "total_mos": 40
+    },
+    {
+      "cell": "DFFS",
+      "instances": 3,
+      "pmos_per_cell": 15,
+      "nmos_per_cell": 13,
+      "mos_per_cell": 28,
+      "total_pmos": 45,
+      "total_nmos": 39,
+      "total_mos": 84
+    },
+    {
+      "cell": "AND4_X1",
+      "instances": 2,
+      "pmos_per_cell": 5,
+      "nmos_per_cell": 5,
+      "mos_per_cell": 10,
+      "total_pmos": 10,
+      "total_nmos": 10,
+      "total_mos": 20
+    },
+    {
+      "cell": "OR3",
+      "instances": 2,
+      "pmos_per_cell": 4,
+      "nmos_per_cell": 4,
+      "mos_per_cell": 8,
+      "total_pmos": 8,
+      "total_nmos": 8,
+      "total_mos": 16
+    },
+    {
+      "cell": "OR4",
+      "instances": 2,
+      "pmos_per_cell": 5,
+      "nmos_per_cell": 5,
+      "mos_per_cell": 10,
+      "total_pmos": 10,
+      "total_nmos": 10,
+      "total_mos": 20
+    }
+  ]
+}

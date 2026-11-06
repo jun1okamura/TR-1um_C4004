@@ -1,0 +1,49 @@
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_Async_I2C/LEF/BUFTH_X1_AC.sch
+**.subckt BUFTH_X1_AC
+x1 VDD IN OUT VSS BUFTH_X1
+**** begin user architecture code
+
+
+
+* ngspice commands
+.include '~/Dropbox/91_OpenPDK/TR-1um/libs.tech/spice/models/ip62_models'
+.param vdd=5.0
+.param vss=0
+*----
+vdd  vdd 0 dc vdd
+vss  vss 0 dc vss
+vin  in  0 pwl(0n vss 5 vdd 10 vss)
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  BUFTH_X1.sym # of pins=4
+** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_Async_I2C/LEF/BUFTH_X1.sym
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_Async_I2C/LEF/BUFTH_X1.sch
+.subckt BUFTH_X1 VDD A Y GND
+*.ipin A
+*.opin Y
+*.iopin VDD
+*.iopin GND
+XM9 MID A net1 VDD PMOS w=5.1u l=1u nrd=0 nrs=0
+XM2 Y MID VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0 m=2
+XM8 MID A net2 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM1 Y MID GND GND NMOS w=3.4u l=1u nrd=0 nrs=0 m=2
+XM6 GND MID net1 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM3 VDD MID net2 GND NMOS w=6.8u l=1u nrd=0 nrs=0
+XM5 net2 A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM4 net1 A VDD VDD PMOS w=5.1u l=1u nrd=0 nrs=0
+.ends
+
+.GLOBAL VDD
+**** begin user architecture code
+
+
+*----
+.temp 25
+.tran .01 10
+
+
+**** end user architecture code
+.end

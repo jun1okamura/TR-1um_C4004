@@ -1,0 +1,614 @@
+OpenROAD 26Q4-1310-g98c6045c72 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ODB-0227] LEF file: /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_tech_or.lef, created 3 layers, 1 vias
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 182.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 239.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 303.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 375.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 439.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 512.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 567.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 614.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 818.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 869.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 938.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1021.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1104.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1208.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1237.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1270.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1302.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1349.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1396.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1466.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1572.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1628.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1691.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1762.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1818.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1882.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 1955.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 2019.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 2092.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 2148.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 2212.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 2469.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 2534.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 2603.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 2841.
+
+[WARNING ODB-0220] WARNING (LEFPARS-2032): A SITE statement is defined before SYMMETRY statement.
+To avoid this warning in the future, define SITE after SYMMETRY See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef at line 2897.
+
+[INFO ODB-0227] LEF file: /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/TR-1um_cells_m2only.lef, created 53 library cells
+[WARNING ODB-0220] WARNING (LEFPARS-2001): No VERSION statement found, using the default value 5.8. See file /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/SRAM128_or.lef at line 212.
+
+[INFO ODB-0227] LEF file: /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/SRAM128_or.lef, created 1 library cells
+[INFO ODB-0127] Reading DEF file: /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/placed_buffered.def
+[INFO ODB-0128] Design: c4004_core
+[INFO ODB-0130]     Created 19 pins.
+[INFO ODB-0131]     Created 623 components and 3477 component-terminals.
+[INFO ODB-0133]     Created 673 nets and 2231 connections.
+[INFO ODB-0134] Finished DEF file: /Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/or_test/placed_buffered.def
+[WARNING GRT-0008] The read_guides command does not allow parasitics estimation from the guides file.
+[INFO DRT-0149] Reading tech and libs.
+
+Units:                1000
+Number of layers:     5
+Number of macros:     54
+Number of vias:       1
+Number of viarulegen: 0
+
+[INFO DRT-0150] Reading design.
+
+Design:                   c4004_core
+Die area:                 ( 0 0 ) ( 1840000 1840000 )
+Number of track patterns: 4
+Number of DEF vias:       0
+Number of components:     623
+Number of terminals:      19
+Number of snets:          0
+Number of nets:           673
+
+[WARNING DRT-0419] No routing tracks pass through the center of Term u_sram/A0
+[WARNING DRT-0419] No routing tracks pass through the center of Term u_sram/A1
+[WARNING DRT-0419] No routing tracks pass through the center of Term u_sram/DO[1]
+[INFO DRT-0167] List of default vias:
+  Layer VIA1
+    default via: V1_1x1
+[INFO DRT-0162] Library cell analysis.
+[INFO DRT-0163] Instance analysis.
+[INFO DRT-0164] Number of unique instances = 27.
+[INFO DRT-0168] Init region query.
+[INFO DRT-0024]   Complete FR_MASTERSLICE.
+[INFO DRT-0024]   Complete Fr_VIA.
+[INFO DRT-0024]   Complete METAL1.
+[INFO DRT-0024]   Complete VIA1.
+[INFO DRT-0024]   Complete METAL2.
+[INFO DRT-0033] FR_MASTERSLICE shape region query size = 0.
+[INFO DRT-0033] FR_VIA shape region query size = 0.
+[INFO DRT-0033] METAL1 shape region query size = 4497.
+[INFO DRT-0033] VIA1 shape region query size = 0.
+[INFO DRT-0033] METAL2 shape region query size = 2232.
+[INFO DRT-0165] Start pin access.
+[INFO DRT-0078]   Complete 170 pins.
+[INFO DRT-0081]   Complete 26 unique inst patterns.
+[INFO DRT-0084]   Complete 124 groups.
+#scanned instances     = 623
+#unique  instances     = 27
+#stdCellGenAp          = 130
+#stdCellValidPlanarAp  = 130
+#stdCellValidViaAp     = 0
+#stdCellPinNoAp        = 0
+#stdCellPinCnt         = 2216
+#instTermValidViaApCnt = 0
+#macroGenAp            = 50
+#macroValidPlanarAp    = 25
+#macroValidViaAp       = 0
+#macroNoAp             = 0
+[INFO DRT-0166] Complete pin access.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 144.77 (MB), peak = 144.77 (MB)
+
+[INFO DRT-0157] Number of guides:     8276
+
+[INFO DRT-0169] Post process guides.
+[INFO DRT-0176] GCELLGRID X 0 DO 7 STEP 243000 ;
+[INFO DRT-0177] GCELLGRID Y 0 DO 7 STEP 243000 ;
+[INFO DRT-0028]   Complete FR_MASTERSLICE.
+[INFO DRT-0028]   Complete Fr_VIA.
+[INFO DRT-0028]   Complete METAL1.
+[INFO DRT-0028]   Complete VIA1.
+[INFO DRT-0028]   Complete METAL2.
+[INFO DRT-0178] Init guide query.
+[INFO DRT-0035]   Complete FR_MASTERSLICE (guide).
+[INFO DRT-0035]   Complete Fr_VIA (guide).
+[INFO DRT-0035]   Complete METAL1 (guide).
+[INFO DRT-0035]   Complete VIA1 (guide).
+[INFO DRT-0035]   Complete METAL2 (guide).
+[INFO DRT-0036] FR_MASTERSLICE guide region query size = 0.
+[INFO DRT-0036] FR_VIA guide region query size = 0.
+[INFO DRT-0036] METAL1 guide region query size = 793.
+[INFO DRT-0036] VIA1 guide region query size = 0.
+[INFO DRT-0036] METAL2 guide region query size = 1593.
+[INFO DRT-0179] Init gr pin query.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 147.84 (MB), peak = 147.84 (MB)
+[INFO DRT-0245] skipped writing guide updates to database.
+[INFO DRT-0181] Start track assignment.
+[INFO DRT-0184] Done with 1593 vertical wires in 1 frboxes and 793 horizontal wires in 1 frboxes.
+[INFO DRT-0186] Done with 441 vertical wires in 1 frboxes and 455 horizontal wires in 1 frboxes.
+[INFO DRT-0182] Complete track assignment.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 150.78 (MB), peak = 150.78 (MB)
+[INFO DRT-0187] Start routing data preparation.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 150.97 (MB), peak = 150.97 (MB)
+[INFO DRT-0194] Start detail routing.
+[INFO DRT-0195] Start 0th optimization iteration.
+    Completing 100% with 72 violations.
+    elapsed time = 00:00:03, memory = 167.89 (MB).
+[INFO DRT-0199]   Number of violations = 72.
+Viol/Layer      METAL1   VIA1 METAL2
+Short               26      4     42
+[INFO DRT-0267] cpu time = 00:00:03, elapsed time = 00:00:03, memory = 270.64 (MB), peak = 300.59 (MB)
+Total wire length = 417374 um.
+Total wire length on LAYER METAL1 = 215623 um.
+Total wire length on LAYER METAL2 = 201750 um.
+Total number of vias = 3219.
+Up-via summary (total 3219):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3219
+-----------------------
+               3219
+
+
+[INFO DRT-0195] Start 1st optimization iteration.
+    Completing 20% with 72 violations.
+    elapsed time = 00:00:01, memory = 271.09 (MB).
+    Completing 50% with 92 violations.
+    elapsed time = 00:00:01, memory = 271.66 (MB).
+    Completing 70% with 91 violations.
+    elapsed time = 00:00:01, memory = 271.98 (MB).
+    Completing 100% with 108 violations.
+    elapsed time = 00:00:01, memory = 272.00 (MB).
+[INFO DRT-0199]   Number of violations = 108.
+Viol/Layer      METAL1   VIA1 METAL2
+Short               58      7     43
+[INFO DRT-0267] cpu time = 00:00:01, elapsed time = 00:00:01, memory = 302.17 (MB), peak = 302.17 (MB)
+Total wire length = 421397 um.
+Total wire length on LAYER METAL1 = 216628 um.
+Total wire length on LAYER METAL2 = 204769 um.
+Total number of vias = 3403.
+Up-via summary (total 3403):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3403
+-----------------------
+               3403
+
+
+[INFO DRT-0195] Start 2nd optimization iteration.
+    Completing 20% with 108 violations.
+    elapsed time = 00:00:00, memory = 302.17 (MB).
+    Completing 50% with 108 violations.
+    elapsed time = 00:00:00, memory = 302.20 (MB).
+    Completing 70% with 105 violations.
+    elapsed time = 00:00:00, memory = 302.28 (MB).
+    Completing 100% with 88 violations.
+    elapsed time = 00:00:01, memory = 302.47 (MB).
+[INFO DRT-0199]   Number of violations = 88.
+Viol/Layer      METAL1 METAL2
+Short               54     34
+[INFO DRT-0267] cpu time = 00:00:01, elapsed time = 00:00:01, memory = 302.61 (MB), peak = 302.61 (MB)
+Total wire length = 421127 um.
+Total wire length on LAYER METAL1 = 216817 um.
+Total wire length on LAYER METAL2 = 204310 um.
+Total number of vias = 3456.
+Up-via summary (total 3456):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3456
+-----------------------
+               3456
+
+
+[INFO DRT-0195] Start 3rd guides tiles iteration.
+    Completing 50% with 88 violations.
+    elapsed time = 00:00:04, memory = 310.75 (MB).
+    Completing 100% with 19 violations.
+    elapsed time = 00:00:07, memory = 311.67 (MB).
+[INFO DRT-0199]   Number of violations = 19.
+Viol/Layer      METAL1 METAL2
+Short                9     10
+[INFO DRT-0267] cpu time = 00:00:07, elapsed time = 00:00:07, memory = 311.67 (MB), peak = 311.67 (MB)
+Total wire length = 430108 um.
+Total wire length on LAYER METAL1 = 221202 um.
+Total wire length on LAYER METAL2 = 208906 um.
+Total number of vias = 3611.
+Up-via summary (total 3611):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3611
+-----------------------
+               3611
+
+
+[INFO DRT-0195] Start 4th guides tiles iteration.
+    Completing 30% with 19 violations.
+    elapsed time = 00:00:02, memory = 312.59 (MB).
+    Completing 60% with 13 violations.
+    elapsed time = 00:00:03, memory = 312.66 (MB).
+    Completing 100% with 13 violations.
+    elapsed time = 00:00:04, memory = 312.66 (MB).
+[INFO DRT-0199]   Number of violations = 13.
+Viol/Layer      METAL1 METAL2
+Short                3     10
+[INFO DRT-0267] cpu time = 00:00:04, elapsed time = 00:00:04, memory = 312.66 (MB), peak = 312.66 (MB)
+Total wire length = 430043 um.
+Total wire length on LAYER METAL1 = 221164 um.
+Total wire length on LAYER METAL2 = 208879 um.
+Total number of vias = 3643.
+Up-via summary (total 3643):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3643
+-----------------------
+               3643
+
+
+[INFO DRT-0195] Start 5th guides tiles iteration.
+    Completing 30% with 13 violations.
+    elapsed time = 00:00:02, memory = 312.67 (MB).
+    Completing 60% with 13 violations.
+    elapsed time = 00:00:03, memory = 312.69 (MB).
+    Completing 100% with 13 violations.
+    elapsed time = 00:00:05, memory = 305.83 (MB).
+[INFO DRT-0199]   Number of violations = 13.
+Viol/Layer      METAL1 METAL2
+Short                3     10
+[INFO DRT-0267] cpu time = 00:00:05, elapsed time = 00:00:05, memory = 305.83 (MB), peak = 312.69 (MB)
+Total wire length = 430043 um.
+Total wire length on LAYER METAL1 = 221164 um.
+Total wire length on LAYER METAL2 = 208879 um.
+Total number of vias = 3643.
+Up-via summary (total 3643):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3643
+-----------------------
+               3643
+
+
+[INFO DRT-0195] Start 6th stubborn tiles iteration.
+    Completing 10% with 13 violations.
+    elapsed time = 00:00:03, memory = 725.50 (MB).
+    Completing 20% with 13 violations.
+    elapsed time = 00:00:03, memory = 750.88 (MB).
+    Completing 30% with 13 violations.
+    elapsed time = 00:00:04, memory = 809.59 (MB).
+    Completing 40% with 13 violations.
+    elapsed time = 00:00:04, memory = 855.39 (MB).
+    Completing 50% with 13 violations.
+    elapsed time = 00:00:05, memory = 992.17 (MB).
+    Completing 60% with 13 violations.
+    elapsed time = 00:00:07, memory = 1103.11 (MB).
+    Completing 70% with 13 violations.
+    elapsed time = 00:00:08, memory = 1166.03 (MB).
+    Completing 80% with 13 violations.
+    elapsed time = 00:00:09, memory = 1173.44 (MB).
+    Completing 90% with 13 violations.
+    elapsed time = 00:00:11, memory = 1190.78 (MB).
+    Completing 100% with 2 violations.
+    elapsed time = 00:00:12, memory = 1079.80 (MB).
+[INFO DRT-0199]   Number of violations = 2.
+Viol/Layer      METAL2
+Short                2
+[INFO DRT-0267] cpu time = 00:02:43, elapsed time = 00:00:12, memory = 1093.39 (MB), peak = 1193.77 (MB)
+Total wire length = 433094 um.
+Total wire length on LAYER METAL1 = 223588 um.
+Total wire length on LAYER METAL2 = 209505 um.
+Total number of vias = 3642.
+Up-via summary (total 3642):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3642
+-----------------------
+               3642
+
+
+[INFO DRT-0195] Start 7th guides tiles iteration.
+    Completing 50% with 2 violations.
+    elapsed time = 00:00:00, memory = 1093.44 (MB).
+    Completing 100% with 2 violations.
+    elapsed time = 00:00:00, memory = 1093.44 (MB).
+[INFO DRT-0199]   Number of violations = 2.
+Viol/Layer      METAL2
+Short                2
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 1093.44 (MB), peak = 1193.77 (MB)
+Total wire length = 433094 um.
+Total wire length on LAYER METAL1 = 223588 um.
+Total wire length on LAYER METAL2 = 209505 um.
+Total number of vias = 3642.
+Up-via summary (total 3642):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3642
+-----------------------
+               3642
+
+
+[INFO DRT-0195] Start 8th stubborn tiles iteration.
+    Completing 10% with 2 violations.
+    elapsed time = 00:00:01, memory = 1118.36 (MB).
+    Completing 20% with 2 violations.
+    elapsed time = 00:00:01, memory = 1121.45 (MB).
+    Completing 30% with 2 violations.
+    elapsed time = 00:00:02, memory = 1124.25 (MB).
+    Completing 40% with 2 violations.
+    elapsed time = 00:00:02, memory = 1139.98 (MB).
+    Completing 50% with 2 violations.
+    elapsed time = 00:00:03, memory = 1148.53 (MB).
+    Completing 60% with 2 violations.
+    elapsed time = 00:00:04, memory = 1166.86 (MB).
+    Completing 70% with 2 violations.
+    elapsed time = 00:00:05, memory = 1167.50 (MB).
+    Completing 80% with 2 violations.
+    elapsed time = 00:00:06, memory = 1167.53 (MB).
+    Completing 90% with 2 violations.
+    elapsed time = 00:00:06, memory = 1168.23 (MB).
+    Completing 100% with 1 violations.
+    elapsed time = 00:00:09, memory = 1168.39 (MB).
+[INFO DRT-0199]   Number of violations = 1.
+Viol/Layer      METAL2
+Short                1
+[INFO DRT-0267] cpu time = 00:01:47, elapsed time = 00:00:09, memory = 1169.45 (MB), peak = 1193.77 (MB)
+Total wire length = 435475 um.
+Total wire length on LAYER METAL1 = 224317 um.
+Total wire length on LAYER METAL2 = 211158 um.
+Total number of vias = 3690.
+Up-via summary (total 3690):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3690
+-----------------------
+               3690
+
+
+[INFO DRT-0195] Start 9th guides tiles iteration.
+    Completing 50% with 1 violations.
+    elapsed time = 00:00:00, memory = 1169.45 (MB).
+    Completing 100% with 1 violations.
+    elapsed time = 00:00:00, memory = 1169.45 (MB).
+[INFO DRT-0199]   Number of violations = 1.
+Viol/Layer      METAL2
+Short                1
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 1169.45 (MB), peak = 1193.77 (MB)
+Total wire length = 435475 um.
+Total wire length on LAYER METAL1 = 224317 um.
+Total wire length on LAYER METAL2 = 211158 um.
+Total number of vias = 3690.
+Up-via summary (total 3690):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3690
+-----------------------
+               3690
+
+
+[INFO DRT-0195] Start 10th guides tiles iteration.
+    Completing 50% with 1 violations.
+    elapsed time = 00:00:00, memory = 1169.45 (MB).
+    Completing 100% with 1 violations.
+    elapsed time = 00:00:00, memory = 1169.45 (MB).
+[INFO DRT-0199]   Number of violations = 1.
+Viol/Layer      METAL2
+Short                1
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 1169.48 (MB), peak = 1193.77 (MB)
+Total wire length = 435481 um.
+Total wire length on LAYER METAL1 = 224209 um.
+Total wire length on LAYER METAL2 = 211271 um.
+Total number of vias = 3683.
+Up-via summary (total 3683):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3683
+-----------------------
+               3683
+
+
+[INFO DRT-0195] Start 11th stubborn tiles iteration.
+    Completing 10% with 1 violations.
+    elapsed time = 00:00:00, memory = 1170.58 (MB).
+    Completing 20% with 1 violations.
+    elapsed time = 00:00:01, memory = 1170.75 (MB).
+    Completing 30% with 1 violations.
+    elapsed time = 00:00:02, memory = 1170.80 (MB).
+    Completing 40% with 1 violations.
+    elapsed time = 00:00:02, memory = 1170.84 (MB).
+    Completing 50% with 1 violations.
+    elapsed time = 00:00:02, memory = 1170.84 (MB).
+    Completing 60% with 1 violations.
+    elapsed time = 00:00:03, memory = 1173.83 (MB).
+    Completing 70% with 1 violations.
+    elapsed time = 00:00:04, memory = 1176.30 (MB).
+    Completing 80% with 1 violations.
+    elapsed time = 00:00:04, memory = 1176.33 (MB).
+    Completing 90% with 1 violations.
+    elapsed time = 00:00:05, memory = 1176.33 (MB).
+    Completing 100% with 1 violations.
+    elapsed time = 00:00:07, memory = 1176.36 (MB).
+[INFO DRT-0199]   Number of violations = 1.
+Viol/Layer      METAL2
+Short                1
+[INFO DRT-0267] cpu time = 00:01:24, elapsed time = 00:00:07, memory = 1176.94 (MB), peak = 1193.77 (MB)
+Total wire length = 435070 um.
+Total wire length on LAYER METAL1 = 224155 um.
+Total wire length on LAYER METAL2 = 210915 um.
+Total number of vias = 3674.
+Up-via summary (total 3674):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3674
+-----------------------
+               3674
+
+
+[INFO DRT-0200] Skipping iteration 12
+[INFO DRT-0200] Skipping iteration 13
+[INFO DRT-0200] Skipping iteration 14
+[INFO DRT-0195] Start 15th guides tiles iteration.
+    Completing 50% with 1 violations.
+    elapsed time = 00:00:00, memory = 1176.94 (MB).
+    Completing 100% with 1 violations.
+    elapsed time = 00:00:00, memory = 1176.94 (MB).
+[INFO DRT-0199]   Number of violations = 1.
+Viol/Layer      METAL2
+Short                1
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 1176.95 (MB), peak = 1193.77 (MB)
+Total wire length = 435119 um.
+Total wire length on LAYER METAL1 = 224182 um.
+Total wire length on LAYER METAL2 = 210936 um.
+Total number of vias = 3689.
+Up-via summary (total 3689):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3689
+-----------------------
+               3689
+
+
+[INFO DRT-0195] Start 16th stubborn tiles iteration.
+    Completing 10% with 1 violations.
+    elapsed time = 00:00:00, memory = 1178.45 (MB).
+    Completing 20% with 1 violations.
+    elapsed time = 00:00:01, memory = 1178.48 (MB).
+    Completing 30% with 1 violations.
+    elapsed time = 00:00:01, memory = 1178.48 (MB).
+    Completing 40% with 1 violations.
+    elapsed time = 00:00:02, memory = 1178.48 (MB).
+    Completing 50% with 1 violations.
+    elapsed time = 00:00:02, memory = 1178.48 (MB).
+    Completing 60% with 1 violations.
+    elapsed time = 00:00:02, memory = 1178.48 (MB).
+    Completing 70% with 1 violations.
+    elapsed time = 00:00:03, memory = 1178.50 (MB).
+    Completing 80% with 1 violations.
+    elapsed time = 00:00:03, memory = 1178.53 (MB).
+    Completing 90% with 1 violations.
+    elapsed time = 00:00:05, memory = 1178.56 (MB).
+    Completing 100% with 0 violations.
+    elapsed time = 00:00:07, memory = 1178.56 (MB).
+[INFO DRT-0199]   Number of violations = 0.
+[INFO DRT-0267] cpu time = 00:01:15, elapsed time = 00:00:07, memory = 1178.58 (MB), peak = 1193.77 (MB)
+Total wire length = 435508 um.
+Total wire length on LAYER METAL1 = 224344 um.
+Total wire length on LAYER METAL2 = 211163 um.
+Total number of vias = 3695.
+Up-via summary (total 3695):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3695
+-----------------------
+               3695
+
+
+[INFO DRT-0198] Complete detail routing.
+Total wire length = 435508 um.
+Total wire length on LAYER METAL1 = 224344 um.
+Total wire length on LAYER METAL2 = 211163 um.
+Total number of vias = 3695.
+Up-via summary (total 3695):
+
+-----------------------
+ FR_MASTERSLICE       0
+         METAL1    3695
+-----------------------
+               3695
+
+
+[INFO DRT-0267] cpu time = 00:07:37, elapsed time = 00:01:03, memory = 1178.66 (MB), peak = 1193.77 (MB)
+[INFO DRT-0180] Post processing.
+[INFO DRT-0501] Runtime: 63.44s

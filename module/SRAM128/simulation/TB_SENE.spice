@@ -1,0 +1,121 @@
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/TB_SENE.sch
+**.subckt TB_SENE
+*+ WL[0],WL[1],WL[2],WL[3],WL[4],WL[5],WL[6],WL[7],WL[8],WL[9],WL[10],WL[11],WL[12],WL[13],WL[14],WL[15],WL[16],WL[17],WL[18],WL[19],WL[20],WL[21],WL[22],WL[23],WL[24],WL[25],WL[26],WL[27],WL[28],WL[29],WL[30],WL[31] WRn WR DIN PRn LATp VSS VDD
+*.ipin
+*+ WL[0],WL[1],WL[2],WL[3],WL[4],WL[5],WL[6],WL[7],WL[8],WL[9],WL[10],WL[11],WL[12],WL[13],WL[14],WL[15],WL[16],WL[17],WL[18],WL[19],WL[20],WL[21],WL[22],WL[23],WL[24],WL[25],WL[26],WL[27],WL[28],WL[29],WL[30],WL[31]
+*.ipin WRn
+*.ipin WR
+*.ipin DIN
+*.ipin PRn
+*.ipin LATp
+*.iopin VSS
+*.iopin VDD
+x1 VDD WRn BLp BLn WR VSS DIN WDRV
+x2 VDD PRn net1 BLp BLn LATp VSS SA
+x3[0] VDD WL[0] BLn BLp VSS BIT_CELL
+x3[1] VDD WL[1] BLn BLp VSS BIT_CELL
+x3[2] VDD WL[2] BLn BLp VSS BIT_CELL
+x3[3] VDD WL[3] BLn BLp VSS BIT_CELL
+x3[4] VDD WL[4] BLn BLp VSS BIT_CELL
+x3[5] VDD WL[5] BLn BLp VSS BIT_CELL
+x3[6] VDD WL[6] BLn BLp VSS BIT_CELL
+x3[7] VDD WL[7] BLn BLp VSS BIT_CELL
+x3[8] VDD WL[8] BLn BLp VSS BIT_CELL
+x3[9] VDD WL[9] BLn BLp VSS BIT_CELL
+x3[10] VDD WL[10] BLn BLp VSS BIT_CELL
+x3[11] VDD WL[11] BLn BLp VSS BIT_CELL
+x3[12] VDD WL[12] BLn BLp VSS BIT_CELL
+x3[13] VDD WL[13] BLn BLp VSS BIT_CELL
+x3[14] VDD WL[14] BLn BLp VSS BIT_CELL
+x3[15] VDD WL[15] BLn BLp VSS BIT_CELL
+x3[16] VDD WL[16] BLn BLp VSS BIT_CELL
+x3[17] VDD WL[17] BLn BLp VSS BIT_CELL
+x3[18] VDD WL[18] BLn BLp VSS BIT_CELL
+x3[19] VDD WL[19] BLn BLp VSS BIT_CELL
+x3[20] VDD WL[20] BLn BLp VSS BIT_CELL
+x3[21] VDD WL[21] BLn BLp VSS BIT_CELL
+x3[22] VDD WL[22] BLn BLp VSS BIT_CELL
+x3[23] VDD WL[23] BLn BLp VSS BIT_CELL
+x3[24] VDD WL[24] BLn BLp VSS BIT_CELL
+x3[25] VDD WL[25] BLn BLp VSS BIT_CELL
+x3[26] VDD WL[26] BLn BLp VSS BIT_CELL
+x3[27] VDD WL[27] BLn BLp VSS BIT_CELL
+x3[28] VDD WL[28] BLn BLp VSS BIT_CELL
+x3[29] VDD WL[29] BLn BLp VSS BIT_CELL
+x3[30] VDD WL[30] BLn BLp VSS BIT_CELL
+x3[31] VDD WL[31] BLn BLp VSS BIT_CELL
+**.ends
+
+* expanding   symbol:  WDRV.sym # of pins=7
+** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/WDRV.sym
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/WDRV.sch
+.subckt WDRV VDD WRn BLp BLn WRp VSS DIN
+*.iopin BLp
+*.iopin BLn
+*.ipin DIN
+*.ipin WRn
+*.ipin WRp
+*.iopin VDD
+*.iopin VSS
+XXM1 BLp WRp net2 VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM2 net2 net3 VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM3 net1 net3 VDD VDD NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM4 BLp WRn net1 VDD NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM5 net3 net4 VDD VDD NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM6 net3 net4 VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM7 BLn WRp net6 VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM8 net6 net4 VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM9 net5 net4 VDD VDD NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM10 BLn WRn net5 VDD NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM11 net4 DIN VDD VDD NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM12 net4 DIN VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  SA.sym # of pins=7
+** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SA.sym
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SA.sch
+.subckt SA VDD PRn DO BLp BLn LATp VSS
+*.iopin BLp
+*.iopin BLn
+*.ipin LATp
+*.iopin VDD
+*.iopin VSS
+*.iopin DO
+*.ipin PRn
+XXM1 net4 BLn net5 VSS NMOS w=5.4u l=1u nrd=0 nrs=0
+XXM2 net2 net4 net3 VSS NMOS w=5.4u l=1u nrd=0 nrs=0
+XXM3 net1 LATp VDD VDD PMOS w=6.8u l=1u nrd=0 nrs=0
+XXM4 DO net1 VDD VDD PMOS w=10.8u l=1u nrd=0 nrs=0
+XXM5 net1 net4 VDD VDD PMOS w=6.8u l=1u nrd=0 nrs=0
+XXM6 net3 LATp VSS VSS NMOS w=10.8u l=1u nrd=0 nrs=0
+XXM7 net1 BLp net2 VSS NMOS w=5.4u l=1u nrd=0 nrs=0
+XXM8 net5 net1 net3 VSS NMOS w=5.4u l=1u nrd=0 nrs=0
+XXM9 net4 LATp VDD VDD PMOS w=6.8u l=1u nrd=0 nrs=0
+XXM11 net4 net1 VDD VDD PMOS w=6.8u l=1u nrd=0 nrs=0
+XXM12 DO net1 VSS VSS NMOS w=6.8u l=1u nrd=0 nrs=0
+XXM10 net6 net4 VDD VDD PMOS w=10.8u l=1u nrd=0 nrs=0
+XXM13 net6 net4 VSS VSS NMOS w=6.8u l=1u nrd=0 nrs=0
+XXM14 BLn PRn VDD VDD PMOS w=6.8u l=1u nrd=0 nrs=0
+XXM15 BLp PRn VDD VDD PMOS w=6.8u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  BIT_CELL.sym # of pins=5
+** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/BIT_CELL.sym
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/BIT_CELL.sch
+.subckt BIT_CELL VDD WL BLn BLp VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin WL
+*.iopin BLp
+*.iopin BLn
+XXM1 net2 net1 VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM2 net1 net2 VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM3 net2 net1 VDD VDD PMOS w=3.4u l=1u nrd=0 nrs=0
+XXM4 net1 net2 VDD VDD PMOS w=3.4u l=1u nrd=0 nrs=0
+XXM5 BLp WL net2 VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM6 BLn WL net1 VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+.end

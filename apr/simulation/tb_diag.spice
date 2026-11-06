@@ -1,0 +1,20 @@
+* Delay breakdown diagnostic
+.include "models.spice"
+.include "OSS_FRAME_extracted_sim.spice"
+.option reltol=1e-3 abstol=1e-9 vntol=1e-4 method=trap
+VVDD VDD 0 5.0
+VVSS VSS 0 0.0
+VCLK P1 0 PULSE(0 5.0 150n 0.5n 0.5n 49.5n 100n)
+VRST P7 0 PWL(0n 5.0 99.5n 5.0 100n 0.0)
+VTEST P10 0 0.0
+C_P2 P2 0 1.0p
+C_P15 P15 0 1.0p
+XUUT P1 P10 P11 P12 P13 P14 P15 P2 P3 P4 P5 P6 P7 P9 VDD VSS OSS_FRAME
+.meas tran t_p1     WHEN v(P1)=2.5 TD=330n RISE=1
+.meas tran t_bufth  WHEN v(xuut.x_4.n168)=2.5 TD=330n RISE=1
+.meas tran t_clkbuf WHEN v(xuut.x_4.n660)=2.5 TD=330n RISE=1
+.meas tran t_st0    WHEN v(xuut.x_4.n563)=2.5 TD=330n FALL=1
+.meas tran t_cm_int WHEN v(xuut.ni59)=2.5 TD=330n RISE=1
+.meas tran t_cm_pad WHEN v(P15)=2.5 TD=330n RISE=1
+.tran 0.5n 420n
+.end

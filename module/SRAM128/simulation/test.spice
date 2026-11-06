@@ -1,0 +1,69 @@
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/WorkDir/test.sch
+**.subckt test OUT IN
+*.opin OUT
+*.ipin IN
+x0 VDD O1 IN VSS INV2 WWP=20u LLP=1u MP=1 WWN=10u LLN=1u MN=1
+VS VDD VSS 5.0
+x1 net1 O2 O1 VSS INV2 WWP=20u LLP=1u MP=1 WWN=10u LLN=1u MN=1
+x2 VDD O3 O2 VSS INV2 WWP=20u LLP=1u MP=1 WWN=10u LLN=1u MN=1
+x3 VDD O4 O3 VSS INV2 WWP=20u LLP=1u MP=1 WWN=10u LLN=1u MN=1
+x4 VDD O5 O4 VSS INV2 WWP=20u LLP=1u MP=1 WWN=10u LLN=1u MN=1
+x6 VDD O7 O6 VSS INV2 WWP=20u LLP=1u MP=1 WWN=10u LLN=1u MN=1
+x7 VDD OUT O7 VSS INV2 WWP=20u LLP=1u MP=1 WWN=10u LLN=1u MN=1
+x5 VDD O6 O5 VSS INV2 WWP=20u LLP=1u MP=1 WWN=10u LLN=1u MN=1
+VS1 net1 VDD 0
+**** begin user architecture code
+
+.include /Users/okamura/Dropbox/91_OpenPDK/WorkDir/simulation/test.inc
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  INV2.sym # of pins=4
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/WorkDir/INV2.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/WorkDir/INV2.sch
+.subckt INV2 VDD Y A VSS WWP=16u LLP=1u MP=1 WWN=8u LLN=1u MN=1
+*.ipin A
+*.opin Y
+*.iopin VDD
+*.iopin VSS
+x0 VDD net1 A VSS INV WWP=WWP LLP=LLP MP=MP WWN=WWN LLN=LLN MN=MN
+x1 VDD Y net1 VSS INV WWP=WWP LLP=LLP MP=MP WWN=WWN LLN=LLN MN=MN
+.ends
+
+
+* expanding   symbol:  INV.sym # of pins=4
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/WorkDir/INV.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/WorkDir/INV.sch
+.subckt INV VDD Y A VSS WWP=16u LLP=1u MP=1 WWN=8u LLN=1u MN=1
+*.iopin VDD
+*.iopin VSS
+*.iopin Y
+*.ipin A
+XM3 Y A VSS NMOS w= l= nrd= nrs= m=
+XM1 Y A VDD PMOS w= l= nrd= nrs= m=
+.ends
+
+
+* expanding   symbol:  NMOS.sym # of pins=3
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/WorkDir/NMOS.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/WorkDir/NMOS.sch
+.subckt NMOS D G S
+*.iopin G
+*.iopin D
+*.iopin S
+XXM1 D G S S NMOS w=W l=L nrd=0 nrs=0 m=M
+.ends
+
+
+* expanding   symbol:  PMOS.sym # of pins=3
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/WorkDir/PMOS.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/WorkDir/PMOS.sch
+.subckt PMOS D G S
+*.iopin G
+*.iopin S
+*.iopin D
+XXM1 D G S S NMOS w=W l=L nrd=NRD nrs=NRS m=M
+.ends
+
+.end

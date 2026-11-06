@@ -1,0 +1,49 @@
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SRAM_WD4.sch
+.subckt SRAM_WD4 DIN[0] DIN[1] DIN[2] DIN[3] CE WR BLp[0] BLp[1] BLp[2] BLp[3] BLn[0] BLn[1] BLn[2] BLn[3] VDD VSS
+*.PININFO CE:I DIN[0:3]:I VSS:B VDD:B WR:I BLn[0:3]:B BLp[0:3]:B
+xWDRV[0] VDD WRn BLp[0] BLn[0] WRp VSS DIN[0] WDRV
+xWDRV[1] VDD WRn BLp[1] BLn[1] WRp VSS DIN[1] WDRV
+xWDRV[2] VDD WRn BLp[2] BLn[2] WRp VSS DIN[2] WDRV
+xWDRV[3] VDD WRn BLp[3] BLn[3] WRp VSS DIN[3] WDRV
+xWRC VDD VSS WRn CE WR WRp WRCTR
+.ends
+
+* expanding   symbol:  WDRV.sym # of pins=7
+** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/WDRV.sym
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/WDRV.sch
+.subckt WDRV VDD WRn BLp BLn WRp VSS DIN
+*.PININFO BLn:B BLp:B DIN:I WRn:I WRp:I VDD:B VSS:B
+MXM1 BLn WRp net2 VSS NMOS w=5.4u l=1u
+MXM2 net2 Dp VSS VSS NMOS w=5.4u l=1u
+MXM3 net1 Dp VDD VDD PMOS w=9.4u l=1u
+MXM4 BLn WRn net1 VDD PMOS w=9.4u l=1u
+MXM5 Dp Dn VDD VDD PMOS w=6.8u l=1u
+MXM6 Dp Dn VSS VSS NMOS w=3.4u l=1u
+MXM7 BLp WRp net4 VSS NMOS w=5.4u l=1u
+MXM8 net4 Dn VSS VSS NMOS w=5.4u l=1u
+MXM9 net3 Dn VDD VDD PMOS w=9.4u l=1u
+MXM10 BLp WRn net3 VDD PMOS w=9.4u l=1u
+MXM11 Dn DIN VDD VDD PMOS w=6.8u l=1u
+MXM12 Dn DIN VSS VSS NMOS w=3.4u l=1u
+.ends
+
+
+* expanding   symbol:  WRCTR.sym # of pins=6
+** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/WRCTR.sym
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/WRCTR.sch
+.subckt WRCTR VDD VSS WRn CE WR WRp
+*.PININFO WRn:O CE:I VDD:B VSS:B WR:I WRp:O
+MXM1 WRp net1 VSS VSS NMOS w=6.8u l=1u
+MXM4 WRp net1 VDD VDD PMOS w=6.8u l=1u
+MXM2 net1 net2 net3 VSS NMOS w=3.4u l=1u
+MXM17 net1 net2 VDD VDD PMOS w=3.4u l=1u
+MXM18 net3 WR VSS VSS NMOS w=3.4u l=1u
+MXM19 net1 WR VDD VDD PMOS w=3.4u l=1u
+MXM5 WRn WRp VSS VSS NMOS w=6.8u l=1u
+MXM6 WRn WRp VDD VDD PMOS w=6.8u l=1u
+MXM3 net2 net4 VSS VSS NMOS w=3.4u l=1u
+MXM7 net2 net4 VDD VDD PMOS w=3.4u l=1u
+MXM8 net4 CE VSS VSS NMOS w=3.4u l=1u
+MXM9 net4 CE VDD VDD PMOS w=3.4u l=1u
+.ends
+

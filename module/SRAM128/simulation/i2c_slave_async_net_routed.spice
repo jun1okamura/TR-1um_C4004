@@ -1,0 +1,493 @@
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_Async_I2C/schematic/i2c_slave_async_net_routed.sch
+**.subckt i2c_slave_async_net_routed rst_n scl sda_in tx_data[0] tx_data[1] tx_data[2] tx_data[3] tx_data[4] tx_data[5] tx_data[6]
+*+ tx_data[7] sda_oe rx_data[0] rx_data[1] rx_data[2] rx_data[3] rx_data[4] rx_data[5] rx_data[6] rx_data[7] rx_valid addr_match rw busy VDD
+*+ GND
+*.ipin rst_n
+*.ipin scl
+*.ipin sda_in
+*.ipin tx_data[0]
+*.ipin tx_data[1]
+*.ipin tx_data[2]
+*.ipin tx_data[3]
+*.ipin tx_data[4]
+*.ipin tx_data[5]
+*.ipin tx_data[6]
+*.ipin tx_data[7]
+*.opin sda_oe
+*.opin rx_data[0]
+*.opin rx_data[1]
+*.opin rx_data[2]
+*.opin rx_data[3]
+*.opin rx_data[4]
+*.opin rx_data[5]
+*.opin rx_data[6]
+*.opin rx_data[7]
+*.opin rx_valid
+*.opin addr_match
+*.opin rw
+*.opin busy
+*.iopin VDD
+*.iopin GND
+_336_ net1 rst_n rst_n net2 INV_X1
+_337_ net3 rst_n rst_n net4 INV_X1
+_338_ net5 rst_n rst_n net6 INV_X1
+_339_ net7 rst_n rst_n net8 INV_X1
+_340_ net9 rst_n rst_n net10 INV_X1
+_341_ net11 rst_n rst_n net12 INV_X1
+_342_ net13 rst_n rst_n net14 INV_X1
+_343_ net15 rst_n rst_n net16 INV_X1
+_344_ net17 rst_n rst_n rst_n net18 OR2
+_345_ net19 rst_n rst_n rst_n net20 NOR2
+_346_ net21 rst_n rst_n rst_n net22 NOR2
+_347_ net23 rst_n rst_n rst_n net24 OR2
+_348_ net25 rst_n rst_n rst_n net26 NOR2
+_349_ net27 rst_n rst_n rst_n net28 NOR2
+_350_ net29 rst_n rst_n net30 INV_X1
+_351_ rst_n rst_n net31 rst_n rst_n net32 NOR3
+_352_ rst_n net33 rst_n rst_n rst_n net34 OR3
+_353_ net35 rst_n rst_n rst_n net36 OR2
+_354_ net37 rst_n rst_n rst_n net38 NOR2
+_355_ net39 rst_n rst_n rst_n net40 NOR2
+_356_ rst_n rst_n rst_n rst_n net41 rst_n net42 NOR4
+_357_ net43 rst_n rst_n net44 INV_X1
+_358_ net45 rst_n rst_n rst_n net46 AND2_X1
+_359_ net47 rst_n rst_n rst_n net48 NAND2
+_360_ rst_n rst_n rst_n rst_n net49 rst_n net50 NOR4
+_361_ net51 rst_n rst_n rst_n net52 OR2
+_362_ net53 rst_n rst_n rst_n net54 AND2_X1
+_363_ net55 rst_n rst_n rst_n net56 NAND2
+_364_ net57 net300 rst_n rst_n net58 NAND2
+_365_ net59 rst_n rst_n net300 net60 NAND2
+_366_ net61 rst_n rst_n rst_n net62 NAND2
+_367_ net63 rst_n rst_n rst_n net64 NAND2
+_368_ net65 rst_n rst_n rst_n net66 AND2_X1
+_369_ net67 rst_n rst_n rst_n net68 NAND2
+_370_ net69 rst_n rst_n rst_n net70 NOR2
+_371_ rst_n net71 rst_n rst_n rst_n net72 OR3
+_372_ net73 rst_n rst_n rst_n net74 NAND2
+_373_ net75 rst_n rst_n rst_n net76 NAND2
+_374_ net77 rst_n rst_n rst_n net78 NAND2
+_375_ net79 rst_n rst_n rst_n net80 NAND2
+_376_ net81 rst_n rst_n rst_n net82 NAND2
+_377_ rst_n rst_n rst_n net83 rst_n net84 MUX2
+_378_ rst_n rst_n rst_n net85 net288 net86 MUX2
+_379_ rst_n rst_n rst_n net87 net289 net88 MUX2
+_380_ rst_n rst_n rst_n net89 net290 net90 MUX2
+_381_ rst_n rst_n rst_n net91 net291 net92 MUX2
+_382_ rst_n rst_n rst_n net93 net292 net94 MUX2
+_383_ rst_n rst_n rst_n net95 rst_n net96 MUX2
+_384_ net97 rst_n rst_n rst_n net98 NOR2
+_385_ net99 rst_n rst_n rst_n net100 NAND2
+_386_ net101 rst_n rst_n rst_n net102 OR2
+_387_ rst_n rst_n rst_n net103 net293 net104 MUX2
+_388_ rst_n rst_n rst_n net105 net294 net106 MUX2
+_389_ rst_n rst_n rst_n net107 net295 net108 MUX2
+_390_ rst_n rst_n rst_n net109 net296 net110 MUX2
+_391_ rst_n rst_n rst_n net111 rst_n net112 MUX2
+_392_ rst_n rst_n rst_n net113 net297 net114 MUX2
+_393_ rst_n rst_n rst_n net115 rst_n net116 MUX2
+_394_ net117 rst_n rst_n rst_n net118 NOR2
+_395_ net119 rst_n rst_n rst_n net120 NAND2
+_396_ net121 rst_n rst_n rst_n net122 AND2_X1
+_397_ net123 rst_n rst_n rst_n net124 NAND2
+_398_ net125 rst_n rst_n rst_n net126 NAND2
+_399_ net127 rst_n rst_n rst_n net128 NAND2
+_400_ rst_n rst_n rst_n rst_n net129 rst_n net130 NOR4
+_401_ net131 rst_n rst_n rst_n net132 NOR2
+_402_ net133 rst_n rst_n rst_n net134 AND2_X1
+_403_ net135 rst_n rst_n rst_n net136 NOR2
+_404_ net137 rst_n rst_n rst_n net138 NAND2
+_405_ net139 rst_n rst_n rst_n net140 AND2_X1
+_406_ rst_n rst_n rst_n rst_n net141 rst_n net142 NOR4
+_407_ net143 rst_n rst_n rst_n net144 NOR2
+_408_ net145 rst_n rst_n rst_n net146 NAND2
+_409_ rst_n rst_n rst_n net147 net290 net148 MUX2
+_410_ net149 rst_n rst_n rst_n net150 NOR2
+_411_ rst_n rst_n rst_n net151 net298 net152 MUX2
+_412_ rst_n rst_n rst_n net153 net292 net154 MUX2
+_413_ rst_n net155 rst_n rst_n rst_n net156 NAND3
+_414_ net157 rst_n rst_n rst_n net158 NAND2
+_415_ net159 rst_n rst_n rst_n net160 NAND2
+_416_ rst_n net161 rst_n rst_n rst_n net162 NAND3
+_417_ rst_n rst_n rst_n rst_n net163 rst_n net164 NAND4
+_418_ net165 rst_n rst_n rst_n net166 NAND2
+_419_ net167 rst_n rst_n rst_n net168 NAND2
+_420_ net169 rst_n rst_n rst_n net170 NAND2
+_421_ rst_n net171 rst_n rst_n rst_n net172 NAND3
+_422_ rst_n net173 rst_n rst_n rst_n net174 NAND3
+_423_ net175 rst_n rst_n rst_n net176 NAND2
+_424_ rst_n rst_n rst_n rst_n net177 rst_n net178 NAND4
+_425_ net179 rst_n rst_n rst_n net180 NOR2
+_426_ rst_n rst_n net181 rst_n rst_n net182 NOR3
+_427_ net183 rst_n rst_n rst_n net184 NAND2
+_428_ rst_n net185 rst_n rst_n rst_n net186 NAND3
+_429_ net187 rst_n rst_n rst_n net188 AND2_X1
+_430_ rst_n rst_n net189 net301 rst_n net190 NOR3
+_431_ net191 rst_n rst_n net301 net192 NAND2
+_432_ net193 rst_n rst_n rst_n net194 NAND2
+_433_ net195 rst_n rst_n rst_n net196 NAND2
+_434_ net197 rst_n rst_n rst_n net198 NOR2
+_435_ net199 rst_n rst_n rst_n net200 OR2
+_436_ net201 rst_n rst_n rst_n net202 NOR2
+_437_ rst_n rst_n rst_n net203 net299 rst_n MUX2
+_438_ rst_n net204 rst_n rst_n rst_n net205 NAND3
+_439_ net206 rst_n rst_n rst_n net207 NAND2
+_440_ rst_n rst_n rst_n rst_n net208 net302 net209 OR4
+_441_ rst_n rst_n rst_n net302 net210 net303 net211 NOR4
+_442_ net303 rst_n rst_n net212 rst_n net213 MUX2
+_443_ net214 rst_n rst_n net304 rst_n net215 rst_n DFFR
+_444_ net216 rst_n rst_n net305 rst_n net217 rst_n DFFR
+_445_ net218 rst_n rst_n net306 rst_n net219 rst_n DFFR
+_446_ net220 rst_n net290 net307 rst_n net221 rst_n DFFR
+_447_ net222 rst_n rst_n rst_n rst_n net223 rst_n DFFR
+_448_ net224 rst_n net297 net308 rst_n net225 rst_n DFFR
+_449_ net226 rst_n rst_n net309 rst_n net227 rst_n DFFR
+_450_ net228 rst_n net296 net310 rst_n net229 rst_n DFFR
+_451_ net230 rst_n net295 net311 rst_n net231 rst_n DFFR
+_452_ net232 rst_n net294 net312 rst_n net233 rst_n DFFR
+_453_ net234 rst_n net293 net313 rst_n net235 rst_n DFFR
+_454_ net236 rst_n net298 net314 rst_n net237 rst_n DFFR
+_455_ net238 rst_n rst_n net315 rst_n net239 rst_n DFFR
+_456_ net240 rst_n net292 net316 rst_n net241 rst_n DFFR
+_457_ net242 rst_n net291 net317 rst_n net243 rst_n DFFR
+_458_ net244 rst_n net290 net318 rst_n net245 rst_n DFFR
+_459_ net246 rst_n net289 net319 rst_n net247 rst_n DFFR
+_460_ net248 rst_n net288 net320 rst_n net249 rst_n DFFR
+_461_ net250 rst_n rst_n net321 rst_n net251 rst_n DFFR
+_462_ net252 rst_n net292 net322 rst_n net253 rst_n DFFR
+_463_ net254 rst_n rst_n net323 rst_n net255 rst_n DFFR
+_464_ net256 rst_n rst_n net324 rst_n net257 rst_n DFFR
+_465_ net258 rst_n rst_n net325 rst_n net259 rst_n DFFR
+_466_ net260 rst_n net299 net326 rst_n net261 rst_n DFFR
+_467_ net262 rst_n rst_n net327 rst_n net263 rst_n DFFR
+_468_ net264 sda_oe rst_n net328 rst_n net265 rst_n DFFR
+_469_ net266 rst_n rst_n net329 rst_n net267 rst_n DFFR
+_470_ net268 rst_n rst_n rst_n rst_n net269 rst_n DFFR
+_471_ net270 rst_n rst_n net330 rst_n net271 rst_n DFFR
+_472_ net272 rst_n rst_n rst_n rst_n net273 rst_n DFFR
+_473_ net274 rst_n rst_n rst_n rst_n net275 rst_n DFFR
+_474_ net276 rst_n rst_n net331 rst_n net277 rst_n DFFR
+_475_ net278 rst_n rst_n rst_n rst_n net279 rst_n DFFR
+u_del_sda net280 rst_n rst_n net281 DEL1
+u_inv_scl net282 rst_n rst_n net283 INV_X1
+u_lat_q net284 rst_n rst_n rst_n net285 NOR2
+u_lat_qn net286 rst_n rst_n rst_n net287 NOR2
+**.ends
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/INV_X1.sym # of pins=4
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/INV_X1.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/INV_X1.sch
+.subckt INV_X1 VDD A Y GND
+*.ipin A
+*.opin Y
+*.iopin GND
+*.iopin VDD
+XM7 Y A VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM2 Y A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/OR2.sym # of pins=5
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/OR2.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/OR2.sch
+.subckt OR2 VDD Y A B GND
+*.ipin A
+*.ipin B
+*.opin Y
+*.iopin VDD
+*.iopin GND
+XM7 net2 B VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM2 net1 A net2 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM4 Y net1 VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM1 net1 B GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM3 net1 A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM5 Y net1 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NOR2.sym # of pins=5
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NOR2.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NOR2.sch
+.subckt NOR2 VDD Y A B GND
+*.ipin A
+*.ipin B
+*.opin Y
+*.iopin VDD
+*.iopin GND
+XM7 net1 A VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM1 Y B net1 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM2 Y A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM3 Y B GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NOR3.sym # of pins=6
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NOR3.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NOR3.sch
+.subckt NOR3 B C VDD Y A GND
+*.ipin A
+*.ipin B
+*.opin Y
+*.iopin VDD
+*.iopin GND
+*.ipin C
+XM7 net1 B VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM2 net2 A net1 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM3 Y C net2 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM1 Y B GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM4 Y C GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM5 Y A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/OR3.sym # of pins=6
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/OR3.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/OR3.sch
+.subckt OR3 C VDD Y A B GND
+*.ipin A
+*.ipin B
+*.opin Y
+*.iopin VDD
+*.iopin GND
+*.ipin C
+XM8 net1 B VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM2 net2 A net1 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM3 net3 C net2 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM7 Y net3 VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM9 Y net3 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM1 net3 C GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM4 net3 A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM5 net3 B GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NOR4.sym # of pins=7
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NOR4.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NOR4.sch
+.subckt NOR4 A B C D VDD Y GND
+*.ipin A
+*.ipin B
+*.opin Y
+*.iopin VDD
+*.iopin GND
+*.ipin C
+*.ipin D
+XM8 net1 B VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM2 net2 A net1 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM3 net3 C net2 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM6 Y D net3 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM9 Y D GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM1 Y B GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM4 Y C GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM5 Y A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/AND2_X1.sym # of pins=5
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/AND2_X1.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/AND2_X1.sch
+.subckt AND2_X1 VDD Y A B GND
+*.opin Y
+*.ipin A
+*.ipin B
+*.iopin VDD
+*.iopin GND
+XM7 net1 B VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM1 net1 A VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM2 Y net1 VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM3 Y net1 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM4 net1 A net2 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM5 net2 B GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NAND2.sym # of pins=5
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NAND2.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NAND2.sch
+.subckt NAND2 VDD Y A B GND
+*.ipin B
+*.ipin A
+*.opin Y
+*.iopin GND
+*.iopin VDD
+XM7 Y A VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM1 Y B VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM2 Y B net1 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM3 net1 A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/MUX2.sym # of pins=6
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/MUX2.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/MUX2.sch
+.subckt MUX2 A B S VDD Y GND
+*.ipin B
+*.ipin S
+*.opin Y
+*.iopin VDD
+*.iopin GND
+*.ipin A
+XM13 net1 S VDD VDD PMOS w=6.8u l=1u nrd=0 nrs=0
+XM9 net2 B VDD VDD PMOS w=6.8u l=1u nrd=0 nrs=0
+XM8 net4 net1 net2 VDD PMOS w=6.8u l=1u nrd=0 nrs=0
+XM10 Y net4 VDD VDD PMOS w=5.1u l=1u nrd=0 nrs=0 m=2
+XM2 net4 S net3 VDD PMOS w=6.8u l=1u nrd=0 nrs=0
+XM12 net1 S GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM3 net2 B GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM1 Y net4 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM5 net3 A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM6 net4 S net2 GND NMOS w=3.4u l=1u nrd=0 nrs=0 m=2
+XM4 net4 net1 net3 GND NMOS w=3.4u l=1u nrd=0 nrs=0 m=2
+XM7 net3 A VDD VDD PMOS w=6.8u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NAND3.sym # of pins=6
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NAND3.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NAND3.sch
+.subckt NAND3 C VDD Y A B GND
+*.ipin B
+*.ipin A
+*.opin Y
+*.iopin GND
+*.iopin VDD
+*.ipin C
+XM1 Y A VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM4 Y B VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM6 Y C VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM7 Y C net1 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM2 net1 B net2 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM3 net2 A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NAND4.sym # of pins=7
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NAND4.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/NAND4.sch
+.subckt NAND4 A B D C VDD Y GND
+*.ipin B
+*.ipin A
+*.opin Y
+*.iopin GND
+*.iopin VDD
+*.ipin D
+*.ipin C
+XM4 Y A VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM6 Y C VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM7 Y D VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM8 Y B VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM1 Y D net3 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM2 net2 B net1 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM3 net3 C net2 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM5 net1 A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/OR4.sym # of pins=7
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/OR4.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/OR4.sch
+.subckt OR4 A B C D VDD Y GND
+*.ipin B
+*.ipin A
+*.opin Y
+*.iopin VDD
+*.iopin GND
+*.ipin C
+*.ipin D
+XM10 net1 B VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM2 net2 A net1 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM3 net4 C net2 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM7 Y net3 VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM9 net4 D net3 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM11 net3 A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM1 net3 B GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM4 net3 C GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM5 net3 D GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM6 Y net3 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/DFFR.sym # of pins=7
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/DFFR.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/DFFR.sch
+.subckt DFFR VDD QB D Q RST GND CK
+*.iopin VDD
+*.iopin GND
+*.ipin CK
+*.ipin D
+*.opin Q
+*.opin QB
+*.ipin RST
+*  p15 -  lab_wire  IS MISSING !!!!
+*  p16 -  lab_wire  IS MISSING !!!!
+*  p17 -  lab_wire  IS MISSING !!!!
+*  p1 -  lab_wire  IS MISSING !!!!
+*  p3 -  lab_wire  IS MISSING !!!!
+*  p4 -  lab_wire  IS MISSING !!!!
+*  p5 -  lab_wire  IS MISSING !!!!
+*  p7 -  lab_wire  IS MISSING !!!!
+*  p8 -  lab_wire  IS MISSING !!!!
+*  p18 -  lab_wire  IS MISSING !!!!
+*  p19 -  lab_wire  IS MISSING !!!!
+*  p20 -  lab_wire  IS MISSING !!!!
+*  p21 -  lab_wire  IS MISSING !!!!
+*  p22 -  lab_wire  IS MISSING !!!!
+*  p23 -  lab_wire  IS MISSING !!!!
+*  p24 -  lab_wire  IS MISSING !!!!
+*  p25 -  lab_wire  IS MISSING !!!!
+XM2 net4 D VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM1 net5 net21 net4 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM11 net7 net10 VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM12 net5 net24 net7 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM15 net9 net5 VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM16 net10 net25 net9 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM18 net11 net10 VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM19 net12 net26 net11 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM23 net14 net16 VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM24 net12 net28 net14 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM27 net17 net12 VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM28 net16 net18 net17 VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM31 QB net16 VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM33 Q QB VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM35 QB net16 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM32 Q QB GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM29 net16 net18 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM30 net16 net12 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM25 net12 net29 net15 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM26 net15 net16 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM20 net12 net27 net13 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM21 net13 net10 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM17 net10 net5 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM22 net10 RST GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM13 net5 net23 net8 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM14 net8 net10 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM7 net5 net22 net6 GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM8 net6 D GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM3 net1 CK net19 net19 PMOS w=10.2u l=1u nrd=0 nrs=0
+XM4 net2 net1 net19 net19 PMOS w=10.2u l=1u nrd=0 nrs=0
+XM5 net3 net2 net19 net19 PMOS w=10.2u l=1u nrd=0 nrs=0
+XM34 net1 CK net20 net20 NMOS w=3.4u l=1u nrd=0 nrs=0
+XM6 net2 net1 net20 net20 NMOS w=3.4u l=1u nrd=0 nrs=0
+XM9 net3 net2 net20 net20 NMOS w=3.4u l=1u nrd=0 nrs=0
+.ends
+
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/DEL1.sym # of pins=4
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/DEL1.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_5_stdcell/DEL1.sch
+.subckt DEL1 VDD A Y GND
+*.ipin A
+*.opin Y
+*.iopin VDD
+*.iopin GND
+XM9 net3 A VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0
+XM2 Y net1 VDD VDD PMOS w=10.2u l=1u nrd=0 nrs=0 m=2
+XM8 net3 A GND GND NMOS w=3.4u l=1u nrd=0 nrs=0
+XM1 Y net1 GND GND NMOS w=3.4u l=1u nrd=0 nrs=0 m=2
+XM4 net2 net3 VDD VDD PMOS w=10.2u l=2u nrd=0 nrs=0
+XM6 net1 net2 VDD VDD PMOS w=10.2u l=2u nrd=0 nrs=0
+XM7 net2 net3 GND GND NMOS w=3.4u l=2u nrd=0 nrs=0
+XM3 net1 net2 GND GND NMOS w=3.4u l=2u nrd=0 nrs=0
+.ends
+
+.end

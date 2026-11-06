@@ -1,0 +1,212 @@
+MACRO SRAM128
+    CLASS BLOCK ;
+    FOREIGN SRAM128 82.100 90.100 ;
+    ORIGIN 0.000 0.000 ;
+    SIZE 1166.100 BY 185.600 ;
+    SYMMETRY X Y ;
+
+    PIN A0
+        DIRECTION INPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 0.600 21.400 4.000 24.800 ;
+            LAYER METAL2 ;
+                RECT 0.600 21.400 4.000 24.800 ;
+        END
+    END A0
+
+    PIN A1
+        DIRECTION INPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 0.600 33.400 4.000 36.800 ;
+            LAYER METAL2 ;
+                RECT 0.600 33.400 4.000 36.800 ;
+        END
+    END A1
+
+    PIN A2
+        DIRECTION INPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 0.600 45.400 4.000 48.800 ;
+            LAYER METAL2 ;
+                RECT 0.600 45.400 4.000 48.800 ;
+        END
+    END A2
+
+    PIN A3
+        DIRECTION INPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 0.600 57.400 4.000 60.800 ;
+            LAYER METAL2 ;
+                RECT 0.600 57.400 4.000 60.800 ;
+        END
+    END A3
+
+    PIN A4
+        DIRECTION INPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 1162.700 23.400 1166.100 26.800 ;
+            LAYER METAL2 ;
+                RECT 1162.700 23.400 1166.100 26.800 ;
+        END
+    END A4
+
+    PIN CE
+        DIRECTION INPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 1162.700 48.200 1166.100 51.600 ;
+            LAYER METAL2 ;
+                RECT 1162.700 48.200 1166.100 51.600 ;
+        END
+    END CE
+
+    PIN DIN[0]
+        DIRECTION INPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 1.000 99.600 4.400 103.000 ;
+            LAYER METAL2 ;
+                RECT 1.000 99.600 4.400 103.000 ;
+        END
+    END DIN[0]
+
+    PIN DIN[1]
+        DIRECTION INPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 1.000 119.600 4.400 123.000 ;
+            LAYER METAL2 ;
+                RECT 1.000 119.600 4.400 123.000 ;
+        END
+    END DIN[1]
+
+    PIN DIN[2]
+        DIRECTION INPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 1.000 139.600 4.400 143.000 ;
+            LAYER METAL2 ;
+                RECT 1.000 139.600 4.400 143.000 ;
+        END
+    END DIN[2]
+
+    PIN DIN[3]
+        DIRECTION INPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 1.000 159.600 4.400 163.000 ;
+            LAYER METAL2 ;
+                RECT 1.000 159.600 4.400 163.000 ;
+        END
+    END DIN[3]
+
+    PIN DO[0]
+        DIRECTION OUTPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 1162.700 104.800 1166.100 108.200 ;
+            LAYER METAL2 ;
+                RECT 1162.700 104.800 1166.100 108.200 ;
+        END
+    END DO[0]
+
+    PIN DO[1]
+        DIRECTION OUTPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 1162.700 124.800 1166.100 128.200 ;
+            LAYER METAL2 ;
+                RECT 1162.700 124.800 1166.100 128.200 ;
+        END
+    END DO[1]
+
+    PIN DO[2]
+        DIRECTION OUTPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 1162.700 144.800 1166.100 148.200 ;
+            LAYER METAL2 ;
+                RECT 1162.700 144.800 1166.100 148.200 ;
+        END
+    END DO[2]
+
+    PIN DO[3]
+        DIRECTION OUTPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 1162.700 164.800 1166.100 168.200 ;
+            LAYER METAL2 ;
+                RECT 1162.700 164.800 1166.100 168.200 ;
+        END
+    END DO[3]
+
+    PIN WR
+        DIRECTION INPUT ;
+        USE SIGNAL ;
+        PORT
+            LAYER METAL1 ;
+                RECT 1.000 85.600 4.400 89.000 ;
+            LAYER METAL2 ;
+                RECT 1.000 85.600 4.400 89.000 ;
+        END
+    END WR
+
+    PIN VDD
+        DIRECTION INOUT ;
+        USE POWER ;
+        SHAPE ABUTMENT ;
+        PORT
+            LAYER METAL1 ;
+                RECT 0.000 5.400 3.400 8.800 ;
+            LAYER METAL1 ;
+                RECT 0.000 176.800 3.400 180.200 ;
+            LAYER METAL1 ;
+                RECT 1162.700 5.400 1166.100 8.800 ;
+            LAYER METAL1 ;
+                RECT 1162.700 176.800 1166.100 180.200 ;
+        END
+    END VDD
+
+    PIN VSS
+        DIRECTION INOUT ;
+        USE GROUND ;
+        SHAPE ABUTMENT ;
+        PORT
+            LAYER METAL1 ;
+                RECT 0.000 0.000 3.400 3.400 ;
+            LAYER METAL1 ;
+                RECT 0.000 182.200 3.400 185.600 ;
+            LAYER METAL1 ;
+                RECT 1162.700 0.000 1166.100 3.400 ;
+            LAYER METAL1 ;
+                RECT 1162.700 182.200 1166.100 185.600 ;
+        END
+    END VSS
+    OBS
+        LAYER METAL1 ;
+            RECT 5.000 0.000 1162.100 185.600 ;
+        LAYER METAL2 ;
+            RECT 5.000 0.000 1162.100 185.600 ;
+    END
+END SRAM128
+
+END LIBRARY

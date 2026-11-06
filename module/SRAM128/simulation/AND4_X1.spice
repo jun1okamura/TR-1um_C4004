@@ -1,0 +1,14 @@
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/IP62_5_stdcell/AND4_X1.sch
+.subckt AND4_X1 D C VDD Y A B GND
+*.PININFO Y:O A:I B:I VDD:B GND:B C:I D:I
+MM7 net1 A net4 GND NMOS w=3.4u l=1u
+MM5 net3 C net2 GND NMOS w=3.4u l=1u
+MM8 Y net1 GND GND NMOS w=3.4u l=1u
+MM10 net2 D GND GND NMOS w=3.4u l=1u
+MM6 net4 B net3 GND NMOS w=3.4u l=1u
+MM11 net1 A VDD VDD PMOS w=10.2u l=1u
+MM1 net1 D VDD VDD PMOS w=10.2u l=1u
+MM3 net1 C VDD VDD PMOS w=10.2u l=1u
+MM4 Y net1 VDD VDD PMOS w=10.2u l=1u
+MM2 net1 B VDD VDD PMOS w=10.2u l=1u
+.ends

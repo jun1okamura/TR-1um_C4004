@@ -1,0 +1,81 @@
+* OpenSUSI TR-1um (IP62 5V 1um CMOS) BSIM3v3.3 + Diode Models for NGSPICE
+* N+/P-well ESD Protection Diode Model (1um CMOS 5V)
+.model DN D (IS=1e-14 RS=5 N=1.05 CJ0=7.44e-4 CJSW=2.3e-10 VJ=0.85 M=0.36 BV=14.0 IBV=1e-3)
+
+* TR-1um IP62 MOS Models for ngspice
+.param vthMP = 0
+.param vthMN = 0
+.param vthMPE = 0
+.param vthMNE = 0
+.param sdwidth = 2.8u
+
+
+.model PMOS_mst PMOS
++ vth0     = '-0.678475+vthMP'
++ level = 49 version = 3.3 tnom = 27
++ tox      = 1.95e-08       xj       = 3.2e-07        nch      = 1.6e+17
++ k1       = 0.865126       k2       = 0
++ k3       = 19.9415        k3b      = -10            w0       = 3.12082e-06
++ nlx      = 3.11982e-07    dvt0w    = 0              dvt1w    = 0
++ dvt2w    = -0.032         dvt0     = 1.41234        dvt1     = 0.524423
++ dvt2     = -0.031468      vbm      = -3             u0       = 0.0196669
++ ua       = 1.77818e-09    ub       = 2.67881e-18    uc       = -8.71484e-11
++ vsat     = 700000         a0       = 1.24985        ags      = 0.131047
++ b0       = 8.23429e-09    b1       = -1e-07         keta     = 0.0135411
++ a1       = 0              a2       = 1              rdsw     = 1989.6
++ prwg     = -0.001         prwb     = 0.0554082      wr       = 1
++ wint     = 8.28413e-07    lint     = -8.68261e-08   xl       = 0
++ xw       = 0              dwg      = -2.60218e-08   dwb      = -4.2585e-08
++ voff     = -0.15          nfactor  = 2              cit      = 0
++ cdsc     = 0.01           cdscd    = 0              cdscb    = 0
++ eta0     = 0.159519       etab     = -0.07722       dsub     = 0.567003
++ pclm     = 9.90814        pdiblc1  = 1              pdiblc2  = 0.00997756
++ pdiblcb  = -0.000118146   drout    = 0.823024       pscbe1   = 5.67248e+09
++ pscbe2   = 9.89777e-09    pvag     = 4.17315        delta    = 0.03
++ rsh      = 44.9607        mobmod   = 1              prt      = 292.21
++ ute      = -1.00674       kt1      = -0.506653      kt1l     = -1e-07
++ kt2      = -0.0438588     ua1      = 3.51352e-09    ub1      = -9.77898e-18
++ uc1      = -9.8421e-11    at       = 100000         nqsmod   = 0
++ wl       = 0              wln      = 1              ww       = 0
++ wwn      = 1              wwl      = 0              ll       = 0
++ lln      = 1              lw       = 0              lwn      = 1
++ lwl      = 0              capmod   = 2              noff     = 1
++ acde     = 1              moin     = 15             tpbswg   = 0
++ tcjswg   = 0              cgsl     =1.81e-09        cgdl     =1.81e-09
++ cj       =1.02e-03
+
+
+.model NMOS_mst NMOS
++ vth0     = '0.762948+vthMN'
++ level    = 49             version  = 3.3            tnom     = 27
++ tox      = 1.95e-08       xj       = 3.4e-07        nch      = 3.2e+16
++ k1       = 0.854475       k2       = -0.0311518
++ k3       = 86.2769        k3b      = 10             w0       = 5e-05
++ nlx      = 1.38901e-07    dvt0w    = 0              dvt1w    = 0
++ dvt2w    = -0.032         dvt0     = 1.01297        dvt1     = 0.348472
++ dvt2     = -0.0511863     vbm      = -3             u0       = 0.0668151
++ ua       = 2.05262e-09    ub       = 1e-21          uc       = 1.38707e-10
++ vsat     = 135539         a0       = 0.856098       ags      = 0.11654
++ b0       = -3.75624e-08   b1       = 1e-07          keta     = 0.05
++ a1       = 0              a2       = 0.9            rdsw     = 802.878
++ prwg     = 0.0727305      prwb     = 0.1            wr       = 1
++ wint     = 6.60865e-07    lint     = -1.03955e-07   xl       = 0
++ xw       = 0              dwg      = -7.69191e-09   dwb      = 3.86077e-08
++ voff     = -0.15          nfactor  = 2              cit      = 0
++ cdsc     = 0.01           cdscd    = 0              cdscb    = 0.000770059
++ eta0     = 0.487318       etab     = -0.2           dsub     = 0.821574
++ pclm     = 1.33874        pdiblc1  = 0.0770736      pdiblc2  = 1e-05
++ pdiblcb  = 1e-10          drout    = 0.850868       pscbe1   = 4.96301e+08
++ pscbe2   = 0.001          pvag     = 2.71787        delta    = 0.0147876
++ mobmod   = 1              prt      = -774           ute      = -1.70065
++ kt1      = -0.464518      kt1l     = -1e-07         kt2      = -0.0556928
++ ua1      = 2.9856e-09     ub1      = -9.01491e-18   uc1      = -1e-10
++ at       = 80156.4        nqsmod   = 0              wl       = 0
++ wln      = 1              ww       = 0              wwn      = 1
++ wwl      = 0              ll       = 0              lln      = 1
++ lw       = 0              lwn      = 1              lwl      = 0
++ capmod   = 2              tcj      = 0              tpb      = 0
++ tcjsw    = 0              tpbsw    = 0              noff     = 1
++ acde     = 1              moin     = 15             tpbswg   = 0
++ tcjswg   = 0              cgsl     =2.02e-09        cgdl     =2.02e-09
++ cj       =7.44e-04

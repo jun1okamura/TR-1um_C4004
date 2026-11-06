@@ -1,0 +1,18 @@
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_Async_I2C/LEF/RSLATCH.sch
+.subckt RSLATCH VDD S Q R QB VSS
+*.PININFO R:I S:I Q:O QB:O VDD:B VSS:B
+x1 VDD Q R QB VSS NOR2
+x2 VDD QB S Q VSS NOR2
+.ends
+
+* expanding   symbol:  ./NOR2.sym # of pins=5
+** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_Async_I2C/LEF/NOR2.sym
+** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_Async_I2C/LEF/NOR2.sch
+.subckt NOR2 VDD Y A B GND
+*.PININFO A:I B:I Y:O VDD:B GND:B
+MM7 net1 A VDD VDD PMOS w=10.2u l=1u
+MM1 Y B net1 VDD PMOS w=10.2u l=1u
+MM2 Y A GND GND NMOS w=3.4u l=1u
+MM3 Y B GND GND NMOS w=3.4u l=1u
+.ends
+

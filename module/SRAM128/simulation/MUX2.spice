@@ -1,0 +1,16 @@
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/IP62_5_stdcell/MUX2.sch
+.subckt MUX2 A B S VDD Y GND
+*.PININFO S:I Y:O VDD:B GND:B B:I A:I
+MM13 SB S VDD VDD PMOS w=6.8u l=1u
+MM8 net2 S net3 VDD PMOS w=6.8u l=1u
+MM12 SB S GND GND NMOS w=3.4u l=1u
+MM6 net2 SB net3 GND NMOS w=3.4u l=1u
+MM11 net1 B VDD VDD PMOS w=6.8u l=1u
+MM14 net1 B GND GND NMOS w=3.4u l=1u
+MM15 net2 A VDD VDD PMOS w=6.8u l=1u
+MM16 net2 A GND GND NMOS w=3.4u l=1u
+MM3 net1 SB net3 VDD PMOS w=6.8u l=1u
+MM5 net1 S net3 GND NMOS w=3.4u l=1u
+MM1 Y net3 VDD VDD PMOS w=11.2u l=1u
+MM2 Y net3 GND GND NMOS w=3.4u l=1u
+.ends

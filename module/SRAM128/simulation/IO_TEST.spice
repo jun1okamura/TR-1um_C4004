@@ -1,0 +1,70 @@
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_frame/TB/IO_TEST.sch
+**.subckt IO_TEST
+x1 VDD PAD VSS HIZ OUT OSS_ESD_5V_DIO
+C1 PAD VSS cload
+R1 VT PAD 1k
+**** begin user architecture code
+
+
+
+* ngspice commands
+.include '~/Dropbox/91_OpenPDK/TR-1um/libs.tech/spice/models/ip62_models'
+.param vdd=5.0
+.param vss=0
+*----
+vdd  vdd 0 dc vdd
+vss  vss 0 dc vss
+vtt  vt  0 dc 'vdd / 2.0'
+.param cload='20p'
+.param trf=100p
+vout out 0 pwl(0n vss 100n vss '100n+trf' vdd  200n vdd  '200n+trf' vss R)
+vhiz hiz 0 pwl(0n vss 500n vss '500n+trf' vdd 1000n vdd '1000n+trf' vss R)
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_frame/OSS_ESD_5V_DIO.sym # of pins=6
+** sym_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_frame/OSS_ESD_5V_DIO.sym
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/TR-1um_frame/OSS_ESD_5V_DIO.sch
+.subckt OSS_ESD_5V_DIO VDD PAD VSS HIZ OUT
+*.iopin PAD
+*.iopin VDD
+*.iopin VSS
+*.ipin HIZ
+*.ipin OUT
+XXM1 PAD PG VDD VDD MPE w=300u l=2u as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0
+XXM2 PAD NG VSS VSS MNE w=150u l=2u as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0
+XXM3 PG PGG VDD VDD PMOS w=20.8u l=1u nrd=0 nrs=0
+XXM4 PG PGG VSS VSS NMOS w=6.8u l=1u nrd=0 nrs=0
+XXM5 PAD VDD VDD VDD MPE w=200u l=2u as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0
+XXM6 PAD VSS VSS VSS MNE w=350u l=2u as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0
+XXM7 NG NGG VDD VDD PMOS w=20.8u l=1u nrd=0 nrs=0
+XXM8 NG NGG VSS VSS NMOS w=6.8u l=1u nrd=0 nrs=0
+XXM9 PGG HIZ net1 VDD PMOS w=10.4u l=1u nrd=0 nrs=0
+XXM10 net1 OUT VDD VDD PMOS w=10.4u l=1u nrd=0 nrs=0
+XXM11 PGG OUT VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM12 PGG HIZ VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM13 NGG OUT VDD VDD PMOS w=5.2u l=1u nrd=0 nrs=0
+XXM14 NGG ENB VDD VDD PMOS w=5.2u l=1u nrd=0 nrs=0
+XXM15 NGG ENB net2 VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM16 net2 OUT VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+XXM17 ENB HIZ VDD VDD PMOS w=5.2u l=1u nrd=0 nrs=0
+XXM18 ENB HIZ VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
+DD1 VSS HIZ DN
+DD2 OUT VDD DP
+.ends
+
+.GLOBAL VDD
+**** begin user architecture code
+
+
+*----
+.temp 25
+.tran 10p 600n
+.print tran v(out) v(hiz) v(pad)
+.plot v(out) v(pad)
+
+
+**** end user architecture code
+.end

@@ -1,0 +1,8 @@
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/WorkDir/OSS_ESD_5V_ANA.sch
+**.subckt OSS_ESD_5V_ANA PAD
+*.iopin PAD
+XXM1 PAD 0 0 net1 MNE w=11u l=2u as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0
+XXM2 PAD VDD VDD net2 MPE w=11u l=2u as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0
+**.ends
+.GLOBAL VDD
+.end

@@ -1,0 +1,12 @@
+** sch_path: /Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/xschem/IP62_5_stdcell/NAND4.sch
+.subckt NAND4 A B D C VDD Y GND
+*.PININFO B:I A:I Y:O GND:B VDD:B D:I C:I
+MM4 Y A VDD VDD PMOS w=10.2u l=1u
+MM6 Y C VDD VDD PMOS w=10.2u l=1u
+MM7 Y D VDD VDD PMOS w=10.2u l=1u
+MM8 Y B VDD VDD PMOS w=10.2u l=1u
+MM1 Y D net3 GND NMOS w=3.4u l=1u
+MM2 net2 B net1 GND NMOS w=3.4u l=1u
+MM3 net3 C net2 GND NMOS w=3.4u l=1u
+MM5 net1 A GND GND NMOS w=3.4u l=1u
+.ends

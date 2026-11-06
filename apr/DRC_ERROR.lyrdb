@@ -1,0 +1,2962 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>TR-1um DRC(Drawing)</description>
+ <original-file>c4004_chip.gds</original-file>
+ <generator>drc: script='/Users/okamura/Dropbox/91_OpenPDK/TR-1um/libs.tech/klayout/tech/drc/drc.lydrc'</generator>
+ <top-cell>OSS_FRAME</top-cell>
+ <tags>
+  <tag>
+   <name>waived</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>red</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>green</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>blue</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>yellow</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>important</name>
+   <description/>
+  </tag>
+ </tags>
+ <categories>
+  <category>
+   <name>ERR00: WN on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR00: AP on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR00: AN on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR00: AR on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR00: AC on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR00: GC on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR00: GR on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR00: CO on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR00: M1 on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR00: V1 on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR00: M2 on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR00: PO on Prohibted area</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: WN OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: AP OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: AN OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: AR OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: AC OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: GC OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: GR OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: CO OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: M1 OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: V1 OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: M2 OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR01: PO OFFGRID 0.050</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: NW twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: AP twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: AN twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: AR twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: AC twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: GC twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: GR twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: CO twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: M1 twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: V1 twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: M2 twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR02: PO twisted polygon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: WN edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: AP edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: AN edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: AR edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: AC edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: GC edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: GR edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: CO edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: M1 edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: V1 edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: M2 edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERR03: PO edge not 90 or 45 degrees</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>[EXT] merged CO error. Only one merged CO per RS terminal allowed. Use minimum CO space.</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>[EXT] Invalid RS. Check CO spacing and enclosure.</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>[EXT] Only one CO per RR terminal allowed.</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>[EXT] Invalid RR. Check CO enclosure.</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>[EXT] can not extract RR if AR enclosure of CO &gt; 2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>[EXT] can not extract RS if GR enclosure of merged CO &gt; 2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Warning: missing CSIO CO</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Warning: missing CSIO guardring CO</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Warning: missing guardring CO</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Warning: ESD PMOS source not connected to well tap</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Warning: ESD NMOS source not connected to sub tap</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ER0045:M1 SP ER 1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ER0047:M2 SP ER 2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ER1402:M1(W10OVER &amp; MIX) SP ER 2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ER1811:PAD M1-TC ENC ER 15.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ER1812:PAD M2-TC ENC ER 15.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ER1903:M1 MAXWIDTH 45.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ER1904:M2 MAXWIDTH 45.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERMP08:CONT(MP) SP MUST 1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERMP11:SG(MP)-CONT SP MUST 1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERMN09:CONT(MN) SP MUST 1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERMN12:SG(MN)-CONT SP MUST 1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERCSIO06:M1(CSIO CL) SP MUST 10.0 (less)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERCSIO06:M1(CSIO CL) SP MUST 10.0 (more)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERCSIO13:SG-L(CSIO) ENC MUST 1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ERCSIO16:CSIO SG-NSD-CL UNMATCH ER</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.Z1:AP over WN(R)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.Z2:AP over WN(C)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.Z3:AR over WN(C)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.Z1:CO outside AA+GC+GR</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.Z3:CO outside M1</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.Z1:V1 outside M1</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.Z2:V1 outside M2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PO.Z1:PO outside M1</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PO.Z2:PO outside M2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PO.Z3:PO without V1(P)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.W1:WN Wmin &lt;  8.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.S1:WN Smin &lt;  4.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.N1:WN Nmin &lt;  7.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.S2:WN(R)-WN(M) Smin &lt;  9.5</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.S3:WN(C)-WN(M) Smin &lt; 12.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.S4:WN(R)-WN(C) Smin &lt;  9.5</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.S5:WN(R) Smin &lt;  8.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.S6:WN(C) Smin &lt; 12.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.S7:WN(M) Smin &lt; 12.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.AP:WN-AP Smin &lt;  5.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.AP:WN overlap AP</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.AN:WN-AN Smin &lt; 10.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WN.AN:WN overlap AN</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.S1:AR Smin &lt;  4.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.WR:AR-WN(R) Emin &lt; 10.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AN.WR:AN-WN(R) Emin &lt; 10.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.AN:AR-AN Smin &lt;  4.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.AN:AR overlap AN</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AC.W1:AC Wmin &lt;  28.5</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AC.W1:AC Wmax &gt; 120.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AC.W1:AC must be a rectangle</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AC.S1:AC Smin &lt;  6.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AC.WC:AC-WN(C) Emin &lt;  8.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AN.WC:AN-WN(C) Emin &lt;  3.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AC.AN:AC-AN Sfix !=  2.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AC.GC:AC-GC Efix !=  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AC.R1:AC must surrounded AN(C)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GA.CX:GA(CX)-WN(C) Smin &lt;  1.5</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GA.CX:GA(CX) overlap WN(C)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AP.W1:AP Wmin &lt;  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AP.S1:AP Smin &lt;  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AP.AN:AP-AN Smin &lt;  2.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AP.AN:AP overlap AN</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AP.WM:PMOS Wmin &lt;   3.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AP.WM:PMOS Wmax &gt;  60.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AP.LM:PMOS Lmin &lt;   1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AP.LM:PMOS Lmax &gt;  30.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AP.WN:AP-WN Emin &lt;  7.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>DP.W1:DP Wmin &lt;  3.6</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>DP.S1:DP Smin &lt;  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>DP.AP:DP-AP(M) Smin &lt;  2.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>DP.AN:DP-AN Smin &lt;  2.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>DP.AN:DP overlap AN</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AN.W1:AN Wmin &lt;  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AN.S1:AN Smin &lt;  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AN.AP:AN-AP Smin &lt;  2.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AN.AP:AN overlap AP</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AN.WM:NMOS Wmin &lt;   3.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AN.WM:NMOS Wmax &gt;  60.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AN.LM:NMOS Lmin &lt;   1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AN.LM:NMOS Lmax &gt;  30.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AN.WN:AN-WN(M) Emin &lt;  5.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>DN.W1:DN Wmin &lt;  3.6</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>DN.S1:DN Smin &lt;  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>DN.AP:DN-AP Smin &lt;  2.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>DN.AP:DN overlap AP</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>DN.AN:DN-AN(M) Smin &lt;  2.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GC.W1:GC Wmin &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GC.S1:GC Smin &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GC.GR:GC-GR Smin &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GC.GR:GC overlap GR</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GA.AP:GA-AP Smin &lt;  0.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GA.AN:GA-AN Smin &lt;  0.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GC.EP:AP-GC Emin &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GC.EN:AN-GC Emin &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GC.E2:GC Concave &lt;= 1.2 Endcap &lt;  2.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GA.BG:BG over GA</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GA.CO:GA without CO</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.W1:CO Wmin &lt;   1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.W1:CO Wmax &gt;  97.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.W1:CO must be a rectangle</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.WM:CO(M) Wfix &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.WM:CO(M) bbox_min &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.WM:CO(M) bbox_max &gt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.WB:CO(B) Wfix &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.WB:CO(B) bbox_min &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.WB:CO(B) bbox_max &gt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.S1:CO Smin &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.CL:CO(L)-CO Smin &lt;  1.6</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.SM:CO(M)-CO(M) Sfix &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.SM:CO(M)-CO(M) Sfix !=  1.0 or off-center/missing CO(M)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.WD:CO(D) Wfix &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.WD:CO(D) bbox_min &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.WD:CO(D) bbox_max &gt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.SD:CO(D)-CO Smin &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.AD:CO(D)-AP+AN Emin &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.AP:CO-AP Emin &lt;  0.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.AN:CO-AN Emin &lt;  0.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CL.GC:GC+GR over CO(L)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.GG:CO(M)-GC Sfix &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.GG:CO(M)-GC Sfix !=  1.0 or off-center/missing CO(M)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.GC:CO-GC+GR Emin &lt;  0.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.W1:RR Wmin &lt;   2.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.W1:RR Wmax &gt;  20.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.L1:RR Lmin &lt;  13.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.L1:RR Lmax &gt; 100.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>RR.SZ:RR without RROK</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>RR.RT:RR must be a rectangle</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.GC:AR-GC Sfix !=  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.GC:AR overlap GC</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.PW:GC(R) Wmin &lt;  2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.XY:AR shape NOT Octagon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>AR.XY:AR trimmed corner size &lt; 0.50</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GC.R1:AR must surrounded GC(R)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GC.R2:GC(R) must tie down to WN(R)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GC.R3:CO over GC(RR)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GR.W1:RS Wmin &lt;   4.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GR.W1:RS Wmax &gt;  20.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GR.L1:RS Lmin &lt;  20.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GR.L1:RS Lmax &gt; 100.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>RS.SZ:RS outside RSOK</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>RS.RT:RS must be a rectangle</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GR.S1:RS Smin &lt;  2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GR.AP:GR-AP Smin &lt;  2.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GR.AP:GR overlap AP</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GR.AN:GR-AN Smin &lt;  2.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GR.AN:GR overlap AN</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CR.W1:CO(RR) Wmin &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CR.W2:CO(RRW) Lmin &lt;   1.6</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CR.W2:CO(RRW) Lmax &gt;  17.6</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CR.W3:CO(RRN) Wfix &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CR.W3:CO(RRN) bbox_min &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CR.W3:CO(RRN) bbox_max &gt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CR.AR:CO(RR)-AR Emin &lt;  0.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CR.AT:CO(RR)-AR(T) Emin &lt;  1.5</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CR.ASN:CO(RRN)-ARN(S) Efix !=  0.9</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CR.ASW:CO(RRW)-ARW(S) Efix !=  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CC.W1:CO(C) Wfix &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CC.W1:CO(C) bbox_min &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CC.W1:CO(C) bbox_max &gt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.SC:CO(C)-CO Smin &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CC.AC:CO(C)-AC Emin &lt;  2.9</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CC.AN:CO(C)-AN Emin &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.GR:CO-GR Emin &lt;  0.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.GS:CO(RSM)-GR(S) Efix !=  1.5</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CO.RT:CO(RSM) must be a rectangle</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.W1:M1 Wmin &lt;  1.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.W3:M1(I) Wmax &gt; 45.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.S1:M1 Smin &lt;  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.SC:M1C over ANC Sfix &lt; 10.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.SC:M1C over ANC Sfix &gt; 10.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.CO:M1-CO Fmin &lt;  0.8</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.CC:M1-CO(CC) Fmin &lt;  1.3</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.CL:M1-CO(L) Fmin &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.SW:M1(W)-M1 Smin &lt;  2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.W1:V1(S) Wfix &lt;  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.W1:V1(S) bbox_min &lt;  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.W1:V1(S) bbox_max &gt;  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.WP:V1(P) Wmin &lt; 60.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.S1:V1 Smin &lt;  1.5</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.M1:V1-M1 Emin &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.GA:V1-GA Smin &lt;  1.2</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.GA:V1 overlap GA</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.CO:V1-CO Smin &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.CO:V1 overlap CO</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.CL:V1-CO(L) Smin &lt;  1.4</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.W1:M2 Wmin &lt;  3.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.W3:M2(I) Wmax &gt; 45.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.S1:M2 Smin &lt;  2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.V1:M2-V1 Fmin &lt;  1.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.SCR:M1(S)-M1 Smin &lt;  5.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.SCR:M2(S)-M2 Smin &lt;  5.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>APE.WM:PMOSE Wmin &lt;  11.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>APE.WM:PMOSE Wmax &gt;  60.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>APE.LM:PMOSE Lmin &lt;   2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>APE.LM:PMOSE Lmax &gt;  30.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>APE.AN:APE-AN Smin &lt; 10.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>APE.AN:APE overlap AN</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>APE.XY:APE shape NOT Octagon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>APE.XY:APE trimmed corner size &lt; 0.98</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>APE.CO:APE-CO Smin &lt;  2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>APE.CO:APE overlap CO</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ANE.WM:NMOSE Wmin &lt;  11.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ANE.WM:NMOSE Wmax &gt;  60.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ANE.LM:NMOSE Lmin &lt;   2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ANE.LM:NMOSE Lmax &gt;  30.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ANE.AP:ANE-AP Smin &lt; 10.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ANE.AP:ANE overlap AP</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ANE.XY:ANE shape NOT Octagon</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ANE.XY:ANE trimmed corner size &lt; 0.98</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ANE.CO:ANE-CO Smin &lt;  2.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ANE.CO:ANE overlap CO</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>COE.W1:CO(E) Wfix &lt;  3.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>COE.W1:CO(E) bbox_min &lt;  3.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>COE.W1:CO(E) bbox_max &gt;  3.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>COE.S1:CO(E)-CO Smin &lt;  1.6</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>COE.SE:CO(E)-CO(E) Sfix &lt;  1.6</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>COE.SE:CO(E)-CO(E) Sfix !=  1.6 or off-center/missing CO(E)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CDE.GC:CD(E)-GC Sfix &lt;  7.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CDE.GC:CD(E)-GC Sfix !=  7.0 or off-center/missing CD(E)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CSE.GC:CS(E)-GC Sfix &lt;  3.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>CSE.GC:CS(E)-GC Sfix !=  3.0 or off-center/missing CS(E)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>COE.AP:CO(E)-AP Emin &lt;  2.5</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>COE.AN:CO(E)-AN Emin &lt;  2.5</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>COE.APT:CO(E)-AP(T) Emin &lt;  4.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>COE.ANT:CO(E)-AN(T) Emin &lt;  4.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PO.W1:PO Wmin &lt; 10.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PO.W1:PO must be a rectangle</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PO.S1:PO Smin &lt; 20.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PP.W1:PP Wmin &lt; 70.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PP.S1:PP Smin &lt; 64.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.PO:M1-PO Fmin &lt;  5.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.PO:M2-PO Fmin &lt;  5.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.V1P:M1-V1(P) Fmin &lt; 15.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.V1P:M2-V1(P) Fmin &lt; 15.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1P.AA:M1(P)-AA Smin &lt; 14.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1P.AA:M1(P) overlap AA</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2P.AA:M2(P)-AA Smin &lt; 14.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2P.AA:M2(P) overlap AA</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1P.GA:M1(P)-GA Smin &lt; 14.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1P.GA:M1(P) overlap GA</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2P.GA:M2(P)-GA Smin &lt; 14.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2P.GA:M2(P) overlap GA</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1P.M1:M1(P)-M1 Smin &lt; 14.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2P.M2:M2(P)-M2 Smin &lt; 14.0</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1P.PE:M1(P) lead out must be 40.0um wide for 14.0um</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2P.PE:M2(P) lead out must be 40.0um wide for 14.0um</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GC.ANT:GC must electrically connect to Substrate (or text if not chip level)</name>
+   <description/>
+   <categories>
+   </categories>
+  </category>
+ </categories>
+ <cells>
+  <cell>
+   <name>OSS_FRAME</name>
+   <variant/>
+   <layout-name/>
+   <references>
+   </references>
+  </cell>
+ </cells>
+ <items>
+  <item>
+   <tags/>
+   <category>'ER0045:M1 SP ER 1.4'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-153.18,-920;-152.2,-919;-149.02,-919;-150,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0045:M1 SP ER 1.4'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (578.3,-920;577.32,-919;580.2,-919;581.18,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0045:M1 SP ER 1.4'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (181.7,-920.072;181.7,-920;181.62,-920;182.178,-919.43;182.6,-918.928;182.6,-919;182.68,-919;182.122,-919.57)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-710.132,-920;-708.4,-919;-705,-919;-703.268,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-504.932,-920;-503.2,-919;-499.8,-919;-498.068,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-153.932,-920;-152.2,-919;-148.8,-919;-147.068,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-94.532,-920;-92.8,-919;-89.4,-919;-87.668,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (94.468,-920;96.2,-919;99.6,-919;100.6,-919.577;101.6,-919;105,-919;106.732,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (283.468,-920;285.2,-919;288.6,-919;290.332,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (396.868,-920;398.6,-919;402,-919;403,-919.577;404,-919;407.4,-919;409.132,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (268.3,-920.52;267.421,-919.493;266.842,-919.158;266,-920;261.868,-920;263.6,-919;267,-919;267,-918.48;267.879,-919.507;268.732,-920;268.3,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (576,-920.833;576,-920;575.068,-920;576.314,-919.281;576.8,-918.167;576.8,-919;577.732,-919;576.486,-919.719)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (181.7,-920.786;181.7,-915.6;182.6,-913.814;182.6,-919;186,-919;187,-919.577;188,-919;191.4,-919;193.132,-920;184,-920;182.6,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-920,-224.132;-920,-224;-920.2,-224;-919.331,-222.841;-919.054,-222.362;-920,-221.7;-920,-218.3;-919.336,-217.15;-920,-216;-920,-206.468;-919,-208.2;-919,-222.4;-918.8,-222.4;-919.669,-223.559)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-920,-13.532;-920,128.332;-919,126.6;-919,-11.8)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-920,143.068;-920,155.332;-919,153.6;-919,144.8)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-920,159.268;-920,176;-919.336,177.15;-920,178.3;-920,181.7;-919.336,182.85;-920,184;-920,216;-919.336,217.15;-920,218.3;-920,221.7;-919.336,222.85;-920,224;-920,266;-919.336,267.15;-920,268.3;-920,271.7;-919.054,272.362;-919.331,272.841;-920.2,274;-920,274;-920,274.132;-919.669,273.559;-918.8,272.4;-919,272.4;-919,161)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-920,326.668;-920,484.732;-919,483;-919,328.4)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER0047:M2 SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-920,499.468;-920,511.732;-919,510;-919,501.2)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'ER1402:M1(W10OVER &amp; MIX) SP ER 2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>true</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-148.8,-919;-152.2,-919)/(-153.932,-920;-150,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S1:WN Smin &lt;  4.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,625;920,630.928)|(916.9,628.4;916.9,622.472)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S1:WN Smin &lt;  4.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,235.672;920,266.3)|(916.9,268.828;916.9,238.2)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S1:WN Smin &lt;  4.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,-266.3;920,-260.072)|(916.9,-262.6;916.9,-268.828)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S1:WN Smin &lt;  4.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,-655.328;920,-625)|(916.9,-622.472;916.9,-652.8)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S7:WN(M) Smin &lt; 12.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,625;920,639.993)|(916.9,628.4;916.9,613.407)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S7:WN(M) Smin &lt; 12.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,-266.3;920,-251.007)|(916.9,-262.6;916.9,-277.893)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S7:WN(M) Smin &lt; 12.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-915.5,-652.8;-915.5,-619)|(-920,-625;-920,-663.924)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S7:WN(M) Smin &lt; 12.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,226.607;920,266.3)|(916.9,272;916.9,238.2)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S7:WN(M) Smin &lt; 12.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-915.5,613.876;-915.5,628.4)|(-920,639.524;-920,625)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S7:WN(M) Smin &lt; 12.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-915.5,238.2;-915.5,272)|(-920,266.3;-920,227.076)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S7:WN(M) Smin &lt; 12.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-915.5,-277.424;-915.5,-262.6)|(-920,-251.476;-920,-266.3)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.S7:WN(M) Smin &lt; 12.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,-664.393;920,-625)|(916.9,-619;916.9,-652.8)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920.454,625;920,625)/(910.146,623.3;910.6,623.3)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (916.9,594.6;912.098,594.6)/(922,593.2;925.6,593.2)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (912.835,-619;916.9,-619)/(925.6,-615;922,-615)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (916.9,601.802;916.9,594.6)/(922,589.6;922,593.2)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,-266.3;920,-264.288)/(910.6,-267.7;910.6,-269.712)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (916.9,623.602;916.9,602.798)/(922,611.4;922,615)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,625;920,626.712)/(910.6,623.3;910.6,621.588)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-915.5,603.801;-915.5,622.599)/(-922,615;-922,611.4)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,260.888;920,266.3)/(910.6,266.9;910.6,264.3)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-912.098,594.6;-915.5,594.6)/(-925.402,593.2;-922,593.2)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920.502,-266.3;920,-266.3)/(910.098,-267.7;910.6,-267.7)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-915.5,594.6;-915.5,600.799)/(-922,593.2;-922,589.6)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (920,-630.112;920,-625)/(910.6,-624.1;910.6,-626.7)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-915.5,-622.599;-915.5,-619)/(-922,-611.401;-922,-615)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (916.9,-619;916.9,-623.602)/(922,-615;922,-611.4)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'WN.AN:WN-AN Smin &lt; 10.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-915.5,-619;-912.835,-619)/(-922,-615;-924.665,-615)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M1.S1:M1 Smin &lt;  1.4'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (181.7,-920;181.7,-920.072)|(182.6,-919;182.6,-918.928)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M1.S1:M1 Smin &lt;  1.4'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-153.18,-920;-150,-920)|(-149.02,-919;-152.2,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M1.S1:M1 Smin &lt;  1.4'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (181.62,-920;181.7,-920)|(182.68,-919;182.6,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M1.S1:M1 Smin &lt;  1.4'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (578.3,-920;581.18,-920)|(580.2,-919;577.32,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M1.SW:M1(W)-M1 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>true</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-153.932,-920;-152.2,-919;-148.8,-919;-150,-920)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (402.268,-920;409.132,-920)|(407.4,-919;404,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (283.468,-920;290.332,-920)|(288.6,-919;285.2,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,-222.4;-919,-216.568)|(-920,-218.3;-920,-221.7)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (186.268,-920;193.132,-920)|(191.4,-919;188,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,501.2;-919,510)|(-920,511.732;-920,499.468)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (268.3,-920;268.732,-920)|(267,-919;266.568,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (575.068,-920;576,-920)|(577.732,-919;576.8,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,-217.732;-919,-208.2)|(-920,-206.468;-920,-216)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (268.3,-920.52;268.3,-920)|(267,-918.48;267,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,176.568;-919,183.432)|(-920,181.7;-920,178.3)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,216.568;-919,223.432)|(-920,221.7;-920,218.3)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,222.268;-919,267.732)|(-920,266;-920,224)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (184,-920;187.732,-920)|(186,-919;182.6,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,-11.8;-919,126.6)|(-920,128.332;-920,-13.532)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (99.868,-920;106.732,-920)|(105,-919;101.6,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,182.268;-919,217.732)|(-920,216;-920,184)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (182.6,-919;182.6,-913.814)|(181.7,-915.6;181.7,-920.786)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (261.868,-920;266,-920)|(267,-919;263.6,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-920,-224;-920,-224.132)|(-919,-222.4;-919,-222.268)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,328.4;-919,483)|(-920,484.732;-920,326.668)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-504.932,-920;-498.068,-920)|(-499.8,-919;-503.2,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-94.532,-920;-87.668,-920)|(-89.4,-919;-92.8,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (576,-920;576,-920.833)|(576.8,-919;576.8,-918.167)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-153.932,-920;-147.068,-920)|(-148.8,-919;-152.2,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (396.868,-920;403.732,-920)|(402,-919;398.6,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,161;-919,177.732)|(-920,176;-920,159.268)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,266.568;-919,272.4)|(-920,271.7;-920,268.3)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-710.132,-920;-703.268,-920)|(-705,-919;-708.4,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (94.468,-920;101.332,-920)|(99.6,-919;96.2,-919)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-920.2,-224;-920,-224)|(-918.8,-222.4;-919,-222.4)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,272.4;-918.8,272.4)|(-920,274;-920.2,274)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,272.268;-919,272.4)|(-920,274.132;-920,274)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M2.S1:M2 Smin &lt;  2.0'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-919,144.8;-919,153.6)|(-920,155.332;-920,143.068)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'GC.ANT:GC must electrically connect to Substrate (or text if not chip level)'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (845.3,-845.6;845.3,-835.6;841.4,-835.6;841.4,-833;845.3,-833;845.3,-817.7;846.3,-817.7;846.3,-833;849.3,-833;849.3,-817.7;850.3,-817.7;850.3,-845.6;849.3,-845.6;849.3,-835.6;846.3,-835.6;846.3,-845.6)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'GC.ANT:GC must electrically connect to Substrate (or text if not chip level)'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (877.7,-845.6;877.7,-835.6;873.8,-835.6;873.8,-833;877.7,-833;877.7,-817.7;878.7,-817.7;878.7,-833;881.7,-833;881.7,-817.7;882.7,-817.7;882.7,-845.6;881.7,-845.6;881.7,-835.6;878.7,-835.6;878.7,-845.6)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'GC.ANT:GC must electrically connect to Substrate (or text if not chip level)'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (812.9,-667.4;812.9,-657.4;809,-657.4;809,-654.8;812.9,-654.8;812.9,-639.5;813.9,-639.5;813.9,-654.8;816.9,-654.8;816.9,-639.5;817.9,-639.5;817.9,-667.4;816.9,-667.4;816.9,-657.4;813.9,-657.4;813.9,-667.4)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'GC.ANT:GC must electrically connect to Substrate (or text if not chip level)'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (845.3,-667.4;845.3,-657.4;841.4,-657.4;841.4,-654.8;845.3,-654.8;845.3,-639.5;846.3,-639.5;846.3,-654.8;849.3,-654.8;849.3,-639.5;850.3,-639.5;850.3,-667.4;849.3,-667.4;849.3,-657.4;846.3,-657.4;846.3,-667.4)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'GC.ANT:GC must electrically connect to Substrate (or text if not chip level)'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (877.7,-667.4;877.7,-657.4;873.8,-657.4;873.8,-654.8;877.7,-654.8;877.7,-639.5;878.7,-639.5;878.7,-654.8;881.7,-654.8;881.7,-639.5;882.7,-639.5;882.7,-667.4;881.7,-667.4;881.7,-657.4;878.7,-657.4;878.7,-667.4)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'GC.ANT:GC must electrically connect to Substrate (or text if not chip level)'</category>
+   <cell>OSS_FRAME</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (877.7,-489.2;877.7,-479.2;873.8,-479.2;873.8,-476.6;877.7,-476.6;877.7,-461.3;878.7,-461.3;878.7,-476.6;881.7,-476.6;881.7,-461.3;882.7,-461.3;882.7,-489.2;881.7,-489.2;881.7,-479.2;878.7,-479.2;878.7,-489.2)</value>
+   </values>
+  </item>
+ </items>
+</report-database>

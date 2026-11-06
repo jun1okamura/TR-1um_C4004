@@ -1,0 +1,409 @@
+* Created by KLayout
+*** My special header ***
+
+* cell SRAM32x4
+* pin A0n
+* pin A0p
+* pin A1n
+* pin A1p
+* pin A2n
+* pin A2p
+* pin A3n
+* pin A3p
+* pin BLn[0]
+* pin BLn[1]
+* pin BLn[2]
+* pin BLn[3]
+* pin BLp[0]
+* pin BLp[1]
+* pin BLp[2]
+* pin BLp[3]
+* pin PR0
+* pin PR1
+* pin VDD
+* pin VSS
+.SUBCKT SRAM32x4 A0n A0p A1n A1p A2n A2p A3n A3p BLn[0] BLn[1] BLn[2] BLn[3]
++ BLp[0] BLp[1] BLp[2] BLp[3] PR0 PR1 VDD VSS
+* cell instance $1 r0 *1 295,-40
+X$1 VSS \$I116 \$I119 \$I122 \$I125 \$I128 \$I131 \$I134 \$I137 \$I140 \$I143
++ \$I146 \$I149 \$I152 \$I155 \$I158 \$I161 VSS VSS VSS VSS VSS VSS VSS VSS VSS
++ VSS VSS VSS VSS VSS VSS VSS VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD
++ VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD
++ VDD \$I388 \$I391 \$I394 \$I397 \$I400 \$I403 \$I406 \$I409 \$I412 \$I415
++ \$I418 \$I421 \$I424 \$I427 \$I430 \$I433 VSS VSS VSS VSS VSS VSS VSS VSS VSS
++ VSS VSS VSS VSS VSS VSS VSS BLn[2] BLp[2] BIT_CELL32
+* cell instance $2 r0 *1 295,-60
+X$2 VSS \$I116 \$I119 \$I122 \$I125 \$I128 \$I131 \$I134 \$I137 \$I140 \$I143
++ \$I146 \$I149 \$I152 \$I155 \$I158 \$I161 VSS VSS VSS VSS VSS VSS VSS VSS VSS
++ VSS VSS VSS VSS VSS VSS VSS VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD
++ VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD
++ VDD \$I388 \$I391 \$I394 \$I397 \$I400 \$I403 \$I406 \$I409 \$I412 \$I415
++ \$I418 \$I421 \$I424 \$I427 \$I430 \$I433 VSS VSS VSS VSS VSS VSS VSS VSS VSS
++ VSS VSS VSS VSS VSS VSS VSS BLn[1] BLp[1] BIT_CELL32
+* cell instance $3 r0 *1 295,-80
+X$3 VSS \$I116 \$I119 \$I122 \$I125 \$I128 \$I131 \$I134 \$I137 \$I140 \$I143
++ \$I146 \$I149 \$I152 \$I155 \$I158 \$I161 VSS VSS VSS VSS VSS VSS VSS VSS VSS
++ VSS VSS VSS VSS VSS VSS VSS VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD
++ VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD
++ VDD \$I388 \$I391 \$I394 \$I397 \$I400 \$I403 \$I406 \$I409 \$I412 \$I415
++ \$I418 \$I421 \$I424 \$I427 \$I430 \$I433 VSS VSS VSS VSS VSS VSS VSS VSS VSS
++ VSS VSS VSS VSS VSS VSS VSS BLn[0] BLp[0] BIT_CELL32
+* cell instance $4 r0 *1 295,-20
+X$4 VSS \$I116 \$I119 \$I122 \$I125 \$I128 \$I131 \$I134 \$I137 \$I140 \$I143
++ \$I146 \$I149 \$I152 \$I155 \$I158 \$I161 VSS VSS VSS VSS VSS VSS VSS VSS VSS
++ VSS VSS VSS VSS VSS VSS VSS VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD
++ VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD
++ VDD \$I388 \$I391 \$I394 \$I397 \$I400 \$I403 \$I406 \$I409 \$I412 \$I415
++ \$I418 \$I421 \$I424 \$I427 \$I430 \$I433 VSS VSS VSS VSS VSS VSS VSS VSS VSS
++ VSS VSS VSS VSS VSS VSS VSS BLn[3] BLp[3] BIT_CELL32
+* cell instance $7 r0 *1 -2.9,-58.6
+X$7 VSS \$I388 \$I391 \$I394 \$I397 \$I400 \$I403 \$I406 \$I409 \$I412 \$I415
++ \$I418 \$I421 \$I424 \$I427 \$I430 \$I433 \$I116 \$I119 \$I122 \$I125 \$I128
++ \$I131 \$I134 \$I137 \$I140 \$I143 \$I146 \$I149 \$I152 \$I155 \$I158 \$I161
++ VDD A0n A0p PR1 A3p PR0 A2p A3n A1p A2n A1n SRAM_DEC32
+.ENDS SRAM32x4
+
+* cell SRAM_DEC32
+* pin VSS
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+.SUBCKT SRAM_DEC32 VSS \$I414 \$I413 \$I412 \$I411 \$I410 \$I409 \$I408 \$I407
++ \$I406 \$I405 \$I404 \$I403 \$I402 \$I401 \$I400 \$I399 \$I398 \$I397 \$I396
++ \$I395 \$I394 \$I393 \$I392 \$I391 \$I390 \$I389 \$I388 \$I387 \$I386 \$I385
++ \$I384 \$I383 \$I382 \$I367 \$I352 \$I337 \$I322 \$I307 \$I277 \$I262 \$I217
++ \$I202 \$I156
+* cell instance $1 r90 *1 905.6,-10
+X$1 VSS \$I400 \$I384 \$I322 \$I322 \$I277 \$I277 \$I156 \$I156 \$I352 \$I367
++ \$I382 \$I337 SRAM_DEC2
+* cell instance $2 r90 *1 966,-10
+X$2 VSS \$I399 \$I383 \$I322 \$I322 \$I277 \$I277 \$I217 \$I217 \$I352 \$I367
++ \$I382 \$I337 SRAM_DEC2
+* cell instance $3 r90 *1 845.2,-10
+X$3 VSS \$I401 \$I385 \$I322 \$I322 \$I202 \$I202 \$I217 \$I217 \$I352 \$I367
++ \$I382 \$I337 SRAM_DEC2
+* cell instance $4 r90 *1 784.8,-10
+X$4 VSS \$I402 \$I386 \$I322 \$I322 \$I202 \$I202 \$I156 \$I156 \$I352 \$I367
++ \$I382 \$I337 SRAM_DEC2
+* cell instance $5 r90 *1 724.4,-10
+X$5 VSS \$I403 \$I387 \$I262 \$I262 \$I277 \$I277 \$I217 \$I217 \$I352 \$I367
++ \$I382 \$I337 SRAM_DEC2
+* cell instance $6 r90 *1 664,-10
+X$6 VSS \$I404 \$I388 \$I262 \$I262 \$I277 \$I277 \$I156 \$I156 \$I352 \$I367
++ \$I382 \$I337 SRAM_DEC2
+* cell instance $7 r90 *1 603.6,-10
+X$7 VSS \$I405 \$I389 \$I262 \$I262 \$I202 \$I202 \$I217 \$I217 \$I352 \$I367
++ \$I382 \$I337 SRAM_DEC2
+* cell instance $8 r90 *1 543.2,-10
+X$8 VSS \$I406 \$I390 \$I262 \$I262 \$I202 \$I202 \$I156 \$I156 \$I352 \$I367
++ \$I382 \$I337 SRAM_DEC2
+* cell instance $9 r90 *1 482.8,-10
+X$9 VSS \$I407 \$I391 \$I322 \$I322 \$I277 \$I277 \$I217 \$I217 \$I352 \$I367
++ \$I382 \$I307 SRAM_DEC2
+* cell instance $10 r90 *1 422.4,-10
+X$10 VSS \$I408 \$I392 \$I322 \$I322 \$I277 \$I277 \$I156 \$I156 \$I352 \$I367
++ \$I382 \$I307 SRAM_DEC2
+* cell instance $11 r90 *1 362,-10
+X$11 VSS \$I409 \$I393 \$I322 \$I322 \$I202 \$I202 \$I217 \$I217 \$I352 \$I367
++ \$I382 \$I307 SRAM_DEC2
+* cell instance $12 r90 *1 301.6,-10
+X$12 VSS \$I410 \$I394 \$I322 \$I322 \$I202 \$I202 \$I156 \$I156 \$I352 \$I367
++ \$I382 \$I307 SRAM_DEC2
+* cell instance $13 r90 *1 241.2,-10
+X$13 VSS \$I411 \$I395 \$I262 \$I262 \$I277 \$I277 \$I217 \$I217 \$I352 \$I367
++ \$I382 \$I307 SRAM_DEC2
+* cell instance $14 r90 *1 180.8,-10
+X$14 VSS \$I412 \$I396 \$I262 \$I262 \$I277 \$I277 \$I156 \$I156 \$I352 \$I367
++ \$I382 \$I307 SRAM_DEC2
+* cell instance $15 r90 *1 120.4,-10
+X$15 VSS \$I413 \$I397 \$I262 \$I262 \$I202 \$I202 \$I217 \$I217 \$I352 \$I367
++ \$I382 \$I307 SRAM_DEC2
+* cell instance $16 r90 *1 60,-10
+X$16 VSS \$I414 \$I398 \$I262 \$I262 \$I202 \$I202 \$I156 \$I156 \$I352 \$I367
++ \$I382 \$I307 SRAM_DEC2
+.ENDS SRAM_DEC32
+
+* cell BIT_CELL32
+* pin VSS
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+.SUBCKT BIT_CELL32 VSS \$I158 \$I157 \$I156 \$I155 \$I154 \$I153 \$I152 \$I151
++ \$I150 \$I149 \$I148 \$I147 \$I146 \$I145 \$I144 \$I143 \$I142 \$I141 \$I140
++ \$I139 \$I138 \$I137 \$I136 \$I135 \$I134 \$I133 \$I132 \$I131 \$I130 \$I129
++ \$I128 \$I127 \$I110 \$I109 \$I108 \$I107 \$I106 \$I105 \$I104 \$I103 \$I102
++ \$I101 \$I100 \$I99 \$I98 \$I97 \$I96 \$I95 \$I94 \$I93 \$I92 \$I91 \$I90
++ \$I89 \$I88 \$I87 \$I86 \$I85 \$I84 \$I83 \$I82 \$I81 \$I80 \$I79 \$I78 \$I77
++ \$I76 \$I75 \$I74 \$I73 \$I72 \$I71 \$I70 \$I69 \$I68 \$I67 \$I66 \$I65 \$I64
++ \$I63 \$I62 \$I61 \$I60 \$I59 \$I58 \$I57 \$I56 \$I55 \$I54 \$I53 \$I52 \$I51
++ \$I50 \$I49 \$I48 \$I47 \$I30 \$I15
+* cell instance $1 r90 *1 -252.9,91.2
+X$1 VSS \$I62 \$I142 \$I78 \$I158 \$I94 \$I110 \$I15 \$I30 BIT_CELL2
+* cell instance $2 r90 *1 -192.5,91.2
+X$2 VSS \$I61 \$I141 \$I77 \$I157 \$I93 \$I109 \$I15 \$I30 BIT_CELL2
+* cell instance $3 r90 *1 -132.1,91.2
+X$3 VSS \$I60 \$I140 \$I76 \$I156 \$I92 \$I108 \$I15 \$I30 BIT_CELL2
+* cell instance $4 r90 *1 -71.7,91.2
+X$4 VSS \$I59 \$I139 \$I75 \$I155 \$I91 \$I107 \$I15 \$I30 BIT_CELL2
+* cell instance $5 r90 *1 -11.3,91.2
+X$5 VSS \$I58 \$I138 \$I74 \$I154 \$I90 \$I106 \$I15 \$I30 BIT_CELL2
+* cell instance $6 r90 *1 49.1,91.2
+X$6 VSS \$I57 \$I137 \$I73 \$I153 \$I89 \$I105 \$I15 \$I30 BIT_CELL2
+* cell instance $7 r90 *1 109.5,91.2
+X$7 VSS \$I56 \$I136 \$I72 \$I152 \$I88 \$I104 \$I15 \$I30 BIT_CELL2
+* cell instance $8 r90 *1 169.9,91.2
+X$8 VSS \$I55 \$I135 \$I71 \$I151 \$I87 \$I103 \$I15 \$I30 BIT_CELL2
+* cell instance $9 r90 *1 230.3,91.2
+X$9 VSS \$I54 \$I134 \$I70 \$I150 \$I86 \$I102 \$I15 \$I30 BIT_CELL2
+* cell instance $10 r90 *1 290.7,91.2
+X$10 VSS \$I53 \$I133 \$I69 \$I149 \$I85 \$I101 \$I15 \$I30 BIT_CELL2
+* cell instance $11 r90 *1 351.1,91.2
+X$11 VSS \$I52 \$I132 \$I68 \$I148 \$I84 \$I100 \$I15 \$I30 BIT_CELL2
+* cell instance $12 r90 *1 411.5,91.2
+X$12 VSS \$I51 \$I131 \$I67 \$I147 \$I83 \$I99 \$I15 \$I30 BIT_CELL2
+* cell instance $13 r90 *1 471.9,91.2
+X$13 VSS \$I50 \$I130 \$I66 \$I146 \$I82 \$I98 \$I15 \$I30 BIT_CELL2
+* cell instance $14 r90 *1 532.3,91.2
+X$14 VSS \$I49 \$I129 \$I65 \$I145 \$I81 \$I97 \$I15 \$I30 BIT_CELL2
+* cell instance $15 r90 *1 592.7,91.2
+X$15 VSS \$I48 \$I128 \$I64 \$I144 \$I80 \$I96 \$I15 \$I30 BIT_CELL2
+* cell instance $16 r90 *1 653.1,91.2
+X$16 VSS \$I47 \$I127 \$I63 \$I143 \$I79 \$I95 \$I15 \$I30 BIT_CELL2
+.ENDS BIT_CELL32
+
+* cell SRAM_DEC2
+* pin VSS
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+.SUBCKT SRAM_DEC2 VSS \$I24 \$I23 \$I22 \$I21 \$I20 \$I19 \$I18 \$I17 \$I15
++ \$I14 \$I2 \$I1
+* cell instance $1 m0 *1 75,40.6
+X$1 \$I14 \$I20 \$I18 \$I1 \$I22 \$I24 \$I2 VSS SRAM_DEC
+* cell instance $2 r0 *1 75,15
+X$2 \$I15 \$I19 \$I17 \$I1 \$I21 \$I23 \$I2 VSS SRAM_DEC
+.ENDS SRAM_DEC2
+
+* cell BIT_CELL2
+* pin VSS
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+.SUBCKT BIT_CELL2 VSS \$I8 \$I7 \$I6 \$I5 \$I4 \$I3 \$I2 \$I1
+* cell instance $1 r0 *1 0,0
+X$1 \$I5 \$I1 \$I7 \$I2 \$I3 \$I4 VSS BIT_CELL
+* cell instance $2 m0 *1 0,25.6
+X$2 \$I6 \$I1 \$I8 \$I2 \$I3 \$I4 VSS BIT_CELL
+.ENDS BIT_CELL2
+
+* cell SRAM_DEC
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin VSS
+.SUBCKT SRAM_DEC \$1 \$2 \$3 \$5 \$6 \$7 \$8 VSS
+* device instance $1 r0 *1 -31,9.3 PMOS
+XM$1 \$8 \$5 \$4 \$8 PMOS L=1u W=3.4u AS=9.52p AD=5.1p PS=12.4u PD=6.4u
+* device instance $2 r0 *1 -27,9.3 PMOS
+XM$2 \$7 \$4 \$8 \$8 PMOS L=1u W=3.4u AS=5.1p AD=5.1p PS=6.4u PD=6.4u
+* device instance $3 r0 *1 -23,9.3 PMOS
+XM$3 \$8 \$4 \$7 \$8 PMOS L=1u W=3.4u AS=5.1p AD=5.1p PS=6.4u PD=6.4u
+* device instance $4 r0 *1 -19,9.3 PMOS
+XM$4 \$7 \$4 \$8 \$8 PMOS L=1u W=3.4u AS=5.1p AD=5.1p PS=6.4u PD=6.4u
+* device instance $5 r0 *1 -15,9.3 PMOS
+XM$5 \$8 \$4 \$7 \$8 PMOS L=1u W=3.4u AS=5.1p AD=9.52p PS=6.4u PD=12.4u
+* device instance $6 r0 *1 -39.8,-11.7 NMOS
+XM$6 \$23 \$6 \$4 VSS NMOS L=1u W=3.4u AS=9.52p AD=2.04p PS=12.4u PD=4.6u
+* device instance $7 r0 *1 -37.6,-11.7 NMOS
+XM$7 \$20 \$2 \$23 VSS NMOS L=1u W=3.4u AS=2.04p AD=2.04p PS=4.6u PD=4.6u
+* device instance $8 r0 *1 -35.4,-11.7 NMOS
+XM$8 \$22 \$3 \$20 VSS NMOS L=1u W=3.4u AS=2.04p AD=2.04p PS=4.6u PD=4.6u
+* device instance $9 r0 *1 -33.2,-11.7 NMOS
+XM$9 \$21 \$1 \$22 VSS NMOS L=1u W=3.4u AS=2.04p AD=2.04p PS=4.6u PD=4.6u
+* device instance $10 r0 *1 -31,-11.7 NMOS
+XM$10 VSS \$5 \$21 VSS NMOS L=1u W=3.4u AS=2.04p AD=5.1p PS=4.6u PD=6.4u
+* device instance $11 r0 *1 -27,-11.7 NMOS
+XM$11 \$7 \$4 VSS VSS NMOS L=1u W=3.4u AS=5.1p AD=5.1p PS=6.4u PD=6.4u
+* device instance $12 r0 *1 -23,-11.7 NMOS
+XM$12 VSS \$4 \$7 VSS NMOS L=1u W=3.4u AS=5.1p AD=5.1p PS=6.4u PD=6.4u
+* device instance $13 r0 *1 -19,-11.7 NMOS
+XM$13 \$7 \$4 VSS VSS NMOS L=1u W=3.4u AS=5.1p AD=5.1p PS=6.4u PD=6.4u
+* device instance $14 r0 *1 -15,-11.7 NMOS
+XM$14 VSS \$4 \$7 VSS NMOS L=1u W=3.4u AS=5.1p AD=9.52p PS=6.4u PD=12.4u
+.ENDS SRAM_DEC
+
+* cell BIT_CELL
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin 
+* pin VSS
+.SUBCKT BIT_CELL \$1 \$3 \$5 \$6 \$7 \$8 VSS
+* device instance $1 r0 *1 -2,9.3 PMOS
+XM$1 \$7 \$2 \$4 \$8 PMOS L=1u W=3.4u AS=9.52p AD=5.1p PS=12.4u PD=6.4u
+* device instance $2 r0 *1 2,9.3 PMOS
+XM$2 \$2 \$4 \$7 \$8 PMOS L=1u W=3.4u AS=5.1p AD=9.52p PS=6.4u PD=12.4u
+* device instance $3 r0 *1 -6,-11.7 NMOS
+XM$3 \$4 \$1 \$3 VSS NMOS L=1u W=3.4u AS=9.52p AD=5.1p PS=12.4u PD=6.4u
+* device instance $4 r0 *1 -2,-11.7 NMOS
+XM$4 \$5 \$2 \$4 VSS NMOS L=1u W=3.4u AS=5.1p AD=5.1p PS=6.4u PD=6.4u
+* device instance $5 r0 *1 2,-11.7 NMOS
+XM$5 \$2 \$4 \$5 VSS NMOS L=1u W=3.4u AS=5.1p AD=5.1p PS=6.4u PD=6.4u
+* device instance $6 r0 *1 6,-11.7 NMOS
+XM$6 \$6 \$1 \$2 VSS NMOS L=1u W=3.4u AS=5.1p AD=9.52p PS=6.4u PD=12.4u
+.ENDS BIT_CELL
