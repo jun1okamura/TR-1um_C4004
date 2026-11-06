@@ -8,10 +8,10 @@
 # Project metadata (used for documentation / review)
 # ======================================================
 project:
-  title: ""        # Project title (e.g. "Simple CPU", "PLL", "ADC")
-  author: ""       # Your name
-  discord: ""      # Optional: Discord username (for support / communication)
-  description: ""  # Short one-line description
+  title: "TR-1um C4004 (Intel 4004 Compatible 4-bit CPU)"
+  author: "Junichi Okamura"
+  discord: "jun1okamura"
+  description: "Intel 4004 compatible 4-bit microprocessor with integrated SRAM128 register/stack macro on OpenSUSI TR-1um CMOS"
 
 # ======================================================
 # Layout (GDS) configuration
@@ -21,7 +21,7 @@ gds:
   # - start with "tr_1um_"
   # - include your GitHub username (for uniqueness)
   # Example: tr_1um_jun1okamura
-  top_cell: "tr_1um_username"
+  top_cell: "tr_1um_jun1okamura"
 
   # File extension of layout
   extension: "gds"
@@ -44,7 +44,7 @@ mdp:
   # Output GDS file name generated after MDP
   # Recommended:
   #   IP62_<github_username>.gds
-  file: "IP62_username.gds"
+  file: "IP62_jun1okamura.gds"
 
 # ======================================================
 # PDK configuration (DO NOT MODIFY unless necessary)

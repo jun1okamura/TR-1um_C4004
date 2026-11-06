@@ -30,7 +30,7 @@ OpenSUSI **TR-1um PDK**（1 µm シリコンゲート CMOS、2層配線 `M1`/`M2
 | 項目 | 仕様・数値 | 内訳・備考 |
 | :--- | :--- | :--- |
 | **テクノロジ / PDK** | OpenSUSI TR-1um CMOS | 1 µm Gate, 2-Metal (`M1`, `M2`), 1-Poly (`GT`), `VDD = 5.0 V` |
-| **トップセル名** | `OSS_FRAME` (Core: `c4004_core`) | `apr/c4004_chip.gds` / `src/OSS_FRAME.gds` |
+| **トップセル名** | `tr_1um_jun1okamura` (`OSS_FRAME` / `c4004_core`) | `src/tr_1um_jun1okamura.gds` / `apr/c4004_chip.gds` |
 | **チップ外形寸法 (Die Size)** | **`2500.0 µm × 2500.0 µm`** | 面積 **`6.2500 mm²`**, 16 I/O パッド (`OSS_FRAME_GIO`) |
 | **コア外形寸法 (Core Size)** | **`1840.0 µm × 1848.4 µm`** | 面積 **`3.4011 mm²`** (I/O リング内領域 `1860 × 1860 µm`) |
 | **ハードマクロ (`SRAM128`)** | **`1166.1 µm × 185.6 µm`** | 面積 **`0.2164 mm²`**, `32 words × 4 bits` 6T SRAM (`1,212` Tr.) |
@@ -119,5 +119,5 @@ flowchart TD
 | [`apr/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/) | 最終レイアウト `c4004_chip.gds` (`OSS_FRAME`)、コア `c4004_core_routed.gds`、配線済み DEF `c4004_core_4edge_routed.def`、LVS 用 SPICE `c4004_chip.spice`、抽出ネットリスト `OSS_FRAME.extracted` |
 | [`apr/simulation/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/VERIFICATION_SUMMARY.md) | `ngspice` フルチップ検証テストベンチ (`tb_chip_*.spice`)、抽出シミュレーションモデル (`OSS_FRAME_extracted_sim.spice`)、検証・`FMAX`・統計レポート [`VERIFICATION_SUMMARY.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/VERIFICATION_SUMMARY.md) |
 | [`module/SRAM128/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/) | `32×4-bit` 6T CMOS SRAM ハードマクロ (`SRAM128.gds`, `SRAM128.lef`, `SRAM128.lib`, `SRAM128.spice`) |
-| [`src/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/src/) | OpenSUSI MPW 提出用ディレクトリ (`OSS_FRAME.gds`, `OSS_FRAME.cir`) |
+| [`src/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/src/) | OpenSUSI MPW 提出用ディレクトリ (`tr_1um_jun1okamura.gds`, `tr_1um_jun1okamura.cir`) |
 | [`info.yaml`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/info.yaml) | OpenSUSI MPW CI (Pre-check / DRC / LVS / MDP) 設定ファイル |
