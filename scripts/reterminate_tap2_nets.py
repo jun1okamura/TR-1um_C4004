@@ -3,7 +3,7 @@ import re, heapq
 from collections import defaultdict
 from pathlib import Path
 
-OR_DIR = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad"
+OR_DIR = str(Path(__file__).resolve().parent.parent / "openroad"
 def_path = f"{OR_DIR}/routed_tap2.def"
 def_txt = open(def_path).read()
 lef_txt = open(f"{OR_DIR}/TR-1um_cells_m2only.lef").read()
@@ -539,5 +539,5 @@ new_def = pre_nets + post_nets
 
 out_def = f"{OR_DIR}/routed_tap2_gio_exact.def"
 Path(out_def).write_text(new_def)
-Path("/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_core_4edge_routed.def").write_text(new_def)
-print("Wrote", out_def, "and /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_core_4edge_routed.def")
+Path(str(Path(__file__).resolve().parent.parent / "apr/c4004_core_4edge_routed.def").write_text(new_def)
+print("Wrote", out_def, "and apr/c4004_core_4edge_routed.def")

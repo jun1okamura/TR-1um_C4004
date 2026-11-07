@@ -12,7 +12,12 @@ OpenSUSI TR-1um PDK（1 µm CMOS、2層配線 M1/M2、電源電圧 5.0 V）を�
 
 ---
 
-## 1. 利用可能なライブラリ・マクロ資産
+## 1. 利用可能な PDK・ライブラリ・マクロ資産
+- **OpenSUSI TR-1um PDK (https://github.com/OpenSUSI/TR-1um)**:
+  - `git clone https://github.com/OpenSUSI/TR-1um.git` により `TR-1um/` にクローンして使用すること。
+  - KLayout DRC / LVS / MDP ルールデッキ: `TR-1um/libs.tech/klayout/tech/drc/run.drc`, `TR-1um/libs.tech/klayout/tech/lvs/run.lvs`
+  - SPICE デバイスモデル (`PMOS`, `NMOS`, `NMOSE`, `DN`): `TR-1um/libs.tech/spice/models/`
+  - 16ピン標準パッドフレーム GDSII: `TR-1um/libs.tech/klayout/libraries/TR-1um_frame_25x25.gds`
 - **標準セルライブラリ (`module/STDCELL/`)**:
   - 行高 `59.4 µm`、サイト幅 `5.4 µm`（1行 = 11サイト高）
   - レイアウト: `module/STDCELL/TR-1um_STDCELL.gds`

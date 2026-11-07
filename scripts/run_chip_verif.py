@@ -1,3 +1,4 @@
+from pathlib import Path
 #!/usr/bin/env python3
 """
 Generate and run parallel ngspice full-chip testbenches on OSS_FRAME.extracted
@@ -15,9 +16,9 @@ import time
 import subprocess
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-WORKSPACE = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004"
+WORKSPACE = str(Path(__file__).resolve().parent.parent)
 SIM_DIR = os.path.join(WORKSPACE, "apr/simulation")
-NGSPICE_BIN = "/opt/homebrew/bin/ngspice"
+NGSPICE_BIN = "ngspice"
 RESULTS_JSON = os.path.join(SIM_DIR, "chip_verif_results.json")
 
 # Fixed reset & clock start timing (independent of T_clk so reset recovery is always 100 ns):

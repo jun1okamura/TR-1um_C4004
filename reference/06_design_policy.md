@@ -1,7 +1,7 @@
 # C4004 設計方針と物理実装仕様
 
 初版策定: 2026-09-08 / 最終実装更新: 2026-11-06  
-根拠: [`03_TR-1um_facts.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/reference/03_TR-1um_facts.md)（PDK・ライブラリ実測）/ [`04_area_estimation.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/reference/04_area_estimation.md)（面積見積り）/ [`05_cell_circuits.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/reference/05_cell_circuits.md)（回路）/ [`07_sram6t_macro.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/reference/07_sram6t_macro.md)（SRAM128 マクロ）。
+根拠: [`03_TR-1um_facts.md`](03_TR-1um_facts.md)（PDK・ライブラリ実測）/ [`04_area_estimation.md`](04_area_estimation.md)（面積見積り）/ [`05_cell_circuits.md`](05_cell_circuits.md)（回路）/ [`07_sram6t_macro.md`](07_sram6t_macro.md)（SRAM128 マクロ）。
 
 ---
 
@@ -11,7 +11,7 @@
 |---|---|---|
 | 1 | **クロックは単相 (`clk`)** | φ1/φ2 の2相クロックを廃止し、単相 `clk` 同期の8フェーズ (`A1..X3`) 構成を採用。空いた1ピン (`P9`) を外部トランシーバ方向制御 `d_oe` に割当 |
 | 2 | **3ステートは `OSS_FRAME_GIO` (`OSS_ESD_5V_DIO`) のみ** | コア内部は `d_out[3:0] / d_oe / d_hiz / d_in[3:0]` に完全分離し、パッドリング内の `OSS_ESD_5V_DIO` で双方向バス `D[3:0]` を駆動 |
-| 3 | **レジスタファイル + スタックは `SRAM128`（6T 128bit SRAM）に統合** | インデックスレジスタ `R0..R15` (64 bit) とサブルーチン戻り番地スタック (36 bit) を単一ハードマクロ [`module/SRAM128`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/) (`0.2164 mm²`) に格納し、標準セル FF を **40個** に削減 |
+| 3 | **レジスタファイル + スタックは `SRAM128`（6T 128bit SRAM）に統合** | インデックスレジスタ `R0..R15` (64 bit) とサブルーチン戻り番地スタック (36 bit) を単一ハードマクロ [`module/SRAM128`](../module/SRAM128/) (`0.2164 mm²`) に格納し、標準セル FF を **40個** に削減 |
 | 4 | **全外部入力ピン初段にシュミットトリガ `BUFTH` 挿入** | 外部パッドからの入力7本 (`clk, rst, test, d_in[3:0]`) はすべて初段で `BUFTH` を通し、さらに `clk`/`rst_n` は9行別の `BUF_X2` ツリー (`FO <= 10`) で分配 |
 | 5 | **2層配線 (`M1`/`M2`) チャネル P&R + `TAP2` 3分割 + `FILL3/2` 充填** | 9本のアクティブ行間に2行幅 (`118.8 µm`) の水平 `M1` チャネルを設け、セルピンは垂直 `M2` のみでアクセス。縦4列の `TAP2` でコアを横3分割し、空き領域に MOS デキャップ `FILL3`/`FILL2` を充填 |
 
@@ -34,7 +34,7 @@
 
 ---
 
-## 3. RTL 記述ルール（[`rtl/c4004_core.v`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/rtl/c4004_core.v), [`rtl/c4004_top.v`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/rtl/c4004_top.v)）
+## 3. RTL 記述ルール（[`rtl/c4004_core.v`](../rtl/c4004_core.v), [`rtl/c4004_top.v`](../rtl/c4004_top.v)）
 
 1. **単相 `posedge clk` 同期**:
    - 8フェーズ `A1, A2, A3, M1, M2, X1, X2, X3` は 3-bit ステートカウンタ `state[2:0]`（リセット時 `3'd7 = X3`、`DFFS`×3）で生成。
@@ -52,13 +52,13 @@
 
 | 段階 | ツール / スクリプト | 配置ディレクトリ |
 |---|---|---|
-| 1. RTL 機能検証 | `iverilog` + `vvp`（全45/46命令・21チェック項目自己検査） | [`rtl/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/rtl/) |
-| 2. 論理合成 & バッファ挿入 | Yosys ([`openroad/synth.ys`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/synth.ys)) + [`scripts/insert_high_fo_buffers.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/insert_high_fo_buffers.py) | [`syn/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/syn/), [`openroad/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/README.md) |
-| 3. 2層配線 LEF & OpenROAD P&R | [`scripts/make_m2only_lef.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/make_m2only_lef.py), [`scripts/run_tap2_flow.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/run_tap2_flow.py) ([`run_grt.tcl`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/run_grt.tcl), [`run_drt.tcl`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/run_drt.tcl)) | [`openroad/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/README.md) |
-| 4. 4辺パッド整合 & GDSII 構築 | [`scripts/reterminate_tap2_nets.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/reterminate_tap2_nets.py), [`scripts/build_core_and_chip_gds.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/build_core_and_chip_gds.py) | [`apr/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/) |
-| 5. サインオフ DRC / LVS | KLayout + [`scripts/build_lvs_spice.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/build_lvs_spice.py), [`scripts/verify_core_and_chip.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/verify_core_and_chip.py) | [`apr/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/) |
-| 6. Post-Layout `ngspice` 検証 | [`scripts/prep_extracted_ngspice.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/prep_extracted_ngspice.py), [`scripts/run_chip_verif.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/run_chip_verif.py) | [`apr/simulation/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/) |
-| 7. MPW 提出データ生成 | [`scripts/prepare_mpw_submission.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/prepare_mpw_submission.py) (`tr_1um_jun1okamura.gds`, `.cir`) | [`src/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/src/), [`info.yaml`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/info.yaml) |
+| 1. RTL 機能検証 | `iverilog` + `vvp`（全45/46命令・21チェック項目自己検査） | [`rtl/`](../rtl/) |
+| 2. 論理合成 & バッファ挿入 | Yosys ([`openroad/synth.ys`](../openroad/synth.ys)) + [`scripts/insert_high_fo_buffers.py`](../scripts/insert_high_fo_buffers.py) | [`syn/`](../syn/), [`openroad/`](../openroad/README.md) |
+| 3. 2層配線 LEF & OpenROAD P&R | [`scripts/make_m2only_lef.py`](../scripts/make_m2only_lef.py), [`scripts/run_tap2_flow.py`](../scripts/run_tap2_flow.py) ([`run_grt.tcl`](../openroad/run_grt.tcl), [`run_drt.tcl`](../openroad/run_drt.tcl)) | [`openroad/`](../openroad/README.md) |
+| 4. 4辺パッド整合 & GDSII 構築 | [`scripts/reterminate_tap2_nets.py`](../scripts/reterminate_tap2_nets.py), [`scripts/build_core_and_chip_gds.py`](../scripts/build_core_and_chip_gds.py) | [`apr/`](../apr/) |
+| 5. サインオフ DRC / LVS | KLayout + [`scripts/build_lvs_spice.py`](../scripts/build_lvs_spice.py), [`scripts/verify_core_and_chip.py`](../scripts/verify_core_and_chip.py) | [`apr/`](../apr/) |
+| 6. Post-Layout `ngspice` 検証 | [`scripts/prep_extracted_ngspice.py`](../scripts/prep_extracted_ngspice.py), [`scripts/run_chip_verif.py`](../scripts/run_chip_verif.py) | [`apr/simulation/`](../apr/simulation/) |
+| 7. MPW 提出データ生成 | [`scripts/prepare_mpw_submission.py`](../scripts/prepare_mpw_submission.py) (`tr_1um_jun1okamura.gds`, `.cir`) | [`src/`](../src/), [`info.yaml`](../info.yaml) |
 
 ---
 

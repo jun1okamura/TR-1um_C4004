@@ -1,8 +1,8 @@
 # C4004 作業メモ・調査記録 (`09_work_memo.md`)
 
 作成・更新: 2026-11-05  
-対象プロジェクト: `/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004`  
-使用PDK: `/Users/okamura/Dropbox/91_OpenPDK/TR-1um`
+対象プロジェクト: `TR-1um_C4004`  
+使用PDK: https://github.com/OpenSUSI/TR-1um (`TR-1um/`)
 
 ---
 
@@ -10,7 +10,7 @@
 
 ### 1.1 `module/SRAM128` 抽出ネットリスト (`SRAM128.extracted`) の ngspice 検証（完了）
 
-- **目的**: [SRAM128.extracted](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/SRAM128.extracted) を用いて、[SRAM128.lib](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/SRAM128.lib) の Timing / AC 特性（7×7 テーブルおよびタイミング制約）と一致するかをローカル `ngspice`（ngspice-47, 18コア Mac）で検証。
+- **目的**: [SRAM128.extracted](../module/SRAM128/SRAM128.extracted) を用いて、[SRAM128.lib](../module/SRAM128/SRAM128.lib) の Timing / AC 特性（7×7 テーブルおよびタイミング制約）と一致するかをローカル `ngspice`（ngspice-47, 18コア Mac）で検証。
 - **条件**: `VDD = 5.0 V`, `Temp = 25 ℃`, `ip62_models` Nominal (`vthMN = 0.763 V`, `vthMP = -0.678 V`), スレッショルド `20% / 50% / 80%`。
 - **検証結果**:
   1. **Read Access Delay & Output Slew（7×7 = 49条件）**:
@@ -68,7 +68,7 @@
   - トランジスタ・拡散層・N-Well: **`±908.0 µm` 以内**（境界から `12.0 µm` 以上の離隔: `WN.S7 >= 12.0 µm`, `WN.AN >= 10.0 µm`）。
   - 異ネット `M1`/`M2` 配線: **`±918.0 µm` 以内**（Wide Metal Spacing `M1.SW / M2.S1 >= 2.0 µm`）。
 - **CI / LVS 注意点**:
-  - [scripts/pre_check.py](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/pre_check.py#L20) の `FRAME_CELL_NAMES` に `"OSS_FRAME_GIO"` を追加する必要がある。
+  - [scripts/pre_check.py](../scripts/pre_check.py#L20) の `FRAME_CELL_NAMES` に `"OSS_FRAME_GIO"` を追加する必要がある。
   - トップセル直下に 16個のパッドラベル（`P1..P7, VSS, P9..P15, VDD`）を配置し、未使用端子は `.cir` 上で個別の `NC_*` ネットにする。
 
 ---
@@ -86,13 +86,13 @@
    - `reference/07` で計画されていた 32word × 4bit（128bit）の 6T SRAM マクロは、すでに **`module/SRAM128/SRAM128`** として設計・レイアウト・DRC/LVS抽出・LEF/Liberty 化まで完了している。
    - 面積も事前見積りの `0.272 mm²`（`450 × 588 µm`）よりさらに小さい **`0.2164 mm²`（`1166.10 × 185.60 µm`）** で完成しており、コア面積 `3.3856 mm²` の **6.4%** しか占有しない。
 3. **コンパクト順序回路・標準セル（`05` §3, `06` §5）**:
-   - [`module/STDCELL/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/README.md) 内に、高密度版 FF / ラッチ / ゲート回路（行高 `59.4 µm`、`DFF`/`DFFRB`/`DFFS`, `MUXDFFRB`, `MUX2`, `RSLATCH`, `BUFTH`, `FILL2`/`FILL3`, `TAP2` 等、全 37 CORE セル種）の GDSII・LEF・Liberty・SPICE サブサーキットが完備されている。
+   - [`module/STDCELL/`](../module/STDCELL/README.md) 内に、高密度版 FF / ラッチ / ゲート回路（行高 `59.4 µm`、`DFF`/`DFFRB`/`DFFS`, `MUXDFFRB`, `MUX2`, `RSLATCH`, `BUFTH`, `FILL2`/`FILL3`, `TAP2` 等、全 37 CORE セル種）の GDSII・LEF・Liberty・SPICE サブサーキットが完備されている。
 
 ---
 
 ### 2.2 `reference/07_sram6t_macro.md` の想定と実マクロ `SRAM128` の仕様差（RTL設計上の最重要ポイント）
 
-`reference/07_sram6t_macro.md` §6〜§8 の計画時点と、完成した [SRAM128](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/SRAM128.lib) の間には以下の動作仕様の違いがあり、RTL 設計でこれを正しく反映する必要があります。
+`reference/07_sram6t_macro.md` §6〜§8 の計画時点と、完成した [SRAM128](../module/SRAM128/SRAM128.lib) の間には以下の動作仕様の違いがあり、RTL 設計でこれを正しく反映する必要があります。
 
 | 項目 | `07_sram6t_macro.md` での当初想定 | 完成した実マクロ `module/SRAM128/SRAM128` |
 | :--- | :--- | :--- |
@@ -156,10 +156,10 @@
 
 ## 4. ローカル環境の確認結果
 
-- **論理合成**: `yosys` (`/opt/homebrew/bin/yosys`) 利用可能
-- **RTL シミュレーション**: `iverilog` (`/opt/homebrew/bin/iverilog`), `vvp` (`/opt/homebrew/bin/vvp`) 利用可能
-- **回路シミュレーション**: `ngspice` (`/opt/homebrew/bin/ngspice`, ngspice-47, 18コア) 利用可能
-- **レイアウト・DRC/LVS**: `klayout` (`/Applications/klayout.app/Contents/MacOS/klayout`, 0.30.9) 利用可能
+- **論理合成**: `yosys` 利用可能
+- **RTL シミュレーション**: `iverilog`, `vvp` 利用可能
+- **回路シミュレーション**: `ngspice` (ngspice-47, 18コア) 利用可能
+- **レイアウト・DRC/LVS**: `klayout` (0.30.9) 利用可能
 
 
 ---
@@ -177,11 +177,11 @@
 2. **14番目の信号パッド（予備ピン `P9`）の用途**:
    - データバス出力イネーブルモニタ `d_oe`（`d_oe = ~d_hiz`、外部トランシーバ `74LVC8T245` 等の方向制御用出力）。
 3. **スタンダードセルライブラリ**:
-   - [`module/STDCELL/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/README.md)（`v59_4`、`tr1um_typ_5v0_25c.lib` / `TR-1um_STDCELL.gds`）を使用。
+   - [`module/STDCELL/`](../module/STDCELL/README.md)（`v59_4`、`tr1um_typ_5v0_25c.lib` / `TR-1um_STDCELL.gds`）を使用。
 
 ---
 
-### 5.2 `TR-1um_APRtools/stdcell/v59_4` セルライブラリ仕様
+### 5.2 `module/STDCELL/` (`v59_4`) セルライブラリ仕様
 - **基本グリッド**:
   - サイト幅 (`SITE_W`): `5.4 µm`
   - セル高さ (`ROW_H`): **`59.4 µm`**（11サイト高、`VSS` レール `y = 0`、`VDD` レール `y = 59.4 µm`）
@@ -218,8 +218,8 @@
 
 ---
 
-### 5.4 論理合成（Yosys + `TR-1um_APRtools` パイプライン）および面積集計結果
-`TR-1um_APRtools/syn/syn.sh` 準拠のフロー（`yosys` 論理合成 → `dedup_gates.py` 重複ゲート除去 → `merge_muxdffrb_rslatch.py` による `MUX2 + DFFRB -> MUXDFFRB` 畳み込み）を実行した結果：
+### 5.4 論理合成（Yosys パイプライン）および面積集計結果
+Yosys 論理合成および重複ゲート除去・`MUX2 + DFFRB -> MUXDFFRB` 畳み込みを実行した結果：
 
 - **`MUX2 + DFFRB -> MUXDFFRB` マージ数**: **29個**（`37 DFFRB` のうち `29` 個が `MUXDFFRB` に統合され、個別 `MUX2` は `38` 個 → `9` 個に削減）
 - **合成・最適化後セル内訳（`abc.constr` 適用時、合計 566 インスタンス = 標準セル 565個 + `SRAM128` 1個）**:
@@ -320,7 +320,7 @@
 ### 7.1 統合前の FMAX（最大動作周波数）解析
 - **クリティカルパスの構造（半周期パス `a = 0.50`）**:
   - `c4004_core` では、`u_sram/CE` が `AND3_X1 _1043_` (`sram_ce = sram_ce_en & ~clk & rst_n`) によって生成され、**クロック立下りエッジ (`negedge clk`, `t = T/2`) で立ち上がり**、`u_sram/DO[3:0]` の読み出しデータが ALU / 演算経路を経由して **次のクロック立上りエッジ (`posedge clk`, `t = T`) で `acc[3:0]` 等の FF（最悪エンドポイント `_1151_/D` `acc[3]`）にラッチ**される。
-  - したがって、最悪 `reg -> reg` パス（`u_sram/CE -> u_sram/DO[0] -> u_buf_sram_do_0_0 -> ... -> _1151_/D`）に与えられる時間予算は **半周期 (`T/2`, 周期係数 `a = 0.50`)** となる（`TR-1um_APRtools/syn/sta/report.tcl` の2点法に準拠）。
+  - したがって、最悪 `reg -> reg` パス（`u_sram/CE -> u_sram/DO[0] -> u_buf_sram_do_0_0 -> ... -> _1151_/D`）に与えられる時間予算は **半周期 (`T/2`, 周期係数 `a = 0.50`)** となる。
 - **OpenROAD / OpenSTA 実測結果（`apr/c4004_core_buffered_routed.def`, `tr1um_typ_5v0_25c.lib` + `SRAM128.lib`, `5.0 V`, `25 ℃`）**:
 
 | 解析条件 | 半周期パス実遅延 (`T/2` 要求値) | 最小クロック周期 `T_min` | 最大動作周波数 **`FMAX`** | 750 kHz (`1333.3 ns`) 比マージン |
@@ -381,7 +381,7 @@
   - **総ビア数 (`V1_1x1`)**: `3,803` 個
 
 ### 8.3 コア GDS (`apr/c4004_core_routed.gds`) およびトップチップ GDS (`apr/c4004_chip.gds`) 生成・検証
-- KLayout バッチモード（`/Applications/klayout.app/Contents/MacOS/klayout -b -r`）にて `build_core_and_chip_gds.py` および `verify_core_and_chip.py` を実行し、`apr/c4004_core_routed.gds`（トップセル `c4004_core`）および `apr/c4004_chip.gds`（トップセル `OSS_FRAME`、ダイサイズ `2500.0 × 2500.0 µm`）を生成。
+- KLayout バッチモード（`klayout -b -r`）にて `build_core_and_chip_gds.py` および `verify_core_and_chip.py` を実行し、`apr/c4004_core_routed.gds`（トップセル `c4004_core`）および `apr/c4004_chip.gds`（トップセル `OSS_FRAME`、ダイサイズ `2500.0 × 2500.0 µm`）を生成。
 - **KLayout DRC 検査結果（`verify_core_and_chip.py`）**:
   - `M1.W (< 1.8 µm)`: **`0` 件**
   - `M1.S (< 1.4 µm)`: **`0` 件**
@@ -419,14 +419,14 @@
    - 標準セル行および `TAP2` 列の `VSS` を、4辺の **`OSS_FRAME_GIO` `M2` `VSS` リング** と多点でブリッジ接続。
 
 ### 9.2 フルチップ DRC & 階層/フラット LVS 完全一致 (`scripts/build_lvs_spice.py`)
-- [`apr/c4004_chip.gds`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_chip.gds)（トップ `OSS_FRAME`）および [`src/tr_1um_jun1okamura.gds`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/src/tr_1um_jun1okamura.gds)（MPW 提出用トップ `tr_1um_jun1okamura`）に対し、KLayout DRC にて **エラー `0` 件** を確認。
-- `OSS_ESD_5V_DIO`×14、`OSS_ESD_5V_VDD`、`OSS_ESD_5V_VSS`、`SRAM128`、全624論理標準セル、および `FILL2`×13・`FILL3`×29 デキャップを含む階層 SPICE ネットリスト（[`apr/c4004_chip.spice`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_chip.spice)、[`src/tr_1um_jun1okamura.cir`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/src/tr_1um_jun1okamura.cir)）を生成し、KLayout LVS にて **ポート・素子・ネットすべて 100% 完全一致 (`Match = True`)** を確認。
+- [`apr/c4004_chip.gds`](../apr/c4004_chip.gds)（トップ `OSS_FRAME`）および [`src/tr_1um_jun1okamura.gds`](../src/tr_1um_jun1okamura.gds)（MPW 提出用トップ `tr_1um_jun1okamura`）に対し、KLayout DRC にて **エラー `0` 件** を確認。
+- `OSS_ESD_5V_DIO`×14、`OSS_ESD_5V_VDD`、`OSS_ESD_5V_VSS`、`SRAM128`、全624論理標準セル、および `FILL2`×13・`FILL3`×29 デキャップを含む階層 SPICE ネットリスト（[`apr/c4004_chip.spice`](../apr/c4004_chip.spice)、[`src/tr_1um_jun1okamura.cir`](../src/tr_1um_jun1okamura.cir)）を生成し、KLayout LVS にて **ポート・素子・ネットすべて 100% 完全一致 (`Match = True`)** を確認。
 
 ---
 
 ## 10. 実レイアウト抽出ネット (`OSS_FRAME.extracted`) フルチップ `ngspice` 検証・`FMAX` 解析・最終統計諸元（2026-11-06 完了）
 
-### 10.1 フルチップ抽出ネットリスト統計（[`apr/OSS_FRAME.extracted`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/OSS_FRAME.extracted), [`apr/c4004_chip.gds`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_chip.gds)）
+### 10.1 フルチップ抽出ネットリスト統計（[`apr/OSS_FRAME.extracted`](../apr/OSS_FRAME.extracted), [`apr/c4004_chip.gds`](../apr/c4004_chip.gds)）
 - **総サブサーキット定義数**: `42` 種
 - **総配置セル数 (GDSII)**: **`722` セル**
   - I/O パッド: `16` 個（`OSS_ESD_5V_DIO`×14, `OSS_ESD_5V_VDD`×1, `OSS_ESD_5V_VSS`×1）
@@ -442,7 +442,7 @@
   - フラット総ネット数: **`2,892` ネット**（`OSS_FRAME` トップ `28` ネット、`c4004_core` トップ `677` ネット、`SRAM128` 内部 `540` ネット）
   - フラット総 `VIA1` カット数: **`13,884` 個**（うち `c4004_core` 信号・電源配線 Via `4,162` 個）
 
-### 10.2 `ngspice` フルチップ抽出検証・タイミング・`FMAX` 解析（[`apr/simulation/VERIFICATION_SUMMARY.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/VERIFICATION_SUMMARY.md)）
+### 10.2 `ngspice` フルチップ抽出検証・タイミング・`FMAX` 解析（[`apr/simulation/VERIFICATION_SUMMARY.md`](../apr/simulation/VERIFICATION_SUMMARY.md)）
 `OSS_FRAME.extracted` を用いた3種のフルチップ機能テストベンチ（`tb_chip_1_func`: ALU/アキュムレータ命令群・`DCL` バンク選択、`tb_chip_2_sram`: `SRAM128` レジスタ `FIM/INC/SUB/LD` リード/ライト、`tb_chip_3_stack_jcn`: `JMS/BBL` スタック＆`JCN` 条件分岐）および `10〜40 MHz` `FMAX` スイープを `VDD = 5.0 V`, 全パッド負荷 `1.0 pF` で並列実行し、全テスト **PASS** を確認：
 
 - **パッド間伝搬遅延（`P1 clk` 立上りエッジ `2.5 V` → 各出力パッド `2.5 V`）**:

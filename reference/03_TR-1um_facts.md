@@ -1,6 +1,6 @@
 # TR-1um (IP62) 実装制約の実測メモ
 
-`OpenSUSI/TR-1um` および本プロジェクトで使用する標準セル（[`module/STDCELL/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/README.md)）・SRAM マクロ（[`module/SRAM128/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/)）・パッドフレームの実測データ。
+`OpenSUSI/TR-1um` および本プロジェクトで使用する標準セル（[`module/STDCELL/`](../module/STDCELL/README.md)）・SRAM マクロ（[`module/SRAM128/`](../module/SRAM128/)）・パッドフレームの実測データ。
 
 ## 1. プロセス基本仕様
 
@@ -31,7 +31,7 @@
 
 ---
 
-## 3. 実設計採用スタンダードセル [`module/STDCELL/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/README.md)（`v59_4`、行高 59.4 µm）
+## 3. 実設計採用スタンダードセル [`module/STDCELL/`](../module/STDCELL/README.md)（`v59_4`、行高 59.4 µm）
 
 初期調査時点の旧 `STDLIB/LogicCells`（行高 `62.6 µm`、次節 §4 参照）に代わり、実設計では **サイト幅 `5.4 µm` × 行高 `59.4 µm`（11サイト高）** に高密度化し、`MUXDFFRB`（MUX内蔵FF）・`AOI`/`OAI` 複合ゲート・`BUFTH`（シュミットトリガ入力）・`FILL2/3`（MOSデキャップ）・`TAP2` を完備した **`v59_4` ライブラリ（全 37 CORE セル種）** を採用。
 
@@ -50,7 +50,7 @@
 
 ## 4. （参考）初期調査時の旧 `STDLIB/LogicCells`（行高 62.6 µm）
 
-事前見積り（[`04_area_estimation.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/reference/04_area_estimation.md)）で使用した旧 PDK 同梱セルの実測値（行高 `62.6 µm`）：
+事前見積り（[`04_area_estimation.md`](04_area_estimation.md)）で使用した旧 PDK 同梱セルの実測値（行高 `62.6 µm`）：
 
 | セル | W (µm) | 面積 (µm²) |
 |---|---|---|
@@ -62,9 +62,9 @@
 | **DFFR / DFFS** | **100.6** | **6,297.6** |
 | CLKBUF_X1 / DEL1 | 51.1 | 3,198.9 |
 
-旧ライブラリで不足していた要素（イネーブル/MUX付きFF、シュミットトリガバッファ、AOI/OAI 複合ゲート、Liberty `.lib` / LEF、および 128bit SRAM マクロ）は、すべて [`module/STDCELL/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/README.md) および [`module/SRAM128/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/) にて整備・解決済み。
+旧ライブラリで不足していた要素（イネーブル/MUX付きFF、シュミットトリガバッファ、AOI/OAI 複合ゲート、Liberty `.lib` / LEF、および 128bit SRAM マクロ）は、すべて [`module/STDCELL/`](../module/STDCELL/README.md) および [`module/SRAM128/`](../module/SRAM128/) にて整備・解決済み。
 
 ## 出典
 
 - https://github.com/OpenSUSI/TR-1um
-- 本リポジトリ [`module/STDCELL/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/README.md), [`module/SRAM128/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/), [`scripts/pre_check.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/pre_check.py)
+- 本リポジトリ [`module/STDCELL/`](../module/STDCELL/README.md), [`module/SRAM128/`](../module/SRAM128/), [`scripts/pre_check.py`](../scripts/pre_check.py)

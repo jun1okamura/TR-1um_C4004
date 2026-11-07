@@ -1,23 +1,24 @@
+from pathlib import Path
 import os
 import re
 import sys
 from collections import defaultdict
 
-sys.path.insert(0, "/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/TR-1um_APRtools/apr")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import pya as db
 import klayout_extract
 
-FRAME_GDS = "/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/TR-1um_frame_25x25.gds"
-STDCELL_SPICE_DIR = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/simulation"
-SRAM_SPICE = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/simulation/SRAM128.spice"
-DEF_PATH = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_core_4edge_routed.def"
-CHIP_GDS = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_chip.gds"
-OUT_SPICE_SIM = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/OSS_FRAME.spice"
-OUT_SPICE_APR = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_chip.spice"
+FRAME_GDS = "TR-1um/libs.tech/klayout/libraries/TR-1um_frame_25x25.gds"
+STDCELL_SPICE_DIR = str(Path(__file__).resolve().parent.parent / "module/STDCELL/simulation"
+SRAM_SPICE = str(Path(__file__).resolve().parent.parent / "module/SRAM128/simulation/SRAM128.spice"
+DEF_PATH = str(Path(__file__).resolve().parent.parent / "apr/c4004_core_4edge_routed.def"
+CHIP_GDS = str(Path(__file__).resolve().parent.parent / "apr/c4004_chip.gds"
+OUT_SPICE_SIM = str(Path(__file__).resolve().parent.parent / "apr/simulation/OSS_FRAME.spice"
+OUT_SPICE_APR = str(Path(__file__).resolve().parent.parent / "apr/c4004_chip.spice"
 
 # 1. Extract OSS_ESD_5V_DIO, OSS_ESD_5V_VSS, OSS_ESD_5V_VDD, and their child subcircuits from FRAME_GDS
 def extract_frame_spice():
-    tmp_sp = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/_tmp_frame.spice"
+    tmp_sp = str(Path(__file__).resolve().parent.parent / "openroad/_tmp_frame.spice"
     l2n = klayout_extract.build(FRAME_GDS, "OSS_FRAME_GIO", flat=False)
     nl = l2n.netlist()
     nl.make_top_level_pins()
@@ -74,7 +75,7 @@ def build_lvs_spice():
     occ_sites = defaultdict(set)
 
     stdcell_ly = db.Layout()
-    stdcell_ly.read("/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/TR-1um_STDCELL.gds")
+    stdcell_ly.read(str(Path(__file__).resolve().parent.parent / "module/STDCELL/TR-1um_STDCELL.gds")
 
     for m in re.finditer(r"-\s+(\S+)\s+(\S+)\s+\+\s+(?:PLACED|FIXED)\s+\(\s*(\d+)\s+(\d+)\s*\)\s+N", comp_sec):
         inst, cell_name, cx, cy = m.group(1), m.group(2), int(m.group(3)), int(m.group(4))

@@ -1,7 +1,7 @@
 # 6T SRAM マクロ構成 — Scratchpad 64bit + スタック 48bit + レジスタ
 
 作成: 2026-09-20 / **更新: 2026-09-20（ビットセル 604 µm²/bit に圧縮・センスアンプ採用を反映 → `08_senseamp_refs.md`）** / 前提: `05_cell_circuits.md` §4、`06_design_policy.md`、
-TD4 の実績（`TD4_memory_array.md` / `TD4_reg8x16_timing.md` / `TR1um_cell_verification.md`）
+先行試作（12T ラッチ型レジスタアレイ `REG8x16`）の実測結果
 
 ---
 
@@ -370,8 +370,7 @@ C4004 全体への反映（`06_design_policy.md` §7 の更新）:
 2. KLayout DRC/LVS を 4×2 の小アレイで通す（well ストライプとタップ行の検証）。
 3. `scripts/char/char_mem.py` を流用して `C4004_SRAM32X4` を特性化
    → `emit_macro()` で Liberty 化。
-   **TD4 で不足していた `WEN` 系の setup/hold・最小パルス幅も今回は測る**
-   （`TD4_reg8x16_timing.md` §4 の TODO）。
+   **`WEN` 系の setup/hold・最小パルス幅も漏れなく特性化する。**
 4. IRSIM で RMW シーケンス（A1–A3 の PC +1）を通す。
 
 ---
@@ -402,11 +401,11 @@ C4004 全体への反映（`06_design_policy.md` §7 の更新）:
 
 ---
 
-## 12. 追記（2026-11-05）: 完成版ハードマクロ [`module/SRAM128/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/) の最終実装諸元
+## 12. 追記（2026-11-05）: 完成版ハードマクロ [`module/SRAM128/`](../module/SRAM128/) の最終実装諸元
 
 上記の設計検討を経て、実際にレイアウト・DRC/LVS・抽出後 `ngspice` 特性化まで完了し `C4004` に搭載された **`SRAM128`** ハードマクロの最終仕様は以下の通り：
 
-| 項目 | 当初計画 (`C4004_SRAM32X4`) | 完成実マクロ ([`module/SRAM128/SRAM128`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/)) |
+| 項目 | 当初計画 (`C4004_SRAM32X4`) | 完成実マクロ ([`module/SRAM128/SRAM128`](../module/SRAM128/)) |
 | :--- | :--- | :--- |
 | **外形寸法・面積** | `≒ 450 × 588 µm` (`0.272 mm²`) | **`1166.10 µm (W) × 185.60 µm (H)` (`0.2164 mm²`, 当初見積り比 −20.4%)** |
 | **総トランジスタ数** | — | **`1,212` MOSFETs (`PMOS`: 412, `NMOS`: 800)** |

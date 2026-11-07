@@ -2,7 +2,9 @@
 
 [![check](https://github.com/OpenSUSI/TR-1um_MPW_template/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/OpenSUSI/TR-1um_MPW_template/actions/workflows/check.yml)
 
-OpenSUSI **TR-1um PDK**（1 µm シリコンゲート CMOS、2層配線 `M1`/`M2`、電源電圧 `5.0 V`）を用いて設計・レイアウト・実レイアウト抽出後（Post-Layout Extracted）フルチップ検証まで完了した **Intel 4004 完全互換 4-bit マイクロプロセッサ (`C4004`)** です。
+OpenSUSI **TR-1um PDK**（https://github.com/OpenSUSI/TR-1um — 1 µm シリコンゲート CMOS、2層配線 `M1`/`M2`、電源電圧 `5.0 V`）を用いて設計・レイアウト・実レイアウト抽出後（Post-Layout Extracted）フルチップ検証まで完了した **Intel 4004 完全互換 4-bit マイクロプロセッサ (`C4004`)** です。
+
+> **PDK のセットアップ**: DRC / LVS ルールデッキ（`libs.tech/klayout/tech/`）、SPICE デバイスモデル（`libs.tech/spice/models/`）、およびパッドフレーム GDSII（`libs.tech/klayout/libraries/TR-1um_frame_25x25.gds`）は公式 PDK リポジトリ https://github.com/OpenSUSI/TR-1um を使用します（ローカル実行時は `git clone https://github.com/OpenSUSI/TR-1um.git` で `TR-1um/` に配置、GitHub Actions CI では `info.yaml` の設定により自動チェックアウトされます）。
 
 ---
 
@@ -72,7 +74,7 @@ OpenSUSI **TR-1um PDK**（1 µm シリコンゲート CMOS、2層配線 `M1`/`M2
 
 ## 3. 設計フロー (End-to-End Design Flow)
 
-本チップは以下の6段階のオープンソース EDA フロー（Yosys + OpenROAD + KLayout + ngspice）により設計・検証されています。各ステップの Python スクリプトは [`scripts/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/README.md) に、OpenROAD/合成設定ファイルは [`openroad/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/README.md) に格納されています。
+本チップは以下の6段階のオープンソース EDA フロー（Yosys + OpenROAD + KLayout + ngspice）により設計・検証されています。各ステップの Python スクリプトは [`scripts/`](scripts/README.md) に、OpenROAD/合成設定ファイルは [`openroad/`](openroad/README.md) に格納されています。
 
 ```mermaid
 flowchart TD
@@ -88,24 +90,24 @@ flowchart TD
 - インデックスレジスタ (`16 × 4-bit`) とプログラムカウンタ/スタック (`4 × 12-bit`) を `SRAM128` (`32 × 4-bit`) に統合し、クロック前半 (`clk = 0`) で `SRAM128` にアクセス、クロック立上りエッジ (`clk↑`) で順序回路を更新するパイプライン構成を採用。
 
 ### Step 2: Yosys 論理合成 & 高ファンアウト/シュミットトリガバッファ挿入
-- [`openroad/synth.ys`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/synth.ys) により TR-1um 標準セルライブラリ (`tr1um_typ_5v0_25c.lib`) と `SRAM128.lib` にマッピング。
-- [`scripts/insert_high_fo_buffers.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/insert_high_fo_buffers.py) により、全7入力ピン初段にシュミットトリガ `BUFTH` を挿入し、配置座標に基づいてクロック (`clk_buf_r*`)・リセット (`rst_n_buf_r*`) を各行ごとにバッファリング、さらにファンアウト8以上の全内部信号に `BUF_X2` を挿入して `openroad/c4004_core_buffered_or.v`（624標準セル＋`SRAM128`）を生成。
+- [`openroad/synth.ys`](openroad/synth.ys) により TR-1um 標準セルライブラリ (`tr1um_typ_5v0_25c.lib`) と `SRAM128.lib` にマッピング。
+- [`scripts/insert_high_fo_buffers.py`](scripts/insert_high_fo_buffers.py) により、全7入力ピン初段にシュミットトリガ `BUFTH` を挿入し、配置座標に基づいてクロック (`clk_buf_r*`)・リセット (`rst_n_buf_r*`) を各行ごとにバッファリング、さらにファンアウト8以上の全内部信号に `BUF_X2` を挿入して `openroad/c4004_core_buffered_or.v`（624標準セル＋`SRAM128`）を生成。
 
 ### Step 3: OpenROAD フロアプラン・`TAP2` 3分割配置・2層チャネル配線
-- [`scripts/make_clean_lefs.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/make_clean_lefs.py) および [`scripts/make_m2only_lef.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/make_m2only_lef.py) で、標準セル内部の `M1` 領域 (`y = 1.1..58.3 µm`) を全面 `OBS` とし、ピンアクセスを `METAL2` のみに限定した `openroad/TR-1um_cells_m2only.lef` を生成。
-- [`scripts/run_tap2_flow.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/run_tap2_flow.py)（スタンドアロン実行時は [`openroad/run_grt.tcl`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/run_grt.tcl) および [`openroad/run_drt.tcl`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/run_drt.tcl)）により、9本のアクティブ標準セル行を4列の `TAP2` (`x = 21.6, 615.6, 1215.0, 1809.0 µm`) で横3セグメントに分割配置し、行間の `118.8 µm` チャネルを用いて Global Route / Detailed Route を完走。
+- [`scripts/make_clean_lefs.py`](scripts/make_clean_lefs.py) および [`scripts/make_m2only_lef.py`](scripts/make_m2only_lef.py) で、標準セル内部の `M1` 領域 (`y = 1.1..58.3 µm`) を全面 `OBS` とし、ピンアクセスを `METAL2` のみに限定した `openroad/TR-1um_cells_m2only.lef` を生成。
+- [`scripts/run_tap2_flow.py`](scripts/run_tap2_flow.py)（スタンドアロン実行時は [`openroad/run_grt.tcl`](openroad/run_grt.tcl) および [`openroad/run_drt.tcl`](openroad/run_drt.tcl)）により、9本のアクティブ標準セル行を4列の `TAP2` (`x = 21.6, 615.6, 1215.0, 1809.0 µm`) で横3セグメントに分割配置し、行間の `118.8 µm` チャネルを用いて Global Route / Detailed Route を完走。
 
 ### Step 4: 4辺パッド座標整合 & KLayout フルチップ GDSII 構築
-- [`scripts/reterminate_tap2_nets.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/reterminate_tap2_nets.py) により、全19本のコア境界ピンを `OSS_FRAME_GIO` パッドの引き出し座標に完全一致させ、`apr/c4004_core_4edge_routed.def` を生成。
-- [`scripts/build_core_and_chip_gds.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/build_core_and_chip_gds.py) により、標準セル、`SRAM128`、36個の `TAP2`、デキャップフィラー `FILL3` (29個) / `FILL2` (13個) / `FILL1` (3個)、`M2` 縦電源ストラップ、`SRAM128` 左右電源接続、両端 `VDDPAD` 接続、および `OSS_FRAME_GIO` 4辺 `M2` `VSS` ブリッジを統合し、`apr/c4004_core_routed.gds` およびフルチップ `apr/c4004_chip.gds` (`src/OSS_FRAME.gds`) を出力。
+- [`scripts/reterminate_tap2_nets.py`](scripts/reterminate_tap2_nets.py) により、全19本のコア境界ピンを `OSS_FRAME_GIO` パッドの引き出し座標に完全一致させ、`apr/c4004_core_4edge_routed.def` を生成。
+- [`scripts/build_core_and_chip_gds.py`](scripts/build_core_and_chip_gds.py) により、標準セル、`SRAM128`、36個の `TAP2`、デキャップフィラー `FILL3` (29個) / `FILL2` (13個) / `FILL1` (3個)、`M2` 縦電源ストラップ、`SRAM128` 左右電源接続、両端 `VDDPAD` 接続、および `OSS_FRAME_GIO` 4辺 `M2` `VSS` ブリッジを統合し、`apr/c4004_core_routed.gds` およびフルチップ `apr/c4004_chip.gds` (`src/OSS_FRAME.gds`) を出力。
 
 ### Step 5: サインオフ DRC / LVS 検証
-- [`scripts/build_lvs_spice.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/build_lvs_spice.py) により、`OSS_ESD_5V_DIO`/`VDD`/`VSS`、`SRAM128`、標準セル、`FILL2`/`FILL3` を含むフルチップ階層 SPICE ネットリスト (`apr/c4004_chip.spice`, `apr/simulation/OSS_FRAME.spice`, `src/OSS_FRAME.cir`) を生成。
-- KLayout DRC および LVS により **DRC エラー 0件**、**フルチップ LVS 完全一致** を確認（[`scripts/verify_core_and_chip.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/verify_core_and_chip.py) でも独立検証可能）。
+- [`scripts/build_lvs_spice.py`](scripts/build_lvs_spice.py) により、`OSS_ESD_5V_DIO`/`VDD`/`VSS`、`SRAM128`、標準セル、`FILL2`/`FILL3` を含むフルチップ階層 SPICE ネットリスト (`apr/c4004_chip.spice`, `apr/simulation/OSS_FRAME.spice`, `src/OSS_FRAME.cir`) を生成。
+- KLayout DRC および LVS により **DRC エラー 0件**、**フルチップ LVS 完全一致** を確認（[`scripts/verify_core_and_chip.py`](scripts/verify_core_and_chip.py) でも独立検証可能）。
 
 ### Step 6: 実レイアウト抽出ネット (`OSS_FRAME.extracted`) フルチップ `ngspice` 検証 & `FMAX` 解析
-- [`scripts/prep_extracted_ngspice.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/prep_extracted_ngspice.py) で KLayout LVS 抽出ネットリスト (`apr/OSS_FRAME.extracted`) を `ngspice` シミュレーション用 (`apr/simulation/OSS_FRAME_extracted_sim.spice`) に変換。
-- [`scripts/run_chip_verif.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/run_chip_verif.py) で3種類の機能検証テストベンチ（ALU命令群、`SRAM128` レジスタリード/ライト、`JMS`/`BBL` サブルーチンスタック＆`JCN` 分岐）と `10〜40 MHz` の `FMAX` スイープを並列実行し、`apr/simulation/VERIFICATION_SUMMARY.md` に結果を集約。
+- [`scripts/prep_extracted_ngspice.py`](scripts/prep_extracted_ngspice.py) で KLayout LVS 抽出ネットリスト (`apr/OSS_FRAME.extracted`) を `ngspice` シミュレーション用 (`apr/simulation/OSS_FRAME_extracted_sim.spice`) に変換。
+- [`scripts/run_chip_verif.py`](scripts/run_chip_verif.py) で3種類の機能検証テストベンチ（ALU命令群、`SRAM128` レジスタリード/ライト、`JMS`/`BBL` サブルーチンスタック＆`JCN` 分岐）と `10〜40 MHz` の `FMAX` スイープを並列実行し、`apr/simulation/VERIFICATION_SUMMARY.md` に結果を集約。
 
 ---
 
@@ -113,12 +115,12 @@ flowchart TD
 
 | ディレクトリ / ファイル | 内容説明 |
 | :--- | :--- |
-| [`rtl/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/rtl/) | `c4004_core.v`（CPU コア RTL）、`c4004_top.v`（`OSS_FRAME` パッドラッパ） |
-| [`openroad/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/README.md) | OpenROAD 向け LEF (`TR-1um_tech_or.lef`, `TR-1um_cells_m2only.lef`, `SRAM128_or.lef` 等)、Tcl スクリプト (`run_grt.tcl`, `run_drt.tcl`, `tap2_exact_pos.tcl`)、Yosys 合成スクリプト (`synth.ys`, `abc.constr`)、配線ガイド・DEF（詳細は [`openroad/README.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/README.md)） |
-| [`scripts/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/README.md) | 合成後バッファ挿入、LEF 生成、OpenROAD 実行、GDSII 構築、LVS SPICE 生成、DRC/LVS 検証、`ngspice` フルチップ検証・統計集計用 Python スクリプト群（詳細は [`scripts/README.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/README.md)） |
-| [`apr/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/) | 最終レイアウト `c4004_chip.gds` (`OSS_FRAME`)、コア `c4004_core_routed.gds`、配線済み DEF `c4004_core_4edge_routed.def`、LVS 用 SPICE `c4004_chip.spice`、抽出ネットリスト `OSS_FRAME.extracted` |
-| [`apr/simulation/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/VERIFICATION_SUMMARY.md) | `ngspice` フルチップ検証テストベンチ (`tb_chip_*.spice`)、抽出シミュレーションモデル (`OSS_FRAME_extracted_sim.spice`)、検証・`FMAX`・統計レポート [`VERIFICATION_SUMMARY.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/VERIFICATION_SUMMARY.md) |
-| [`module/STDCELL/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/README.md) | TR-1um 標準セルライブラリ (`TR-1um_STDCELL.gds`, `tr1um_typ_5v0_25c.lib`, `TR-1um_cells.lef`, `simulation/*.spice`) |
-| [`module/SRAM128/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/) | `32×4-bit` 6T CMOS SRAM ハードマクロ (`SRAM128.gds`, `SRAM128.lef`, `SRAM128.lib`, `SRAM128.spice`) |
-| [`src/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/src/) | OpenSUSI MPW 提出用ディレクトリ (`tr_1um_jun1okamura.gds`, `tr_1um_jun1okamura.cir`) |
-| [`info.yaml`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/info.yaml) | OpenSUSI MPW CI (Pre-check / DRC / LVS / MDP) 設定ファイル |
+| [`rtl/`](rtl/) | `c4004_core.v`（CPU コア RTL）、`c4004_top.v`（`OSS_FRAME` パッドラッパ） |
+| [`openroad/`](openroad/README.md) | OpenROAD 向け LEF (`TR-1um_tech_or.lef`, `TR-1um_cells_m2only.lef`, `SRAM128_or.lef` 等)、Tcl スクリプト (`run_grt.tcl`, `run_drt.tcl`, `tap2_exact_pos.tcl`)、Yosys 合成スクリプト (`synth.ys`, `abc.constr`)、配線ガイド・DEF（詳細は [`openroad/README.md`](openroad/README.md)） |
+| [`scripts/`](scripts/README.md) | 合成後バッファ挿入、LEF 生成、OpenROAD 実行、GDSII 構築、LVS SPICE 生成、DRC/LVS 検証、`ngspice` フルチップ検証・統計集計用 Python スクリプト群（詳細は [`scripts/README.md`](scripts/README.md)） |
+| [`apr/`](apr/) | 最終レイアウト `c4004_chip.gds` (`OSS_FRAME`)、コア `c4004_core_routed.gds`、配線済み DEF `c4004_core_4edge_routed.def`、LVS 用 SPICE `c4004_chip.spice`、抽出ネットリスト `OSS_FRAME.extracted` |
+| [`apr/simulation/`](apr/simulation/VERIFICATION_SUMMARY.md) | `ngspice` フルチップ検証テストベンチ (`tb_chip_*.spice`)、抽出シミュレーションモデル (`OSS_FRAME_extracted_sim.spice`)、検証・`FMAX`・統計レポート [`VERIFICATION_SUMMARY.md`](apr/simulation/VERIFICATION_SUMMARY.md) |
+| [`module/STDCELL/`](module/STDCELL/README.md) | TR-1um 標準セルライブラリ (`TR-1um_STDCELL.gds`, `tr1um_typ_5v0_25c.lib`, `TR-1um_cells.lef`, `simulation/*.spice`) |
+| [`module/SRAM128/`](module/SRAM128/) | `32×4-bit` 6T CMOS SRAM ハードマクロ (`SRAM128.gds`, `SRAM128.lef`, `SRAM128.lib`, `SRAM128.spice`) |
+| [`src/`](src/) | OpenSUSI MPW 提出用ディレクトリ (`tr_1um_jun1okamura.gds`, `tr_1um_jun1okamura.cir`) |
+| [`info.yaml`](info.yaml) | OpenSUSI MPW CI (Pre-check / DRC / LVS / MDP) 設定ファイル |

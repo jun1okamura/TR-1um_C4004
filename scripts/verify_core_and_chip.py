@@ -1,7 +1,8 @@
+from pathlib import Path
 import pya as db
 
-CHIP_GDS = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_chip.gds"
-CORE_GDS = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_core_routed.gds"
+CHIP_GDS = str(Path(__file__).resolve().parent.parent / "apr/c4004_chip.gds"
+CORE_GDS = str(Path(__file__).resolve().parent.parent / "apr/c4004_core_routed.gds"
 
 ly = db.Layout()
 ly.read(CHIP_GDS)
@@ -164,8 +165,8 @@ for label, x_c, y_c, exp_net in [
 
 # Check HIZ3..6 (d_hiz) and all 18 signal terminals dynamically against DEF component locations!
 import re
-def_txt = open("/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_core_4edge_routed.def").read()
-lef_txt = open("/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/TR-1um_cells_m2only.lef").read()
+def_txt = open(str(Path(__file__).resolve().parent.parent / "apr/c4004_core_4edge_routed.def").read()
+lef_txt = open(str(Path(__file__).resolve().parent.parent / "openroad/TR-1um_cells_m2only.lef").read()
 macro_pin_m2 = {}
 for m in re.finditer(r"MACRO\s+(\S+)(.*?)END\s+\1", lef_txt, re.S):
     mname, body = m.group(1), m.group(2)

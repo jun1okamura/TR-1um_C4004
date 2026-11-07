@@ -1,3 +1,4 @@
+from pathlib import Path
 #!/usr/bin/env python3
 """
 Prepare OSS_FRAME.extracted for ngspice simulation (using native M devices for
@@ -6,12 +7,12 @@ PMOS_mst / NMOS_mst) and verify subcircuit port counts.
 import os
 import re
 
-WORKSPACE = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004"
+WORKSPACE = str(Path(__file__).resolve().parent.parent)
 EXTRACTED_PATH = os.path.join(WORKSPACE, "apr/OSS_FRAME.extracted")
 SIM_DIR = os.path.join(WORKSPACE, "apr/simulation")
 SIM_NETLIST_PATH = os.path.join(SIM_DIR, "OSS_FRAME_extracted_sim.spice")
 MODELS_PATH = os.path.join(SIM_DIR, "models.spice")
-IP62_LIB_SRC = "/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/ip62_mos.lib"
+IP62_LIB_SRC = "TR-1um/libs.tech/spice/models/models_IP62_mos_v2.lib"
 
 
 def sanitize_token(tok):

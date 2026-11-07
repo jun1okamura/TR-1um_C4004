@@ -1,3 +1,4 @@
+from pathlib import Path
 #!/usr/bin/env python3
 """
 Extract physical layout statistics from apr/c4004_chip.gds to complement
@@ -8,9 +9,9 @@ import json
 from collections import Counter
 import pya
 
-WORKSPACE = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004"
+WORKSPACE = str(Path(__file__).resolve().parent.parent)
 CHIP_GDS = os.path.join(WORKSPACE, "apr/c4004_chip.gds")
-OUT_JSON = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/gds_physical_stats.json"
+OUT_JSON = str(Path(__file__).resolve().parent.parent / "openroad/gds_physical_stats.json"
 
 
 def main():

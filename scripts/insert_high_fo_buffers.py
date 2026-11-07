@@ -1,3 +1,4 @@
+from pathlib import Path
 #!/usr/bin/env python3
 """
 insert_high_fo_buffers.py
@@ -11,20 +12,20 @@ insert_high_fo_buffers.py
    - Splits sinks sorted by (row_y, x) into 2 local branches (FO = 4..5 each),
      each driven by a BUF_X2 cell.
 3. Outputs both:
-   - /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/syn/c4004_core_buffered.v (with VDD/GND pins)
-   - /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/c4004_core_buffered_or.v (for OpenROAD)
+   - syn/c4004_core_buffered.v (with VDD/GND pins)
+   - openroad/c4004_core_buffered_or.v (for OpenROAD)
 """
 
 import json
 import re
 from collections import defaultdict
 
-DEF_PATH = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/routed_widech_strict.def"
-IN_OR_V = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/c4004_core_or.v"
-OUT_OR_V = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/c4004_core_buffered_or.v"
-IN_SYN_V = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/syn/c4004_core_bufth.v"
-OUT_SYN_V = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/syn/c4004_core_buffered.v"
-OUT_POS_TCL = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/buffered_target_pos.tcl"
+DEF_PATH = str(Path(__file__).resolve().parent.parent / "openroad/routed_widech_strict.def"
+IN_OR_V = str(Path(__file__).resolve().parent.parent / "openroad/c4004_core_or.v"
+OUT_OR_V = str(Path(__file__).resolve().parent.parent / "openroad/c4004_core_buffered_or.v"
+IN_SYN_V = str(Path(__file__).resolve().parent.parent / "syn/c4004_core_bufth.v"
+OUT_SYN_V = str(Path(__file__).resolve().parent.parent / "syn/c4004_core_buffered.v"
+OUT_POS_TCL = str(Path(__file__).resolve().parent.parent / "openroad/buffered_target_pos.tcl"
 
 with open(DEF_PATH) as f:
     def_text = f.read()

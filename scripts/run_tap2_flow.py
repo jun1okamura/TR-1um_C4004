@@ -5,8 +5,8 @@ import subprocess
 from collections import defaultdict
 from itertools import combinations
 
-OR_DIR = Path("/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad")
-OPENROAD = "/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/bin/openroad"
+OR_DIR = Path(str(Path(__file__).resolve().parent.parent / "openroad")
+OPENROAD = "openroad"
 
 def_txt = (OR_DIR / "placed_test4edge_1v.def").read_text()
 lef_txt = (OR_DIR / "TR-1um_cells_or.lef").read_text()
@@ -171,13 +171,13 @@ for inst, (cx, cy) in placed_pos.items():
 (OR_DIR / "tap2_exact_pos.tcl").write_text("\n".join(pos_tcl_lines) + "\n")
 
 tcl = f"""
-set top_dir "/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch"
+set top_dir [file normalize [pwd]]
 set or_dir "$top_dir/or_test"
 read_lef "$or_dir/TR-1um_tech_or.lef"
 read_lef "$or_dir/TR-1um_cells_grt_fullobs.lef"
 read_lef "$or_dir/SRAM128_or.lef"
-read_liberty "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/tr1um_typ_5v0_25c.lib"
-read_liberty "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/SRAM128.lib"
+read_liberty str(Path(__file__).resolve().parent.parent / "module/STDCELL/tr1um_typ_5v0_25c.lib"
+read_liberty str(Path(__file__).resolve().parent.parent / "module/SRAM128/SRAM128.lib"
 read_verilog "$or_dir/c4004_core_buffered_or.v"
 link_design c4004_core
 initialize_floorplan -die_area "0 0 1840.0 1840.0" -core_area "21.6 0.0 1819.8 1805.6" -site TR1UM
@@ -267,7 +267,7 @@ for l in lines:
 (OR_DIR / "route_tap2_strict.guide").write_text("\n".join(out) + "\n")
 
 drt_tcl = f"""
-set top_dir "/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch"
+set top_dir [file normalize [pwd]]
 set or_dir "$top_dir/or_test"
 read_lef "$or_dir/TR-1um_tech_or.lef"
 read_lef "$or_dir/TR-1um_cells_m2only.lef"

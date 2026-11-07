@@ -9,7 +9,7 @@ and verify pre-check criteria (top cell name, DBU=0.001, bbox=(-1250,-1250;1250,
 from pathlib import Path
 import pya
 
-REPO_DIR = Path("/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004")
+REPO_DIR = Path(str(Path(__file__).resolve().parent.parent))
 APR_GDS = REPO_DIR / "apr" / "c4004_chip.gds"
 APR_SPICE = REPO_DIR / "apr" / "c4004_chip.spice"
 SRC_DIR = REPO_DIR / "src"
@@ -77,7 +77,7 @@ print(f"OK: Wrote {OUT_CIR.name} ({len(OUT_CIR.read_text().splitlines())} lines)
 
 # 4. Verify KLayout LVS on src/tr_1um_jun1okamura.gds vs src/tr_1um_jun1okamura.cir
 import sys
-sys.path.insert(0, "/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch/TR-1um_APRtools/apr")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import klayout_extract
 import pya as db
 

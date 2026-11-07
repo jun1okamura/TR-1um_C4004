@@ -1,3 +1,4 @@
+from pathlib import Path
 #!/usr/bin/env python3
 """
 Compile comprehensive statistics from apr/OSS_FRAME.extracted and apr/c4004_chip.gds.
@@ -7,9 +8,9 @@ import re
 import json
 from collections import Counter, defaultdict
 
-WORKSPACE = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004"
+WORKSPACE = str(Path(__file__).resolve().parent.parent)
 EXTRACTED_PATH = os.path.join(WORKSPACE, "apr/OSS_FRAME.extracted")
-OUT_JSON = "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/extracted_full_stats.json"
+OUT_JSON = str(Path(__file__).resolve().parent.parent / "openroad/extracted_full_stats.json"
 
 
 def analyze_extracted():

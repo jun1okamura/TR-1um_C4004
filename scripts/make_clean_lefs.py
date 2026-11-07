@@ -12,8 +12,8 @@ Also:
 import re
 from pathlib import Path
 
-SCRATCH = Path("/Users/okamura/.gemini/antigravity/brain/1f9962ab-4eaa-4573-b984-223fab1c8e03/scratch")
-STDCELL_DIR = Path("/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL")
+SCRATCH = Path(__file__).resolve().parent.parent
+STDCELL_DIR = Path(str(Path(__file__).resolve().parent.parent / "module/STDCELL")
 OUT_DIR = SCRATCH / "or_test"
 
 def parse_lib_directions(lib_path: Path):
