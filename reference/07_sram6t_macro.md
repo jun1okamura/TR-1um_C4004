@@ -399,3 +399,19 @@ C4004 全体への反映（`06_design_policy.md` §7 の更新）:
 
 リスクを取らないなら、**`REG32x4` として TD4 の TLAT アレイを 4bit 幅に
 作り直すのが最短**（デコーダ・ドライバ・Liberty 化フローがそのまま使える）。
+
+---
+
+## 12. 追記（2026-11-05）: 完成版ハードマクロ [`module/SRAM128/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/) の最終実装諸元
+
+上記の設計検討を経て、実際にレイアウト・DRC/LVS・抽出後 `ngspice` 特性化まで完了し `C4004` に搭載された **`SRAM128`** ハードマクロの最終仕様は以下の通り：
+
+| 項目 | 当初計画 (`C4004_SRAM32X4`) | 完成実マクロ ([`module/SRAM128/SRAM128`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/)) |
+| :--- | :--- | :--- |
+| **外形寸法・面積** | `≒ 450 × 588 µm` (`0.272 mm²`) | **`1166.10 µm (W) × 185.60 µm (H)` (`0.2164 mm²`, 当初見積り比 −20.4%)** |
+| **総トランジスタ数** | — | **`1,212` MOSFETs (`PMOS`: 412, `NMOS`: 800)** |
+| **サブブロック内訳** | 16×8 アレイ + 周辺 | `SRAM_32x4` (1,024 Tr: 32×4 6T bitcell + プリチャージ + カラムMUX) + `SRAM_SA4` (94 Tr: 差動SA×4 + `SACTR`) + `SRAM_WD4` (60 Tr: ライトドライバ×4 + `WRCTR`) + `PDEC`/`ADB` (34 Tr) |
+| **端子一覧** | `A[4:0], DIN[3:0], DOUT[3:0], WE, CE, CLK` | `CE, WR, A0..A4, DIN0..DIN3, DO0..DO3`、および左右両端の `VDD`, `VSS` |
+| **動作トリガ・出力保持** | 単相 `CLK` から RMW 自動生成・レベルセンス出力 | **`CE` 立上りエッジ (`0 → 1`) トリガ**（`CE=0` でビット線プリチャージ、`CE↑` で `WR=0` なら Read、`WR=1` なら Write）。`SRAM_SA4` 内に SR ラッチ＋出力ラッチを内蔵し、**Read 確定 (`6.48 ns`) 後は次の Read まで `DO[3:0]` を完全保持**（外部ラッチ不要） |
+| **実測タイミング (`5.0 V`, `25 °C`)** | `< 100 ns` | Read Access `t_CE_DO = 6.48 ns` (`Slew=0.5ns, Cload=50fF`)、最小 `CE` High 幅 `6.0 ns`、最小 `CE` Low（プリチャージ）幅 `18.5 ns` |
+

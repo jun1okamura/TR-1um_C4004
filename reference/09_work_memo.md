@@ -86,7 +86,7 @@
    - `reference/07` で計画されていた 32word × 4bit（128bit）の 6T SRAM マクロは、すでに **`module/SRAM128/SRAM128`** として設計・レイアウト・DRC/LVS抽出・LEF/Liberty 化まで完了している。
    - 面積も事前見積りの `0.272 mm²`（`450 × 588 µm`）よりさらに小さい **`0.2164 mm²`（`1166.10 × 185.60 µm`）** で完成しており、コア面積 `3.3856 mm²` の **6.4%** しか占有しない。
 3. **コンパクト順序回路・標準セル（`05` §3, `06` §5）**:
-   - `module/SRAM128/simulation/` 内に、`TR-1um_Async_I2C/LEF/` 由来の縮小版 FF / ラッチ / ゲート回路（`DFF` 24T, `DFFR`/`DFFRB` 26T, `MUXDFFRB` 38T, `MUX2` 12T, `RSLATCH` 8T, `BUFTH` 8T 等、内部 `PMOS W=5.2u`）の SPICE サブサーキットがすでに揃っている。
+   - [`module/STDCELL/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/README.md) 内に、高密度版 FF / ラッチ / ゲート回路（行高 `59.4 µm`、`DFF`/`DFFRB`/`DFFS`, `MUXDFFRB`, `MUX2`, `RSLATCH`, `BUFTH`, `FILL2`/`FILL3`, `TAP2` 等、全 37 CORE セル種）の GDSII・LEF・Liberty・SPICE サブサーキットが完備されている。
 
 ---
 
@@ -174,10 +174,10 @@
    - `SRAM128`（`32 word × 4 bit`）のアドレス空間割り当て：
      - `A[4:0] = 0x00..0x0F` (`{1'b0, idx_reg[3:0]}`): インデックスレジスタ `R0..R15`（16 × 4 bit）
      - `A[4:0] = 0x10..0x1F` (`{1'b1, nib[1:0], sp[1:0]}`): サブルーチン戻り番地スタック（3段 × 12 bit、`JMS` の `A1..A3` で `PC+1` を書き込み、`BBL` の `M2..X2` で読み出して `PC` に復帰）
-2. **14番目の信号パッド（予備ピン `P15`）の用途**:
-   - デバッグ・ステータス観測出力 `cy_out`（キャリーフラグ `cy` の直接出力、`HIZ15 = 0` 固定出力）。
+2. **14番目の信号パッド（予備ピン `P9`）の用途**:
+   - データバス出力イネーブルモニタ `d_oe`（`d_oe = ~d_hiz`、外部トランシーバ `74LVC8T245` 等の方向制御用出力）。
 3. **スタンダードセルライブラリ**:
-   - `TR-1um_APRtools` の **`stdcell/v59_4`**（`tr1um_typ_5v0_25c.lib` / `tr1um_stdcell.gds`）を使用。
+   - [`module/STDCELL/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/STDCELL/README.md)（`v59_4`、`tr1um_typ_5v0_25c.lib` / `TR-1um_STDCELL.gds`）を使用。
 
 ---
 
@@ -402,3 +402,58 @@
   - `VSS` ボンドパッド ↔ 全 9 標準セル行 `GND` レール ↔ `SRAM128` 上下 `VSS` バー ↔ `OUT1, HIZ2, HIZ15, OUT7, HIZ9, OUT10, HIZ11..14`：**100% 導通**
   - `d_hiz` 出力 ↔ 左辺 4 パッド `HIZ6, HIZ5, HIZ4, HIZ3`：**100% 導通**
   - 全 18 信号パス（`clk, sync, cm_rom, rst, d_oe, test, cm_ram[3:0], d_in[3:0], d_out[3:0]`）のパッド端子 ↔ コア内部セルピン：**全 18 本が独立ネットとして 100% 一致**
+
+---
+
+## 9. `TAP2` 縦4列コア横3分割・`FILL3`/`FILL2` デキャップ充填・電源メッシュ強化・フルチップ LVS 完全一致（2026-11-06 完了）
+
+### 9.1 `TAP2` 縦4列によるコア横3分割と `FILL3`/`FILL2` 優先充填 (`scripts/run_tap2_flow.py`, `scripts/build_core_and_chip_gds.py`)
+1. **`TAP2` 4列配置による3分割**:
+   - 9本の各標準セル行（`y = 59.4, 237.6, ..., 1485.0 µm`）に対し、左端（`x = 21.6 µm`）、中1（`x = 615.6 µm`）、中2（`x = 1215.0 µm`）、右端（`x = 1809.0 µm`）の **4列（計 36 個の `TAP2` セル）** を配置し、標準セル行を横方向に **3等分（`108 / 109 / 108` サイト）**。
+   - 各 `TAP2` 列の上に縦方向の `M2` `VDD` / `VSS` 電源ストラップを敷設し、全9行の `M1` 電源レールと `VIA1` で接続。
+2. **デキャップフィラー `FILL3` / `FILL2` 充填**:
+   - 各セグメント内の空きサイトを2〜3サイト単位に量子化して配置し、2サイト以上の全空きスペースにアクティブ MOS デキャップ内蔵フィラー **`FILL3`（29個）および `FILL2`（13個）** を充填（1サイト隙間はコア全体で `FILL1`×3個のみ）。
+3. **電源メッシュ強化ルール適用**:
+   - `SRAM128` の右側だけでなく **左側の `VDD`/`VSS` 端子** もコア左端の `VDD`/`VSS` タップ配線へ接続。
+   - **左端 `TAP2` 列の `VDD`** も右端と同様に北辺 `VDDPAD` (`P16`) へ広幅 `M1`/`M2` で接続。
+   - 標準セル行および `TAP2` 列の `VSS` を、4辺の **`OSS_FRAME_GIO` `M2` `VSS` リング** と多点でブリッジ接続。
+
+### 9.2 フルチップ DRC & 階層/フラット LVS 完全一致 (`scripts/build_lvs_spice.py`)
+- [`apr/c4004_chip.gds`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_chip.gds)（トップ `OSS_FRAME`）および [`src/tr_1um_jun1okamura.gds`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/src/tr_1um_jun1okamura.gds)（MPW 提出用トップ `tr_1um_jun1okamura`）に対し、KLayout DRC にて **エラー `0` 件** を確認。
+- `OSS_ESD_5V_DIO`×14、`OSS_ESD_5V_VDD`、`OSS_ESD_5V_VSS`、`SRAM128`、全624論理標準セル、および `FILL2`×13・`FILL3`×29 デキャップを含む階層 SPICE ネットリスト（[`apr/c4004_chip.spice`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_chip.spice)、[`src/tr_1um_jun1okamura.cir`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/src/tr_1um_jun1okamura.cir)）を生成し、KLayout LVS にて **ポート・素子・ネットすべて 100% 完全一致 (`Match = True`)** を確認。
+
+---
+
+## 10. 実レイアウト抽出ネット (`OSS_FRAME.extracted`) フルチップ `ngspice` 検証・`FMAX` 解析・最終統計諸元（2026-11-06 完了）
+
+### 10.1 フルチップ抽出ネットリスト統計（[`apr/OSS_FRAME.extracted`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/OSS_FRAME.extracted), [`apr/c4004_chip.gds`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/c4004_chip.gds)）
+- **総サブサーキット定義数**: `42` 種
+- **総配置セル数 (GDSII)**: **`722` セル**
+  - I/O パッド: `16` 個（`OSS_ESD_5V_DIO`×14, `OSS_ESD_5V_VDD`×1, `OSS_ESD_5V_VSS`×1）
+  - コア内 (`c4004_core`): **`706` セル**（論理・バッファ・FF 標準セル `624` 個 + `SRAM128` `1` 個 + デキャップ `FILL3` `29` 個 / `FILL2` `13` 個 + ウェルタップ `TAP2` `36` 個 + スペーサ `FILL1` `3` 個）
+- **総抽出素子数**: **`6,180` 素子**（未結合物理フィンガ換算 **`6,440` フィンガ**）
+  - **MOSFET 合計**: **`6,152` 個**（`PMOS`: `2,885`, `NMOS`: `3,237`, `NMOSE`: `30`；物理フィンガ数 `6,412`）
+    - 標準セル論理 (`624` セル): `4,572` MOSFETs (`2,289 PMOS` + `2,283 NMOS`)
+    - `SRAM128` マクロ (`1` 個): `1,212` MOSFETs (`412 PMOS` + `800 NMOS`)
+    - I/O パッドリング (`16` 個): `284` MOSFETs (`142 PMOS` + `112 NMOS` + `30 NMOSE`；物理フィンガ `544`)
+    - デキャップフィラー (`42` セル): `84` MOSFETs (`42 PMOS` + `42 NMOS`)
+  - **ESD 保護ダイオード (`DN`)**: **`28` 個**（`OSS_ESD_5V_DIO` 14パッド × 2個）
+- **総ネット数 / 総 `VIA1` 数**:
+  - フラット総ネット数: **`2,892` ネット**（`OSS_FRAME` トップ `28` ネット、`c4004_core` トップ `677` ネット、`SRAM128` 内部 `540` ネット）
+  - フラット総 `VIA1` カット数: **`13,884` 個**（うち `c4004_core` 信号・電源配線 Via `4,162` 個）
+
+### 10.2 `ngspice` フルチップ抽出検証・タイミング・`FMAX` 解析（[`apr/simulation/VERIFICATION_SUMMARY.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/VERIFICATION_SUMMARY.md)）
+`OSS_FRAME.extracted` を用いた3種のフルチップ機能テストベンチ（`tb_chip_1_func`: ALU/アキュムレータ命令群・`DCL` バンク選択、`tb_chip_2_sram`: `SRAM128` レジスタ `FIM/INC/SUB/LD` リード/ライト、`tb_chip_3_stack_jcn`: `JMS/BBL` スタック＆`JCN` 条件分岐）および `10〜40 MHz` `FMAX` スイープを `VDD = 5.0 V`, 全パッド負荷 `1.0 pF` で並列実行し、全テスト **PASS** を確認：
+
+- **パッド間伝搬遅延（`P1 clk` 立上りエッジ `2.5 V` → 各出力パッド `2.5 V`）**:
+  - コア内部クロック到達遅延 (`P1 -> BUFTH -> BUF_X2 -> FF CK`): **`8.99 ns`** (`P1 -> FF Q`: `18.55 ns`)
+  - `t_pd(P1 -> P15 cm_rom)`: **`38.87 ns`**
+  - `t_pd(P1 -> P2 sync)`: **`38.99 ns`**
+  - `t_pd(P1 -> P3..P6 D[3:0])`: **`42.90 ns`**
+  - `t_pd(P1 -> P9 d_oe)`: **`43.96 ns`**
+  - `t_pd(P1 -> P11..P14 cm_ram[3:0])`: **`49.19 ns`**
+- **最大動作周波数 (`FMAX`) と消費電力 (`VDD = 5.0 V`)**:
+  - **フルチップ `FMAX`（`SRAM128` Read/Write・双方向パッド `D[3:0]` 入出力含む全命令完走）**: **`15.0 MHz`** (`T_clk = 66.7 ns`、オリジナル Intel 4004 `740 kHz` の **約20.3倍**)
+  - **コア論理・ALU 単体 `FMAX`**: **`25.0 MHz`** (`T_clk = 40.0 ns`)
+  - **平均消費電流・消費電力**: `3.04 mA` / **`15.2 mW`** (`@ 10.0 MHz`)、`4.55 mA` / **`22.7 mW`** (`@ 15.0 MHz`)
+

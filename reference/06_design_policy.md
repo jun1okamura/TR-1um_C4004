@@ -1,140 +1,71 @@
-# C4004 設計方針とセルライブラリ計画
+# C4004 設計方針と物理実装仕様
 
-確定日: 2026-09-08。根拠は `03_TR-1um_facts.md`（PDK実測）/
-`04_area_estimation.md`（面積見積り）/ `05_cell_circuits.md`（回路）。
+初版策定: 2026-09-08 / 最終実装更新: 2026-11-06  
+根拠: [`03_TR-1um_facts.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/reference/03_TR-1um_facts.md)（PDK・ライブラリ実測）/ [`04_area_estimation.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/reference/04_area_estimation.md)（面積見積り）/ [`05_cell_circuits.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/reference/05_cell_circuits.md)（回路）/ [`07_sram6t_macro.md`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/reference/07_sram6t_macro.md)（SRAM128 マクロ）。
 
-## 1. 確定した3つの方針
+---
 
-| # | 方針 | 理由 |
+## 1. 確定した基本設計方針
+
+| # | 方針 | 理由・最終実装形態 |
 |---|---|---|
-| 1 | **クロックは単相**（φ1/φ2 の2相は廃止） | クロック分配が単純。φ2 が不要になりパッドが1本空く |
-| 2 | **3ステートは GIO（双方向I/Oセル）でのみ使用** | 内部3ステートバスは検証・LVS・ESD の負担が大きい。内部は MUX 化 |
-| 3 | **レジスタファイル + PC/スタック（112bit）はスクラッチのカスタムアレイ** | DFFE で作ると 1.14 mm²。カスタムなら 0.12 mm² |
+| 1 | **クロックは単相 (`clk`)** | φ1/φ2 の2相クロックを廃止し、単相 `clk` 同期の8フェーズ (`A1..X3`) 構成を採用。空いた1ピン (`P9`) を外部トランシーバ方向制御 `d_oe` に割当 |
+| 2 | **3ステートは `OSS_FRAME_GIO` (`OSS_ESD_5V_DIO`) のみ** | コア内部は `d_out[3:0] / d_oe / d_hiz / d_in[3:0]` に完全分離し、パッドリング内の `OSS_ESD_5V_DIO` で双方向バス `D[3:0]` を駆動 |
+| 3 | **レジスタファイル + スタックは `SRAM128`（6T 128bit SRAM）に統合** | インデックスレジスタ `R0..R15` (64 bit) とサブルーチン戻り番地スタック (36 bit) を単一ハードマクロ [`module/SRAM128`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/module/SRAM128/) (`0.2164 mm²`) に格納し、標準セル FF を **40個** に削減 |
+| 4 | **全外部入力ピン初段にシュミットトリガ `BUFTH` 挿入** | 外部パッドからの入力7本 (`clk, rst, test, d_in[3:0]`) はすべて初段で `BUFTH` を通し、さらに `clk`/`rst_n` は9行別の `BUF_X2` ツリー (`FO <= 10`) で分配 |
+| 5 | **2層配線 (`M1`/`M2`) チャネル P&R + `TAP2` 3分割 + `FILL3/2` 充填** | 9本のアクティブ行間に2行幅 (`118.8 µm`) の水平 `M1` チャネルを設け、セルピンは垂直 `M2` のみでアクセス。縦4列の `TAP2` でコアを横3分割し、空き領域に MOS デキャップ `FILL3`/`FILL2` を充填 |
 
-## 2. ピン割当（16パッド = 信号14 + VDD + VSS）
+---
 
-| 信号 | 方向 | 本数 | 備考 |
-|---|---|---|---|
-| `D[3:0]` | inout | 4 | **GIO セル**（`oe` で Hi-Z） |
-| `SYNC_N` | out | 1 | |
-| `CM_ROM_N` | out | 1 | |
-| `CM_RAM_N[3:0]` | out | 4 | |
-| `TEST` | in | 1 | |
-| `RESET_N` | in | 1 | |
-| `CLK` | in | 1 | **単相** |
-| 予備 | — | 1 | CLKOUT / スキャン(SI or SO) / デバッグに割当可 |
-| `VDD` / `VSS` | — | 2 | `OSS_ESD_5V_VDD` / `OSS_ESD_5V_VSS` |
+## 2. ピン割当（`OSS_FRAME` 16パッド = 信号14 + VDD + VSS、全正論理）
 
-オリジナル 4004 は φ1/φ2 で 16ピン丁度だったが、単相化で **1本余る**。
+| パッド番号 | 辺 | 信号名 | 方向 | パッドセル | コア接続・備考 |
+| :-: | :-: | :--- | :-: | :--- | :--- |
+| **P1** | 北 (Top) | `clk` | in | `OSS_ESD_5V_DIO` | 単相システムクロック入力（初段 `BUFTH`） |
+| **P2** | 北 (Top) | `sync` | out | `OSS_ESD_5V_DIO` | `X3` フェーズ同期パルス出力（正論理 High アクティブ） |
+| **P3 〜 P6** | 西 (Left) | `D[3:0]` | inout | `OSS_ESD_5V_DIO` | 4-bit 双方向データバス (`P3=D[3], P4=D[2], P5=D[1], P6=D[0]`) |
+| **P7** | 南 (Bottom) | `rst` | in | `OSS_ESD_5V_DIO` | リセット入力（正論理 High アクティブ、初段 `BUFTH`） |
+| **P8** | 南 (Bottom) | `VSS` | power | `OSS_ESD_5V_VSS` | グラウンド (`0.0 V`) — 4辺 `M2` `VSS` リングおよび `TAP2` に直結 |
+| **P9** | 南 (Bottom) | `d_oe` | out | `OSS_ESD_5V_DIO` | データバス出力イネーブルモニタ (`d_oe = ~d_hiz`、外部 `74LVC8T245` 等制御用) |
+| **P10** | 南 (Bottom) | `test` | in | `OSS_ESD_5V_DIO` | `JCN` 命令用外部テスト条件入力（初段 `BUFTH`） |
+| **P11 〜 P14** | 東 (Right) | `cm_ram[0:3]` | out | `OSS_ESD_5V_DIO` | RAM バンク選択出力 (`P11=cm_ram[0] .. P14=cm_ram[3]`) |
+| **P15** | 北 (Top) | `cm_rom` | out | `OSS_ESD_5V_DIO` | ROM バンク選択ストローブ出力 |
+| **P16** | 北 (Top) | `VDD` | power | `OSS_ESD_5V_VDD` | 電源 (`5.0 V`) — 左右両端 `TAP2`・`SRAM128`・全標準セル行に給電 |
 
-## 3. RTL 記述ルール（`hdl/`）
+---
 
-1. **`always @(posedge CLK)` のみ**。φ1/φ2 は使わない。
-   オリジナルの 8 ステート `A1 A2 A3 M1 M2 X1 X2 X3` は
-   **CLK 同期の 3bit ステートカウンタ**で生成する。
-2. **`inout` はトップ `c4004_top` にのみ置く**。
-   コア内部は `dout / oe / din` の3信号に分離し、内部バスは MUX で構成。
-   `assign bus = oe ? x : 1'bz;` のような記述をコア内に書かない。
-3. **レジスタファイルとスタックを FF 配列で書かない**。
-   `c4004_regfile`（16w×4b）と `c4004_stack`（4w×12b）を
-   **ブラックボックスモジュール**として切り出す。
-   - RTL では behavioral モデル、実装ではカスタムアレイに差し替え
-   - I/F: `WA/WD/WE`(+`WWL`) と `RA/RD`
-   - PC の +1 は **アレイ外の 12bit インクリメンタ**で read → +1 → write back
-4. **イネーブルは 4bit（ワード）単位でまとめる**。
-   bit ごとにイネーブルを散らすと `DFFR+MUX2 = 10,185 µm²/bit` になる。
-   4bit 単位なら **ICG 1個 + 素DFF×4 = 16,700 µm²/4bit** が最小（§5 参照）。
+## 3. RTL 記述ルール（[`rtl/c4004_core.v`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/rtl/c4004_core.v), [`rtl/c4004_top.v`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/rtl/c4004_top.v)）
 
-## 4. 検証フロー
+1. **単相 `posedge clk` 同期**:
+   - 8フェーズ `A1, A2, A3, M1, M2, X1, X2, X3` は 3-bit ステートカウンタ `state[2:0]`（リセット時 `3'd7 = X3`、`DFFS`×3）で生成。
+2. **双方向バスの分離**:
+   - `inout [3:0] D` はトップラッパ `c4004_top` のみで扱い、`c4004_core` は `d_in[3:0]`, `d_out[3:0]`, `d_oe`, `d_hiz` の単方向ポートを持つ。
+3. **`SRAM128` 1ステート1アクセス（クロック後半 `clk = 0` アクセス）**:
+   - `clk = 1` の前半期間に `CE = 0` でビット線をプリチャージしつつアドレス `sram_a[4:0]`・書込みデータ `sram_di[3:0]` を確定させ、`clk = 0` の後半期間に `sram_ce = (~clk) & rst_n & sram_ce_en` を High にして Read (`WR=0`) または Write (`WR=1`) を実行。
+   - アクティブ `pc[11:0]` は FF（12 bit）上に保持し、`SRAM128` にはインデックスレジスタ `R0..R15`（`A[4]=0`）およびサブルーチンスタック（`A[4]=1`）を格納することで、全命令でポート競合ゼロを達成。
+4. **`MUXDFFRB` への自動畳み込み**:
+   - ホールド機能付き FF（`DFFRB` + `MUX2`）は、`module/STDCELL/` の複合セル `MUXDFFRB`（18サイト、`5,773.7 µm²`）へマージ（40 FF のうち 29 個が `MUXDFFRB`）。
 
-| 段階 | ツール | 置き場所 |
+---
+
+## 4. 検証・実装フローとディレクトリ構成
+
+| 段階 | ツール / スクリプト | 配置ディレクトリ |
 |---|---|---|
-| RTL 機能検証 | Icarus Verilog / Verilator + Busicom 141-PF 相当プログラム | `hdl/tb/` |
-| 論理合成・面積見積り | Yosys + `scripts/tr1um.genlib`, `scripts/area_estimate.py` | `scripts/` |
-| セル回路検証 | ngspice + `libs.tech/spice/models/ip62_models` | `layout/` |
-| スイッチレベル | IRSIM（`.sim`/`.prm`/`.cmd`） | `irsim/` |
-| 物理検証 | KLayout DRC/LVS（PDK 付属ランセット） | CI (`.github/workflows/check.yml`) |
-| 提出 | `src/<top_cell>.gds` + `<top_cell>.cir` | `src/` |
+| 1. RTL 機能検証 | `iverilog` + `vvp`（全45/46命令・21チェック項目自己検査） | [`rtl/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/rtl/) |
+| 2. 論理合成 & バッファ挿入 | Yosys ([`openroad/synth.ys`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/synth.ys)) + [`scripts/insert_high_fo_buffers.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/insert_high_fo_buffers.py) | [`syn/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/syn/), [`openroad/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/README.md) |
+| 3. 2層配線 LEF & OpenROAD P&R | [`scripts/make_m2only_lef.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/make_m2only_lef.py), [`scripts/run_tap2_flow.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/run_tap2_flow.py) ([`run_grt.tcl`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/run_grt.tcl), [`run_drt.tcl`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/run_drt.tcl)) | [`openroad/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/openroad/README.md) |
+| 4. 4辺パッド整合 & GDSII 構築 | [`scripts/reterminate_tap2_nets.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/reterminate_tap2_nets.py), [`scripts/build_core_and_chip_gds.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/build_core_and_chip_gds.py) | [`apr/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/) |
+| 5. サインオフ DRC / LVS | KLayout + [`scripts/build_lvs_spice.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/build_lvs_spice.py), [`scripts/verify_core_and_chip.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/verify_core_and_chip.py) | [`apr/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/) |
+| 6. Post-Layout `ngspice` 検証 | [`scripts/prep_extracted_ngspice.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/prep_extracted_ngspice.py), [`scripts/run_chip_verif.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/run_chip_verif.py) | [`apr/simulation/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/) |
+| 7. MPW 提出データ生成 | [`scripts/prepare_mpw_submission.py`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/scripts/prepare_mpw_submission.py) (`tr_1um_jun1okamura.gds`, `.cir`) | [`src/`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/src/), [`info.yaml`](file:///Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/info.yaml) |
 
-参照実装（**いずれも CC BY-NC-SA。NC条項に注意**）:
-OpenCores `mcs-4`（Reece Pollack）、丸山氏 `MCS4_SYSTEM`。
+---
 
-## 5. 自作が必要なセル一覧（`lef/`）
+## 5. 面積の推移（事前見積り vs 最終実チップ結果）
 
-TR-1um STDLIB（38セル）に対する不足分。回路は `05_cell_circuits.md`。
-
-| セル | 構成 | Tr | 想定面積 | 用途 |
-|---|---|---|---|---|
-| `DLATCH` | TG型（TG×2 + INV×2 + ローカルCKB） | 8–10T | ~1,800 µm² | ICG、汎用 |
-| `DFF` | TG マスタスレーブ | 16T | ~3,500 µm² | 素の FF（DFFR 34T の 56 %） |
-| `DFFE` | TG + 帰還保持TG（EN内蔵） | 22T | ~4,900 µm² | イネーブル付き FF |
-| `ICG` | ラッチ + AND | 12T | ~2,600 µm² | 4bit 単位クロックゲート |
-| `RFCELL` | ラッチ型 10T（または 8T） | 8–10T | ~1,100 µm²/bit | レジスタ/スタックアレイ |
-| `GIO` | NAND+NOR プリドライバ + 出力段 + 入力段 | ~16T + 大W | — | D0–D3 双方向 |
-| `TIE0` / `TIE1` | 1T | 1T | — | 固定値 |
-
-> **`GIO` は TR-1um / IP62 PDK に存在しない**（PDK にあるのは
-> `OSS_ESD_5V_ANA` / `OSS_ESD_5V_VDD` / `OSS_ESD_5V_VSS` と `PAD` のみ）。自作前提。
-
-### イネーブル方式の比較（4bit あたり）
-
-| 方式 | Tr | 面積 |
-|---|---|---|
-| DFFR + MUX2（合成そのまま） | 196 | 40,740 µm² |
-| TG-DFFE ×4 | 88 | 19,400 µm² |
-| **ICG 1個 + TG-DFF ×4** | 76 | **16,700 µm²** |
-
-ICG は必ず「EN をラッチしてから AND」構成にしてグリッチを防ぐこと。
-
-### 最小サイズ版ライブラリ（効果大）
-
-既存 STDLIB は全セル **PMOS W=10.2 µm / NMOS W=3.4 µm**（3:1）で、
-750 kHz には過剰。**W(P)=5.1 µm** に落とすと行高 62.6 → 約 42 µm、
-面積は全体で **約 0.68 倍**。C4004 で使う
-INV / NAND2 / NOR2 / AND2 / OR2 / XOR2 / MUX2 / DFF / DFFE だけでも作る価値がある。
-
-## 6. LEF / Liberty（`lef/`）
-
-TR-1um PDK には **LEF も Liberty も無い**。自動 P&R を使うなら整備する。
-
-| ファイル | 内容 |
-|---|---|
-| `tr1um_tech.lef` | レイヤ / ルーティンググリッド（M1 pitch 3.2 µm, M2 pitch 5.0 µm） |
-| `tr1um_stdcell.lef` | セル abstract（行高 62.6 µm。最小サイズ版は別ライブラリ） |
-| `tr1um_stdcell.lib` | ngspice 特性化から生成する Liberty |
-| `scripts/tr1um.genlib` | Yosys/ABC 用の簡易 genlib（面積のみ、見積り用）※作成済 |
-
-既存 STDLIB のセル面積（GDS 実測 / 行高 62.6 µm）:
-
-```
-INV_X1 NAND2 NOR2 BUF_X1        29.1 x 62.6 = 1821.7   (INV=2T, NAND2/NOR2=4T)
-NAND3 NOR3 AND2 OR2 BUF_X2      34.6 x 62.6 = 2166.0
-NAND4 NOR4 AND3 OR3 INV_X4      40.1 x 62.6 = 2510.3
-AND4 OR4 XOR2 XNOR2 BUF_X4      45.6 x 62.6 = 2854.6   (XOR2=10T)
-MUX2 BUF_X8                     62.1 x 62.6 = 3887.5   (15T)
-DFFR DFFS                      100.6 x 62.6 = 6297.6   (34T)
-CLKBUF_X1 DEL1                  51.1 x 62.6 = 3198.9
-```
-実効密度 ≒ 220 µm²/Tr。
-
-## 7. 面積の見通し（core = 1,840 × 1,840 µm = 3.386 mm²）
-
-| ステップ | 素セル面積 | 配置率60% | 判定 |
-|---|---|---|---|
-| 既存 STDLIB そのまま | 3.798 mm² | 6.330 | ✕ |
-| + レジスタ/スタックをカスタムアレイ化 | 2.900 mm² | 4.834 | ✕ |
-| + 残り FF を TG-DFFE(22T) 化 | 2.267 mm² | 3.778 | △（70%でOK） |
-| + 最小サイズセル化（×0.68） | **1.619 mm²** | **2.699** | **○** |
-
-効果の大きい順:
-① レジスタアレイのカスタム化 **−0.90 mm²**
-② DFFE のカスタム化 **−0.63 mm²**
-③ セルの最小サイズ化 **−0.65 mm²**
-
-## 8. 次のアクション
-
-1. `hdl/rtl/` に単相・ブラックボックス分離版の `c4004` RTL を起こす
-2. `DLATCH` / `DFF` / `DFFE` / `ICG` / `RFCELL` / `GIO` を xschem + ngspice で回路検証
-3. 上記セルのレイアウトを描いて KLayout DRC/LVS を通し、実面積を確定
-4. 確定面積で `scripts/area_estimate.py` の原単位を更新し、フロアプランを決める
-5. `lef/` に LEF/Liberty を整備（自動 P&R を使う場合）
+| ステップ | 素セル＋マクロ面積 | コア面積 (`3.386 mm²`) 比 | 判定・備考 |
+|---|---:|---:|---|
+| ① 初期見積り（旧 STDLIB そのまま・全FF合成） | `3.798 mm²` | `112.2%` | ✕（配線領域を含めると約2倍超過） |
+| ② 事前改善案見積り（6T SRAM + 縮小セル） | `1.619〜1.947 mm²` | `47.8〜57.5%` | ○（収容見通し） |
+| **③ 最終実チップ (`c4004_core`: 624論理セル + `SRAM128`)** | **`1.147 mm²`** | **`33.9%`** | **◎（9行×2行幅チャネル＋`TAP2` 4列＋`FILL2/3` 42個込みで 100% DRC/LVS クリーン収容）** |
