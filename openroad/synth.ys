@@ -1,18 +1,27 @@
-# Yosys Logic Synthesis Script for C4004 Core (TR-1um v59_4 Standard Cells + SRAM128)
-# Usage: yosys -s openroad/synth.ys
-
+# Yosys Synthesis Script for c4004_core (TR-1um STDCELL + SRAM128)
 read_liberty -lib module/STDCELL/tr1um_typ_5v0_25c.lib
 read_liberty -lib module/SRAM128/SRAM128.lib
-read_verilog rtl/c4004_core.v
 
-synth -top c4004_core -flatten
+read_verilog rtl/c4004_core.v
+hierarchy -check -top c4004_core
+
+proc; opt -full; memory; opt -full
+wreduce; peepopt; opt_clean
+techmap -map /usr/local/share/yosys/techmap.v; opt -full
+opt_dff
+
+# Map enabled FFs directly to MUXDFFRB, remaining FFs to DFFRB / DFFS
+techmap -map openroad/dffe_map.v
 dfflibmap -liberty module/STDCELL/tr1um_typ_5v0_25c.lib
+opt -full
+
+# Map combinational logic with ABC
+abc -exe /usr/local/bin/yosys-abc -liberty module/STDCELL/tr1um_typ_5v0_25c.lib -dont_use BUFTH -dont_use DEL1 -dont_use OSS_ESD_5V_DIO -dont_use REG8x16 -dont_use RSLATCH
+
 opt_clean -purge
-abc -liberty module/STDCELL/tr1um_typ_5v0_25c.lib -constr openroad/abc.constr
-hilomap -singleton -hicell TIEH Y -locell TIEL Y
-opt_clean -purge
-insbuf -buf BUF_X1 A Y
+insbuf -buf BUF_X2 A Y
+splitnets -ports
 opt_clean -purge
 
 stat -liberty module/STDCELL/tr1um_typ_5v0_25c.lib -liberty module/SRAM128/SRAM128.lib
-write_verilog -noattr -noexpr syn/c4004_core_raw.v
+write_verilog -noattr -noexpr -nohex openroad/c4004_core_raw_syn.v
