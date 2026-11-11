@@ -16,7 +16,7 @@ dfflibmap -liberty module/STDCELL/tr1um_typ_5v0_25c.lib
 opt -full
 
 # Map combinational logic with ABC
-abc -exe /usr/local/bin/yosys-abc -liberty module/STDCELL/tr1um_typ_5v0_25c.lib -dont_use BUFTH -dont_use DEL1 -dont_use OSS_ESD_5V_DIO -dont_use REG8x16 -dont_use RSLATCH
+abc -exe yosys-abc -liberty module/STDCELL/tr1um_typ_5v0_25c.lib -dont_use BUFTH -dont_use DEL1 -dont_use OSS_ESD_5V_DIO -dont_use REG8x16 -dont_use RSLATCH
 
 opt_clean -purge
 insbuf -buf BUF_X2 A Y

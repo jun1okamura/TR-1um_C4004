@@ -1,4 +1,4 @@
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/WRCTR.sch
+** sch_path: ../schematic/WRCTR.sch
 .subckt WRCTR VDD VSS WRn CE WR WRp
 *.PININFO WRn:O CE:I VDD:B VSS:B WR:I WRp:O
 MXM1 WRp net1 VSS VSS NMOS w=6.8u l=1u

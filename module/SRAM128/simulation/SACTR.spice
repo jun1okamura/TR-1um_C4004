@@ -1,4 +1,4 @@
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SACTR.sch
+** sch_path: ../schematic/SACTR.sch
 .subckt SACTR PRn CE WR VDD VSS LATp
 *.PININFO PRn:O CE:I VDD:B VSS:B LATp:O WR:I
 MXM3 net1 CE VDD VDD PMOS w=3.4u l=1u

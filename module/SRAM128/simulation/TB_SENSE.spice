@@ -1,4 +1,4 @@
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/TB_SENSE.sch
+** sch_path: ../schematic/TB_SENSE.sch
 **.subckt TB_SENSE CE WRn WRp DIN VSS VDD A1n,A1p A4p,A4n A0p,A0n A2p,A2n A3p,A3n CLK WR
 *.ipin CE
 *.ipin WRn
@@ -87,8 +87,8 @@ xCTL CLK PRn CE WR VDD VSS LATp SACTR
 **.ends
 
 * expanding   symbol:  WDRV.sym # of pins=7
-** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/WDRV.sym
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/WDRV.sch
+** sym_path: ../schematic/WDRV.sym
+** sch_path: ../schematic/WDRV.sch
 .subckt WDRV VDD WRn BLp BLn WRp VSS DIN
 *.iopin BLp
 *.iopin BLn
@@ -113,8 +113,8 @@ XXM12 net4 DIN VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
 
 
 * expanding   symbol:  SA.sym # of pins=7
-** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SA.sym
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SA.sch
+** sym_path: ../schematic/SA.sym
+** sch_path: ../schematic/SA.sch
 .subckt SA VDD PRn DO BLp BLn LATp VSS
 *.iopin BLp
 *.iopin BLn
@@ -144,8 +144,8 @@ XXM17 SENp SENn net2 VSS NMOS w=3.4u l=1u nrd=0 nrs=0
 
 
 * expanding   symbol:  BIT_CELL.sym # of pins=5
-** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/BIT_CELL.sym
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/BIT_CELL.sch
+** sym_path: ../schematic/BIT_CELL.sym
+** sch_path: ../schematic/BIT_CELL.sch
 .subckt BIT_CELL VDD WL BLn BLp VSS
 *.iopin VDD
 *.iopin VSS
@@ -162,8 +162,8 @@ XXM6 BLn WL net1 VSS NMOS w=3.4u l=1u nrd=0 nrs=0
 
 
 * expanding   symbol:  DEC.sym # of pins=7
-** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/DEC.sym
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/DEC.sch
+** sym_path: ../schematic/DEC.sym
+** sch_path: ../schematic/DEC.sch
 .subckt DEC VDD PRn WL A2x A1x A0x VSS
 *.opin WL
 *.ipin PRn
@@ -183,8 +183,8 @@ XXM7 net4 PRn VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
 
 
 * expanding   symbol:  PDEC.sym # of pins=7
-** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/PDEC.sym
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/PDEC.sch
+** sym_path: ../schematic/PDEC.sym
+** sch_path: ../schematic/PDEC.sch
 .subckt PDEC VDD CLK PRx A4x A3x CE VSS
 *.opin PRx
 *.ipin CLK
@@ -204,8 +204,8 @@ XXM7 net4 CLK VSS VSS NMOS w=3.4u l=1u nrd=0 nrs=0
 
 
 * expanding   symbol:  SACTR.sym # of pins=7
-** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SACTR.sym
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SACTR.sch
+** sym_path: ../schematic/SACTR.sym
+** sch_path: ../schematic/SACTR.sch
 .subckt SACTR CLK PRn CE WR VDD VSS LATp
 *.opin PRn
 *.ipin CLK

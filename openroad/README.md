@@ -54,6 +54,6 @@ python3 scripts/make_expanded_guide.py
 openroad -exit openroad/run_apr.tcl
 
 # 4. フルチップ GDSII & LVS SPICE ネットリスト生成
-/Applications/klayout.app/Contents/MacOS/klayout -b -r scripts/def2gds_chip.py
+klayout -b -r scripts/def2gds_chip.py
 python3 scripts/v2spice_chip.py
 ```

@@ -1,4 +1,4 @@
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SRAM_SA4.sch
+** sch_path: ../schematic/SRAM_SA4.sch
 .subckt SRAM_SA4 CE WR BLp[0] BLp[1] BLp[2] BLp[3] BLn[0] BLn[1] BLn[2] BLn[3] VDD VSS DO[0] DO[1] DO[2] DO[3] CEp
 *.PININFO CE:I VSS:B VDD:B WR:I DO[0:3]:O BLn[0:3]:B BLp[0:3]:B CEp:O
 xSA[0] VDD PRn DO[0] BLp[0] BLn[0] LATp VSS SA
@@ -9,8 +9,8 @@ xCTL PRn CE WR VDD VSS LATp CEp SACTR
 .ends
 
 * expanding   symbol:  SA.sym # of pins=7
-** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SA.sym
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SA.sch
+** sym_path: ../schematic/SA.sym
+** sch_path: ../schematic/SA.sch
 .subckt SA VDD PRn DO BLp BLn LATp VSS
 *.PININFO BLp:B BLn:B LATp:I VDD:B VSS:B DO:B PRn:I
 MXM1 SENp BLn net3 VSS NMOS w=5.4u l=1u
@@ -34,8 +34,8 @@ MXM17 SENp SENn net2 VSS NMOS w=3.4u l=1u
 
 
 * expanding   symbol:  SACTR.sym # of pins=7
-** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SACTR.sym
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SACTR.sch
+** sym_path: ../schematic/SACTR.sym
+** sch_path: ../schematic/SACTR.sch
 .subckt SACTR PRn CE WR VDD VSS LATp CEp
 *.PININFO PRn:O CE:I VDD:B VSS:B LATp:O WR:I CEp:O
 MXM3 net1 CE VDD VDD PMOS w=3.4u l=1u

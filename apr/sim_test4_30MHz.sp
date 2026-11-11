@@ -1,10 +1,10 @@
 * Test 4: FMAX Sweep @ 30.0 MHz
 .param vthMP=0 vthMN=0 vthMPE=0 vthMNE=0 magRR=1 magRS=1 magCSIO=1
-.include "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/TR-1um/libs.tech/spice/models/models_IP62_cap_v5p1.lib"
-.include "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/TR-1um/libs.tech/spice/models/models_IP62_diode_v2.lib"
-.include "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/TR-1um/libs.tech/spice/models/models_IP62_mos_v2.lib"
-.include "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/TR-1um/libs.tech/spice/models/models_IP62_res_v5.lib"
-.include "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/OSS_FRAME_sim.spice"
+.include "../TR-1um/libs.tech/spice/models/models_IP62_cap_v5p1.lib"
+.include "../TR-1um/libs.tech/spice/models/models_IP62_diode_v2.lib"
+.include "../TR-1um/libs.tech/spice/models/models_IP62_mos_v2.lib"
+.include "../TR-1um/libs.tech/spice/models/models_IP62_res_v5.lib"
+.include "OSS_FRAME_sim.spice"
 
 .options method=gear reltol=2e-3 abstol=1e-11 vntol=1e-5 itl4=40
 .option klu

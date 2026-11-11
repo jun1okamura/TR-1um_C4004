@@ -232,7 +232,7 @@ def gen_tb_fmax(freq_mhz):
 def run_one_ngspice(spice_path):
     t0 = time.time()
     log_path = spice_path.replace(".spice", ".log")
-    cmd = [NGSPICE_BIN, "-b", "-o", log_path, os.path.basename(spice_path)]
+    cmd = [NGSPICE_BIN, "-b", "-o", os.path.basename(log_path), os.path.basename(spice_path)]
     proc = subprocess.run(cmd, cwd=SIM_DIR, capture_output=True, text=True)
     elapsed = time.time() - t0
 
@@ -245,7 +245,7 @@ def run_one_ngspice(spice_path):
                     meas[m.group(1).lower()] = float(m.group(2))
     return {
         "spice": os.path.basename(spice_path),
-        "log": log_path,
+        "log": os.path.relpath(log_path, WORKSPACE),
         "returncode": proc.returncode,
         "elapsed_s": round(elapsed, 2),
         "meas": meas,

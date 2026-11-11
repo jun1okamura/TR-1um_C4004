@@ -1,7 +1,7 @@
 {
   "tb_chip_1_func.spice": {
     "spice": "tb_chip_1_func.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_1_func.log",
+    "log": "apr/simulation/tb_chip_1_func.log",
     "returncode": 0,
     "elapsed_s": 551.66,
     "meas": {
@@ -57,7 +57,7 @@
   },
   "tb_chip_3_stack_jcn.spice": {
     "spice": "tb_chip_3_stack_jcn.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_3_stack_jcn.log",
+    "log": "apr/simulation/tb_chip_3_stack_jcn.log",
     "returncode": 0,
     "elapsed_s": 551.62,
     "meas": {
@@ -136,7 +136,7 @@
   },
   "tb_chip_fmax_40MHz.spice": {
     "spice": "tb_chip_fmax_40MHz.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_fmax_40MHz.log",
+    "log": "apr/simulation/tb_chip_fmax_40MHz.log",
     "returncode": 0,
     "elapsed_s": 463.88,
     "meas": {
@@ -179,7 +179,7 @@
   },
   "tb_chip_fmax_35MHz.spice": {
     "spice": "tb_chip_fmax_35MHz.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_fmax_35MHz.log",
+    "log": "apr/simulation/tb_chip_fmax_35MHz.log",
     "returncode": 0,
     "elapsed_s": 490.32,
     "meas": {
@@ -222,7 +222,7 @@
   },
   "tb_chip_fmax_30MHz.spice": {
     "spice": "tb_chip_fmax_30MHz.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_fmax_30MHz.log",
+    "log": "apr/simulation/tb_chip_fmax_30MHz.log",
     "returncode": 0,
     "elapsed_s": 531.48,
     "meas": {
@@ -265,7 +265,7 @@
   },
   "tb_chip_fmax_25MHz.spice": {
     "spice": "tb_chip_fmax_25MHz.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_fmax_25MHz.log",
+    "log": "apr/simulation/tb_chip_fmax_25MHz.log",
     "returncode": 0,
     "elapsed_s": 589.44,
     "meas": {
@@ -308,7 +308,7 @@
   },
   "tb_chip_fmax_22p5MHz.spice": {
     "spice": "tb_chip_fmax_22p5MHz.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_fmax_22p5MHz.log",
+    "log": "apr/simulation/tb_chip_fmax_22p5MHz.log",
     "returncode": 0,
     "elapsed_s": 617.03,
     "meas": {
@@ -351,7 +351,7 @@
   },
   "tb_chip_fmax_20MHz.spice": {
     "spice": "tb_chip_fmax_20MHz.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_fmax_20MHz.log",
+    "log": "apr/simulation/tb_chip_fmax_20MHz.log",
     "returncode": 0,
     "elapsed_s": 648.76,
     "meas": {
@@ -394,7 +394,7 @@
   },
   "tb_chip_fmax_17p5MHz.spice": {
     "spice": "tb_chip_fmax_17p5MHz.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_fmax_17p5MHz.log",
+    "log": "apr/simulation/tb_chip_fmax_17p5MHz.log",
     "returncode": 0,
     "elapsed_s": 670.49,
     "meas": {
@@ -437,7 +437,7 @@
   },
   "tb_chip_fmax_15MHz.spice": {
     "spice": "tb_chip_fmax_15MHz.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_fmax_15MHz.log",
+    "log": "apr/simulation/tb_chip_fmax_15MHz.log",
     "returncode": 0,
     "elapsed_s": 693.6,
     "meas": {
@@ -480,7 +480,7 @@
   },
   "tb_chip_fmax_12p5MHz.spice": {
     "spice": "tb_chip_fmax_12p5MHz.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_fmax_12p5MHz.log",
+    "log": "apr/simulation/tb_chip_fmax_12p5MHz.log",
     "returncode": 0,
     "elapsed_s": 712.39,
     "meas": {
@@ -523,7 +523,7 @@
   },
   "tb_chip_fmax_10MHz.spice": {
     "spice": "tb_chip_fmax_10MHz.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_fmax_10MHz.log",
+    "log": "apr/simulation/tb_chip_fmax_10MHz.log",
     "returncode": 0,
     "elapsed_s": 745.78,
     "meas": {
@@ -566,7 +566,7 @@
   },
   "tb_chip_2_sram.spice": {
     "spice": "tb_chip_2_sram.spice",
-    "log": "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/apr/simulation/tb_chip_2_sram.log",
+    "log": "apr/simulation/tb_chip_2_sram.log",
     "returncode": 0,
     "elapsed_s": 933.37,
     "meas": {

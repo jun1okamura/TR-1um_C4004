@@ -10,15 +10,16 @@ apr/OSS_FRAME_sim.spice (with 1.0 pF load on all pads):
 
 import os
 import re
+import shutil
 import subprocess
 import sys
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APR_DIR = os.path.join(BASE_DIR, "apr")
-MODELS_DIR = os.path.join(BASE_DIR, "TR-1um", "libs.tech", "spice", "models")
-SIM_NETLIST = os.path.join(APR_DIR, "OSS_FRAME_sim.spice")
-NGSPICE_BIN = "/opt/homebrew/bin/ngspice"
+MODELS_REL_DIR = "../TR-1um/libs.tech/spice/models"
+SIM_NETLIST_REL = "OSS_FRAME_sim.spice"
+NGSPICE_BIN = os.environ.get("NGSPICE_BIN") or shutil.which("ngspice") or "ngspice"
 
 # 2-FF posedge reset sync + 32-clock hardware SRAM128 zero-clear -> A1 starts at clock 34
 INIT_STEPS = 34
@@ -90,11 +91,11 @@ def make_common_deck(title, inst_bytes, T_ns, test_pin_v=5.0, meas_lines=None):
     deck = [
         f"* {title}",
         ".param vthMP=0 vthMN=0 vthMPE=0 vthMNE=0 magRR=1 magRS=1 magCSIO=1",
-        f".include \"{os.path.join(MODELS_DIR, 'models_IP62_cap_v5p1.lib')}\"",
-        f".include \"{os.path.join(MODELS_DIR, 'models_IP62_diode_v2.lib')}\"",
-        f".include \"{os.path.join(MODELS_DIR, 'models_IP62_mos_v2.lib')}\"",
-        f".include \"{os.path.join(MODELS_DIR, 'models_IP62_res_v5.lib')}\"",
-        f".include \"{SIM_NETLIST}\"",
+        f'.include "{MODELS_REL_DIR}/models_IP62_cap_v5p1.lib"',
+        f'.include "{MODELS_REL_DIR}/models_IP62_diode_v2.lib"',
+        f'.include "{MODELS_REL_DIR}/models_IP62_mos_v2.lib"',
+        f'.include "{MODELS_REL_DIR}/models_IP62_res_v5.lib"',
+        f'.include "{SIM_NETLIST_REL}"',
         "",
         ".options method=gear reltol=2e-3 abstol=1e-11 vntol=1e-5 itl4=40",
         ".option klu",
@@ -324,7 +325,8 @@ def run_one_spice(sp_path, force=False):
     env = os.environ.copy()
     env["OMP_NUM_THREADS"] = "1"
     res = subprocess.run(
-        [NGSPICE_BIN, "-b", "-o", log_path, sp_path],
+        [NGSPICE_BIN, "-b", "-o", os.path.basename(log_path), os.path.basename(sp_path)],
+        cwd=APR_DIR,
         capture_output=True,
         text=True,
         env=env,

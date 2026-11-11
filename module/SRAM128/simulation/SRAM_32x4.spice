@@ -1,4 +1,4 @@
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/SRAM_32x4.sch
+** sch_path: ../schematic/SRAM_32x4.sch
 .subckt SRAM_32x4 PR0 PR1 A0p A1p A2p A3p A0n A1n A2n A3n BLp[0] BLp[1] BLp[2] BLp[3] BLn[0] BLn[1] BLn[2] BLn[3] VDD VSS
 *.PININFO PR0,PR1:I BLn[0:3]:B BLp[0:3]:B A0n,A1n,A2n,A3n:I A0p,A1p,A2p,A3p:I VSS:B VDD:B
 xCELL[0] WL[0] WL[1] WL[2] WL[3] WL[4] WL[5] WL[6] WL[7] WL[8] WL[9] WL[10] WL[11] WL[12] WL[13] WL[14] WL[15] WL[16] WL[17]
@@ -44,8 +44,8 @@ xDEC[31] VDD PR1 WL[31] A2p A1p A0p VSS A3p DEC
 .ends
 
 * expanding   symbol:  BIT_CELL32.sym # of pins=5
-** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/BIT_CELL32.sym
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/BIT_CELL32.sch
+** sym_path: ../schematic/BIT_CELL32.sym
+** sch_path: ../schematic/BIT_CELL32.sch
 .subckt BIT_CELL32 WL[0] WL[1] WL[2] WL[3] WL[4] WL[5] WL[6] WL[7] WL[8] WL[9] WL[10] WL[11] WL[12] WL[13] WL[14] WL[15] WL[16]
 + WL[17] WL[18] WL[19] WL[20] WL[21] WL[22] WL[23] WL[24] WL[25] WL[26] WL[27] WL[28] WL[29] WL[30] WL[31] BLp BLn VDD VSS
 *.PININFO WL[0:31]:I VSS:B VDD:B BLn:B BLp:B
@@ -85,8 +85,8 @@ xCELL[31] VDD WL[31] BLn BLp VSS BIT_CELL
 
 
 * expanding   symbol:  DEC.sym # of pins=8
-** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/DEC.sym
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/DEC.sch
+** sym_path: ../schematic/DEC.sym
+** sch_path: ../schematic/DEC.sch
 .subckt DEC VDD PRx WL A2x A1x A0x VSS A3x
 *.PININFO WL:O PRx:I A2x:I A1x:I A0x:I VDD:B VSS:B A3x:I
 MXM1 WL net1 VDD VDD PMOS w=13.6u l=1u
@@ -101,8 +101,8 @@ MXM9 net1 A3x net2 VSS NMOS w=3.4u l=1u
 
 
 * expanding   symbol:  BIT_CELL.sym # of pins=5
-** sym_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/BIT_CELL.sym
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/BIT_CELL.sch
+** sym_path: ../schematic/BIT_CELL.sym
+** sch_path: ../schematic/BIT_CELL.sch
 .subckt BIT_CELL VDD WL BLn BLp VSS
 *.PININFO VDD:B VSS:B WL:I BLp:B BLn:B
 MXM1 net2 net1 VSS VSS NMOS w=3.4u l=1u

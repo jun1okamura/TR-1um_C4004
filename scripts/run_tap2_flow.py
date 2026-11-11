@@ -3,11 +3,13 @@ import math
 import os
 import random
 import re
+import shutil
 import subprocess
 import tempfile
 from collections import defaultdict
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OPENROAD_BIN   = os.environ.get("OPENROAD_BIN") or shutil.which("openroad") or "openroad"
 SYN_V          = os.path.join(BASE_DIR, "openroad/c4004_core_syn.v")
 CELL_INFO_JSON = os.path.join(BASE_DIR, "module/STDCELL/cell_info.json")
 ROW_MAP_JSON   = os.path.join(BASE_DIR, "openroad/ff_row_map.json")
@@ -238,7 +240,7 @@ global_placement -density 0.52
 write_def "{gpl_out}"
 exit
 """)
-    subprocess.run(["/usr/local/bin/openroad", "-exit", gpl_tcl], check=True, stdout=subprocess.DEVNULL)
+    subprocess.run([OPENROAD_BIN, "-exit", gpl_tcl], check=True, stdout=subprocess.DEVNULL)
     with open(gpl_out, "r") as f:
         gpl_txt = f.read()
 

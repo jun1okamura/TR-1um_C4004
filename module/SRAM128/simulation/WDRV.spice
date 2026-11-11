@@ -1,4 +1,4 @@
-** sch_path: /Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/schematic/WDRV.sch
+** sch_path: ../schematic/WDRV.sch
 **.subckt WDRV VDD WRn BLp BLn WRp VSS DIN
 *.iopin BLp
 *.iopin BLn
