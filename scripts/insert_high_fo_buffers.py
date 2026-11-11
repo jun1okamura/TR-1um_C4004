@@ -13,8 +13,8 @@ with open(CELL_INFO_JSON, "r") as f:
     CELL_INFO = json.load(f)
 
 OUTPUT_PIN_NAMES = {"Y", "Q", "QB", "DO"}
-
 BUS_NET_PREFIXES = ("d_in", "d_out", "cm_ram", "sram_din", "sram_do")
+
 
 def sanitize_net(net):
     net = net.strip()
@@ -33,6 +33,7 @@ def sanitize_net(net):
         return re.sub(r"[^\w]", "_", s)
     return net
 
+
 def parse_verilog(path):
     with open(path, "r") as f:
         text = f.read()
@@ -47,7 +48,7 @@ def parse_verilog(path):
 
     inst_pattern = re.compile(
         r"^\s*(\S+)\s+(\S+)\s*\((.*?)\)\s*;",
-        flags=re.MULTILINE | re.DOTALL
+        flags=re.MULTILINE | re.DOTALL,
     )
     insts = []
     for m in inst_pattern.finditer(text):
@@ -55,7 +56,7 @@ def parse_verilog(path):
         if ctype in ("module", "input", "output", "inout", "wire", "assign"):
             continue
         iname = m.group(2)
-        body  = m.group(3)
+        body = m.group(3)
         conns = {}
         for pm in re.finditer(r"\.(\w+)\(\s*([^\)]+?)\s*\)", body):
             conns[pm.group(1)] = sanitize_net(pm.group(2))
@@ -63,87 +64,141 @@ def parse_verilog(path):
 
     return wires, insts
 
+
 wires, insts = parse_verilog(RAW_V)
 print(f"Loaded {len(insts)} instances from {RAW_V}")
 
 # -------------------------------------------------------------------------
-# 0. Zero-Gate Direct sram_do[3:0] -> MUXDFFRB.B Restructuring for reg_buf[3:0]
-#    + Fast 2-Input NOR2 sram_ce Driver (_1102_) with clk on Fast Pin .B
-#    + Dedicated High-Drive BUF_X2 Output Drivers for d_hiz and d_oe:
-#    - Swaps the two mux levels feeding reg_buf[3:0] (_1143_.._1146_) so that
-#      the half-cycle X1 SRAM128 read data (sram_do[3:0]) connects DIRECTLY to
-#      MUXDFFRB.B (selected when S = _0283_ = 1) with ZERO intermediate logic gates,
-#      while the full-cycle hold/writeback muxing (MUX2 _0821_/_0828_/_0834_/_1009_
-#      + NAND2 _0824_/_0830_/_0836_/_1011_) feeds the non-critical MUXDFFRB.A pin!
-#    - Replaces 3-input NOR3 _1102_ (.A(rst), .B(clk), .C(_0534_)) with 2-input
-#      NOR2 _1102_ (.A(_0534_), .B(clk)) since _0534_ is already 1 during reset!
-#    - Drives _1072_.A from d_hiz_pre (before u_buf_dhiz) to remove u_buf_dhiz
-#      delay from d_oe and unload d_hiz!
+# 0. Identify & Rename Dedicated Edge-Anchored Output FFs, Pure-DFFRB
+#    SRAM128 Capture FFs (sram_lat[0..3]), Clone West d_hiz FF + BUF_X2,
+#    and Replace Slow NOR3 sram_ce Gate with Fast INV_X2 + NAND2 + INV_X2
 # -------------------------------------------------------------------------
-del_names = set()
+ANCHORED_Q_MAP = {
+    "d_out[0]":  "u_ff_dout0",
+    "d_out[1]":  "u_ff_dout1",
+    "d_out[2]":  "u_ff_dout2",
+    "d_out[3]":  "u_ff_dout3",
+    "d_oe":      "u_ff_doe",
+    "sync":      "u_ff_sync",
+    "cm_rom":    "u_ff_cmrom",
+    "cm_ram[0]": "u_ff_cmram0",
+    "cm_ram[1]": "u_ff_cmram1",
+    "cm_ram[2]": "u_ff_cmram2",
+    "cm_ram[3]": "u_ff_cmram3",
+}
+SRAM_LAT_D_MAP = {
+    "sram_do[0]": "u_ff_sram_lat0",
+    "sram_do[1]": "u_ff_sram_lat1",
+    "sram_do[2]": "u_ff_sram_lat2",
+    "sram_do[3]": "u_ff_sram_lat3",
+}
+
+doe_ff_inst = None
+sram_idle_ff_inst = None
+sram_wen_ff_inst = None
+sram_ce_nor3 = None
+
 for inst in insts:
-    iname = inst["name"]
-    # Bit 0: _0824_ (NAND2), _0825_ (MUX2 -> folds into _1143_)
-    if iname == "_0824_":
-        inst["type"] = "NAND2"
-        inst["conns"] = {"A": "_0309_", "B": "_0312_", "Y": "_0313_"}
-    elif iname == "_0825_":
-        inst["type"] = "MUX2"
-        inst["conns"] = {"A": "sram_do[0]", "B": "rb_mux_0", "S": "rb_sram_sel_n", "Y": "_0021_"}
-    # Bit 1: _0830_ (NAND2), _0831_ (MUX2 -> folds into _1144_)
-    elif iname == "_0830_":
-        inst["type"] = "NAND2"
-        inst["conns"] = {"A": "_0315_", "B": "_0317_", "Y": "_0318_"}
-    elif iname == "_0831_":
-        inst["type"] = "MUX2"
-        inst["conns"] = {"A": "sram_do[1]", "B": "rb_mux_1", "S": "rb_sram_sel_n", "Y": "_0020_"}
-    # Bit 2: _0836_ (NAND2), _0837_ (MUX2 -> folds into _1145_)
-    elif iname == "_0836_":
-        inst["type"] = "NAND2"
-        inst["conns"] = {"A": "_0320_", "B": "_0322_", "Y": "_0323_"}
-    elif iname == "_0837_":
-        inst["type"] = "MUX2"
-        inst["conns"] = {"A": "sram_do[2]", "B": "rb_mux_2", "S": "rb_sram_sel_n", "Y": "_0019_"}
-    # Bit 3: _1005_ (delete), _1011_ (NAND2), _1012_ (MUX2 -> folds into _1146_)
-    elif iname == "_1005_":
-        del_names.add(iname)
-    elif iname == "_1011_":
-        inst["type"] = "NAND2"
-        inst["conns"] = {"A": "_0468_", "B": "_0470_", "Y": "_0471_"}
-    elif iname == "_1012_":
-        inst["type"] = "MUX2"
-        inst["conns"] = {"A": "sram_do[3]", "B": "rb_mux_3", "S": "rb_sram_sel_n", "Y": "_0054_"}
-    # Fast 2-input NOR2 for sram_ce with clk on fast pin .B
-    elif iname == "_1102_":
-        inst["type"] = "NOR2"
-        inst["conns"] = {"A": "_0534_", "B": "clk", "Y": "sram_ce"}
-    # Fast 2-level OAI21+AND2_X1/NAND2 parallel decode for d_hiz_pre & d_oe_pre
-    elif iname == "_1071_":
-        inst["type"] = "AND2_X1"
-        inst["conns"] = {"A": "n_a123", "B": "n_x23_oe", "Y": "d_hiz_pre"}
-    elif iname == "_1072_":
-        inst["type"] = "NAND2"
-        inst["conns"] = {"A": "n_a123", "B": "n_x23_oe", "Y": "d_oe_pre"}
+    if inst["type"] == "DFFRB":
+        q_net = inst["conns"].get("Q", "")
+        d_net = inst["conns"].get("D", "")
+        if q_net in ANCHORED_Q_MAP:
+            inst["name"] = ANCHORED_Q_MAP[q_net]
+            if q_net == "d_oe":
+                doe_ff_inst = inst
+        elif d_net in SRAM_LAT_D_MAP:
+            inst["name"] = SRAM_LAT_D_MAP[d_net]
+        elif q_net == "sram_idle_q":
+            inst["name"] = "u_ff_sram_idle"
+            sram_idle_ff_inst = inst
+        elif q_net == "sram_we_n_q":
+            inst["name"] = "u_ff_sram_wen"
+            sram_wen_ff_inst = inst
+    elif inst["conns"].get("Y") == "sram_ce":
+        sram_ce_nor3 = inst
 
-insts = [inst for inst in insts if inst["name"] not in del_names]
-wires.update(["d_hiz_pre", "d_oe_pre", "n_a123", "n_x23_oe", "rb_sram_sel_n", "rb_mux_0", "rb_mux_1", "rb_mux_2", "rb_mux_3"])
-insts.append({"type": "OAI21",  "name": "u_n_a123",        "conns": {"A1": "_0009_",   "A2": "_0555_", "B": "_0008_", "Y": "n_a123"}})
-insts.append({"type": "NOR2",   "name": "u_n_x23_oe",      "conns": {"A": "_0390_",    "B": "_0394_",  "Y": "n_x23_oe"}})
-insts.append({"type": "NAND2",  "name": "u_rb_sram_sel_n", "conns": {"A": "_0283_",    "B": "_0307_", "Y": "rb_sram_sel_n"}})
-insts.append({"type": "MUX2",   "name": "u_rb_mux0",       "conns": {"A": "reg_buf_0", "B": "_0313_", "S": "_0307_", "Y": "rb_mux_0"}})
-insts.append({"type": "MUX2",   "name": "u_rb_mux1",       "conns": {"A": "reg_buf_1", "B": "_0318_", "S": "_0307_", "Y": "rb_mux_1"}})
-insts.append({"type": "MUX2",   "name": "u_rb_mux2",       "conns": {"A": "reg_buf_2", "B": "_0323_", "S": "_0307_", "Y": "rb_mux_2"}})
-insts.append({"type": "MUX2",   "name": "u_rb_mux3",       "conns": {"A": "reg_buf_3", "B": "_0471_", "S": "_0307_", "Y": "rb_mux_3"}})
-insts.append({"type": "BUF_X2", "name": "u_buf_dhiz",      "conns": {"A": "d_hiz_pre", "Y": "d_hiz"}})
-insts.append({"type": "BUF_X2", "name": "u_buf_doe",       "conns": {"A": "d_oe_pre",  "Y": "d_oe"}})
-print("Restructured reg_buf[3:0] for direct sram_do->MUXDFFRB.A capture, NOR2 _1102_ sram_ce, and BUF_X2 u_buf_dhiz/u_buf_doe")
+assert doe_ff_inst is not None, "Could not find DFFRB driving d_oe!"
+assert sram_idle_ff_inst is not None, "Could not find DFFRB driving sram_idle_q!"
+assert sram_wen_ff_inst is not None, "Could not find DFFRB driving sram_we_n_q!"
+assert sram_ce_nor3 is not None and sram_ce_nor3["type"] == "NOR3", "Expected NOR3 driving sram_ce!"
+
+# Buffer sram_we (66.6 fF SRAM128.WR pin) with dedicated BUF_X2 (+1.4 ns WR hold margin after CE fall)
+sram_wen_ff_inst["conns"]["QB"] = "sram_we_pre"
+wires.add("sram_we_pre")
+insts.append({
+    "type": "BUF_X2",
+    "name": "u_buf_sram_we",
+    "conns": {"A": "sram_we_pre", "Y": "sram_we"},
+})
+
+# Split d_oe (South edge) and d_hiz (West edge) into two edge-anchored DFFRBs
+doe_ff_inst["conns"]["QB"] = "doe_qb_unused"
+wires.update(["doe_qb_unused", "dhiz_q_unused", "d_hiz_pre"])
+insts.append({
+    "type": "DFFRB",
+    "name": "u_ff_dhiz",
+    "conns": {
+        "CK": doe_ff_inst["conns"]["CK"],
+        "D": doe_ff_inst["conns"]["D"],
+        "Q": "dhiz_q_unused",
+        "QB": "d_hiz_pre",
+        "RSTB": doe_ff_inst["conns"]["RSTB"],
+    },
+})
+insts.append({
+    "type": "BUF_X2",
+    "name": "u_buf_dhiz",
+    "conns": {"A": "d_hiz_pre", "Y": "d_hiz"},
+})
+
+# Replace slow 3-series-PMOS NOR3 on sram_ce with fast NOR2(en) + NAND2(en, ~clk) + INV_X2
+ce_en_bars = [n for p, n in sram_ce_nor3["conns"].items() if p in ("A", "B", "C") and n != "clk"]
+assert len(ce_en_bars) == 2, f"Unexpected sram_ce NOR3 inputs: {sram_ce_nor3['conns']}"
+# Bypass redundant INV_X1(sram_ce_en) if one of ce_en_bars is ~sram_ce_en (== sram_idle_q)
+sram_ce_en_net = sram_idle_ff_inst["conns"].get("QB", "")
+redundant_inv = None
+for idx_c, bar_net in enumerate(ce_en_bars):
+    for cand in insts:
+        if cand["type"] == "INV_X1" and cand["conns"].get("Y") == bar_net and cand["conns"].get("A") == sram_ce_en_net:
+            ce_en_bars[idx_c] = "sram_idle_q"
+            redundant_inv = cand
+            break
+insts = [inst for inst in insts if inst is not sram_ce_nor3 and inst is not redundant_inv]
+wires.update(["sram_en_ok", "clk_n_ce", "sram_ce_n"])
+insts.append({
+    "type": "NOR2",
+    "name": "u_sram_en",
+    "conns": {"A": ce_en_bars[0], "B": ce_en_bars[1], "Y": "sram_en_ok"},
+})
+insts.append({
+    "type": "INV_X2",
+    "name": "u_clk_inv_ce",
+    "conns": {"A": "clk_root", "Y": "clk_n_ce"},
+})
+insts.append({
+    "type": "NAND2",
+    "name": "u_sram_ce_nand",
+    "conns": {"A": "sram_en_ok", "B": "clk_n_ce", "Y": "sram_ce_n"},
+})
+insts.append({
+    "type": "INV_X2",
+    "name": "u_sram_ce_drv",
+    "conns": {"A": "sram_ce_n", "Y": "sram_ce"},
+})
 
 # -------------------------------------------------------------------------
-# 1. Fold MUX2 + DFFRB -> MUXDFFRB when MUX2.Y only drives DFFRB.D
+# 1. Fold MUX2 + DFFRB -> MUXDFFRB on Internal FFs Only
+#    Keep Edge-Anchored Output FFs (u_ff_*), SRAM128 Capture FFs, and
+#    Anchored SRAM Control FFs as pure DFFRBs!
 # -------------------------------------------------------------------------
+KEEP_PURE_DFFRB = (
+    set(ANCHORED_Q_MAP.values())
+    | {"u_ff_dhiz", "u_ff_sram_idle", "u_ff_sram_wen"}
+    | set(SRAM_LAT_D_MAP.values())
+)
+
 net_drivers = {}
 net_sinks = defaultdict(list)
-
 for idx, inst in enumerate(insts):
     ctype = inst["type"]
     for pin, net in inst["conns"].items():
@@ -161,7 +216,7 @@ for idx, inst in enumerate(insts):
 folded_mux_indices = set()
 muxdff_count = 0
 for idx, inst in enumerate(insts):
-    if inst["type"] == "DFFRB":
+    if inst["type"] == "DFFRB" and inst["name"] not in KEEP_PURE_DFFRB:
         d_net = inst["conns"].get("D")
         if d_net in net_drivers and len(net_sinks[d_net]) == 1:
             drv_idx, drv_pin = net_drivers[d_net]
@@ -176,20 +231,19 @@ for idx, inst in enumerate(insts):
                 muxdff_count += 1
 
 insts = [inst for idx, inst in enumerate(insts) if idx not in folded_mux_indices]
-print(f"Folded {muxdff_count} MUX2+DFFRB pairs into MUXDFFRB (total insts now {len(insts)})")
+print(f"Folded {muxdff_count} MUX2+DFFRB pairs into MUXDFFRB (kept {len(KEEP_PURE_DFFRB)} pure DFFRBs)")
 
 # -------------------------------------------------------------------------
-# 2. Insert Schmitt-Trigger BUFTH on all 7 Primary Inputs:
-#    clk, rst, test, d_in[0], d_in[1], d_in[2], d_in[3]
+# 2. Insert Schmitt-Trigger BUFTH on all 7 Primary Inputs & Upgrade rst_n INV
 # -------------------------------------------------------------------------
 primary_inputs = [
-    ("clk",     "clk_in_th",   "u_bufth_clk"),
-    ("rst",     "rst_in_th",   "u_bufth_rst"),
-    ("test",    "test_in_th",  "u_bufth_test"),
-    ("d_in[0]", "din0_in_th",  "u_bufth_din0"),
-    ("d_in[1]", "din1_in_th",  "u_bufth_din1"),
-    ("d_in[2]", "din2_in_th",  "u_bufth_din2"),
-    ("d_in[3]", "din3_in_th",  "u_bufth_din3"),
+    ("clk",     "clk_in_th",  "u_bufth_clk"),
+    ("rst",     "rst_in_th",  "u_bufth_rst"),
+    ("test",    "test_in_th", "u_bufth_test"),
+    ("d_in[0]", "din0_in_th", "u_bufth_din0"),
+    ("d_in[1]", "din1_in_th", "u_bufth_din1"),
+    ("d_in[2]", "din2_in_th", "u_bufth_din2"),
+    ("d_in[3]", "din3_in_th", "u_bufth_din3"),
 ]
 
 in_remap = {orig: new_net for orig, new_net, _ in primary_inputs}
@@ -203,110 +257,131 @@ for orig, new_net, bname in primary_inputs:
     insts.append({
         "type": "BUFTH",
         "name": bname,
-        "conns": {"A": orig, "Y": new_net}
+        "conns": {"A": orig, "Y": new_net},
     })
 
-print("Inserted 7 BUFTH Schmitt-trigger input buffers on clk, rst, test, d_in[3:0]")
-
-# -------------------------------------------------------------------------
-# 3. Assign FFs to 11 Rows (3..4 FFs per row!) & Build Row-Based Clock/Reset Trees
-#    (Max <= 10 sinks per leaf BUF_X2)
-# -------------------------------------------------------------------------
-NUM_ROWS = 11
+# Upgrade rst_n inverter to INV_X2
 ff_insts = [inst for inst in insts if inst["type"] in ("DFFRB", "MUXDFFRB", "DFFS", "EDFFRB")]
+rst_n_net = ff_insts[0]["conns"]["RSTB"]
+for inst in insts:
+    if inst["type"] == "INV_X1" and inst["conns"].get("Y") == rst_n_net:
+        inst["type"] = "INV_X2"
+        inst["name"] = "u_inv_rst_n"
+
 print(f"Total Flip-Flops: {len(ff_insts)}")
 
-rst_n_net = ff_insts[0]["conns"]["RSTB"]
-clk_th_net = "clk_in_th"
+# -------------------------------------------------------------------------
+# 3. Build Low-Skew Unloaded Clock Tree + Useful Skew on sram_lat[0..3]
+#    - u_bufth_clk (FO=3 local): drives u_clk_io_w, u_clk_io_e, u_clk_root
+#    - u_clk_io_w (FO=6): drives West/NW output FFs in 1 stage (min t_pd!)
+#    - u_clk_io_e (FO=6): drives East/South output FFs in 1 stage (min t_pd!)
+#    - u_clk_root (FO=7): drives u_clk_buf_r1..r6 + u_clk_inv_ce
+#    - u_clk_sram_lat1..3 (3x BUF_X2 chain from clk_buf_r6): +2.5 ns useful skew
+#      on u_ff_sram_lat0..3.CK!
+# -------------------------------------------------------------------------
+IO_W_FFS = {"u_ff_dout0", "u_ff_dhiz", "u_ff_dout1", "u_ff_dout2", "u_ff_dout3", "u_ff_sync"}
+IO_E_FFS = {"u_ff_doe", "u_ff_cmram0", "u_ff_cmram1", "u_ff_cmram2", "u_ff_cmram3", "u_ff_cmrom"}
+SRAM_LAT_FFS = {"u_ff_sram_lat0", "u_ff_sram_lat1", "u_ff_sram_lat2", "u_ff_sram_lat3"}
+SRAM_IDLE_FFS = {"u_ff_sram_idle"}
 
-ff_row_map = {}
-row_ffs = defaultdict(list)
-FF_TARGET_PER_ROW = [3, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3]
-idx = 0
-for r, cnt in enumerate(FF_TARGET_PER_ROW):
-    for _ in range(cnt):
-        ff = ff_insts[idx]
-        ff_row_map[ff["name"]] = r
-        row_ffs[r].append(ff)
-        idx += 1
+wires.update(["clk_io_w", "clk_io_e", "clk_root", "clk_sram_lat1", "clk_sram_lat2", "clk_sram_lat"])
+insts.extend([
+    {"type": "BUF_X2", "name": "u_clk_io_w",      "conns": {"A": "clk_in_th",     "Y": "clk_io_w"}},
+    {"type": "BUF_X2", "name": "u_clk_io_e",      "conns": {"A": "clk_in_th",     "Y": "clk_io_e"}},
+    {"type": "BUF_X2", "name": "u_clk_root",      "conns": {"A": "clk_in_th",     "Y": "clk_root"}},
+    {"type": "BUF_X2", "name": "u_clk_sram_lat1", "conns": {"A": "clk_buf_r7",    "Y": "clk_sram_lat1"}},
+    {"type": "BUF_X2", "name": "u_clk_sram_lat2", "conns": {"A": "clk_sram_lat1", "Y": "clk_sram_lat2"}},
+    {"type": "BUF_X2", "name": "u_clk_sram_lat3", "conns": {"A": "clk_sram_lat2", "Y": "clk_sram_lat"}},
+])
 
-# Non-FF sinks of clk_in_th: keep _1102_.B (NOR3 driving sram_ce) connected DIRECTLY to clk_in_th!
-# Use NUM_CLK_BUFS = 8:
-#   r1 (b_idx=0): Rows 0+1 (3+4 = 7 FFs <= 10)
-#   r2..r6 (b_idx=1..5): Rows 2..6 (4 FFs each <= 10)
-#   r7 (b_idx=6): Rows 7+8 (4+4 = 8 FFs <= 10)
-#   r8 (b_idx=7): Rows 9+10 (3+3 = 6 FFs <= 10)
-# -> FO(clk_in_th) = 8 clock buffers + 1 (_1102_.B) = 9 <= 10! FO(rst_n) = 8 <= 10!
-NUM_CLK_BUFS = 8
-for inst in insts:
-    if inst["type"] not in ("DFFRB", "MUXDFFRB", "DFFS", "EDFFRB") and inst["name"] != "u_bufth_clk":
-        for pin, net in list(inst["conns"].items()):
-            if pin not in OUTPUT_PIN_NAMES:
-                if net == rst_n_net:
-                    inst["conns"][pin] = f"rst_n_buf_r{NUM_CLK_BUFS}"
-
-for b_idx in range(NUM_CLK_BUFS):
+NUM_INTERNAL_CLK_BUFS = 7
+for b_idx in range(NUM_INTERNAL_CLK_BUFS):
     c_net = f"clk_buf_r{b_idx+1}"
-    rn_net = f"rst_n_buf_r{b_idx+1}"
     wires.add(c_net)
-    wires.add(rn_net)
     insts.append({
         "type": "BUF_X2",
         "name": f"u_clk_buf_r{b_idx+1}",
-        "conns": {"A": clk_th_net, "Y": c_net}
+        "conns": {"A": "clk_root", "Y": c_net},
     })
+
+NUM_RST_BUFS = 8
+for r_idx in range(NUM_RST_BUFS):
+    rn_net = f"rst_n_buf_r{r_idx+1}"
+    wires.add(rn_net)
     insts.append({
         "type": "BUF_X2",
-        "name": f"u_rst_buf_r{b_idx+1}",
-        "conns": {"A": rst_n_net, "Y": rn_net}
+        "name": f"u_rst_buf_r{r_idx+1}",
+        "conns": {"A": rst_n_net, "Y": rn_net},
     })
-    ff_row_map[f"u_clk_buf_r{b_idx+1}"] = b_idx
-    ff_row_map[f"u_rst_buf_r{b_idx+1}"] = b_idx
 
-for r in range(NUM_ROWS):
-    if r in (0, 1):
-        b_idx = 0
-    elif r <= 6:
-        b_idx = r - 1
-    elif r in (7, 8):
-        b_idx = 6
-    else:
-        b_idx = 7
-    c_net = f"clk_buf_r{b_idx+1}"
-    rn_net = f"rst_n_buf_r{b_idx+1}"
-    for ff in row_ffs[r]:
-        ff["conns"]["CK"] = c_net
-        if "RSTB" in ff["conns"]:
-            ff["conns"]["RSTB"] = rn_net
+# Initial assignment of internal FFs across 7 clock buffers & all FFs + logic across 8 reset buffers
+internal_ffs = [ff for ff in ff_insts if ff["name"] not in (IO_W_FFS | IO_E_FFS | SRAM_LAT_FFS | SRAM_IDLE_FFS)]
+assert len(internal_ffs) == 50, f"Expected 50 internal FFs, got {len(internal_ffs)}"
 
-print(f"Inserted {NUM_CLK_BUFS} row-based BUF_X2 clock buffers (clk_buf_r1..r{NUM_CLK_BUFS}) and {NUM_CLK_BUFS} reset buffers (rst_n_buf_r1..r{NUM_CLK_BUFS})")
+INT_CLK_COUNTS = [8, 8, 7, 7, 7, 7, 6]  # sum = 50
+idx = 0
+for b_idx, cnt in enumerate(INT_CLK_COUNTS):
+    for _ in range(cnt):
+        internal_ffs[idx]["conns"]["CK"] = f"clk_buf_r{b_idx+1}"
+        idx += 1
+
+for ff in ff_insts:
+    fname = ff["name"]
+    if fname in IO_W_FFS:
+        ff["conns"]["CK"] = "clk_io_w"
+    elif fname in IO_E_FFS:
+        ff["conns"]["CK"] = "clk_io_e"
+    elif fname in SRAM_LAT_FFS:
+        ff["conns"]["CK"] = "clk_sram_lat"
+    elif fname in SRAM_IDLE_FFS:
+        ff["conns"]["CK"] = "clk_sram_lat1"
+
+# Distribute rst_n sinks (59 FFs + any logic sink such as rst_s1.D) across u_rst_buf_r1..r8 (<= 8 sinks each)
+rst_sinks = []
+for inst in insts:
+    if inst["name"].startswith("u_rst_buf_"):
+        continue
+    for pin, net in inst["conns"].items():
+        if pin not in OUTPUT_PIN_NAMES and net == rst_n_net:
+            rst_sinks.append((inst, pin))
+
+for s_i, (s_inst, s_pin) in enumerate(rst_sinks):
+    b_i = min(NUM_RST_BUFS - 1, (s_i * NUM_RST_BUFS) // len(rst_sinks))
+    s_inst["conns"][s_pin] = f"rst_n_buf_r{b_i+1}"
 
 # -------------------------------------------------------------------------
 # 4. Split all High-Fanout Internal Nets (FO > 10) into BUF_X2 Groups
 # -------------------------------------------------------------------------
 def get_sink_map(inst_list):
     smap = defaultdict(list)
-    for idx, inst in enumerate(inst_list):
+    for idx_i, inst in enumerate(inst_list):
         ctype = inst["type"]
         for pin, net in inst["conns"].items():
             if ctype == "SRAM128":
                 if not pin.startswith("DO"):
-                    smap[net].append((idx, pin))
+                    smap[net].append((idx_i, pin))
             else:
                 if pin not in OUTPUT_PIN_NAMES:
-                    smap[net].append((idx, pin))
+                    smap[net].append((idx_i, pin))
     return smap
 
-smap = get_sink_map(insts)
-exempt_nets = {orig for orig, _, _ in primary_inputs} | {"clk_in_th", rst_n_net}
-exempt_nets |= {f"clk_buf_r{r+1}" for r in range(NUM_ROWS)} | {f"rst_n_buf_r{r+1}" for r in range(NUM_ROWS)}
-exempt_nets |= {f"sram_din[{i}]" for i in range(4)} | {"sram_din", "sram_do"}
 
+smap = get_sink_map(insts)
+exempt_nets = (
+    {orig for orig, _, _ in primary_inputs}
+    | {"clk_in_th", "clk_io_w", "clk_io_e", "clk_root", "clk_sram_lat", rst_n_net}
+    | {f"clk_buf_r{i+1}" for i in range(NUM_INTERNAL_CLK_BUFS)}
+    | {f"rst_n_buf_r{i+1}" for i in range(NUM_RST_BUFS)}
+    | {f"sram_din[{i}]" for i in range(4)}
+    | {"sram_din", "sram_do"}
+)
+
+MAX_FO = 15
 fo_buf_idx = 0
 for net, sinks in list(smap.items()):
-    if net in exempt_nets or len(sinks) <= 10:
+    if net in exempt_nets or len(sinks) <= MAX_FO:
         continue
-    num_groups = max(2, (len(sinks) + 9) // 10)
+    num_groups = max(2, (len(sinks) + MAX_FO - 1) // MAX_FO)
     chunk_size = (len(sinks) + num_groups - 1) // num_groups
     for g in range(num_groups):
         grp = sinks[g * chunk_size : (g + 1) * chunk_size]
@@ -319,7 +394,7 @@ for net, sinks in list(smap.items()):
         insts.append({
             "type": "BUF_X2",
             "name": bname,
-            "conns": {"A": net, "Y": bnet}
+            "conns": {"A": net, "Y": bnet},
         })
         for s_idx, s_pin in grp:
             insts[s_idx]["conns"][s_pin] = bnet
@@ -328,10 +403,8 @@ print(f"Inserted {fo_buf_idx} high-fanout BUF_X2 buffers for nets with FO > 10")
 
 final_smap = get_sink_map(insts)
 max_fo = max(len(v) for v in final_smap.values())
-print(f"Max fanout across all nets after buffering: {max_fo} (<= 10 target met!)")
-
-with open(ROW_MAP_JSON, "w") as f:
-    json.dump(ff_row_map, f, indent=2)
+print(f"Max fanout across all nets after buffering: {max_fo} (<= {MAX_FO} target met!)")
+assert max_fo <= MAX_FO, f"Max fanout {max_fo} exceeds {MAX_FO}!"
 
 # -------------------------------------------------------------------------
 # 5. Write Final Synthesized & Buffered Netlist (openroad/c4004_core_syn.v)
@@ -344,7 +417,7 @@ port_and_bus_nets = {
     "cm_ram[0]", "cm_ram[1]", "cm_ram[2]", "cm_ram[3]",
     "sram_din", "sram_do",
     "sram_din[0]", "sram_din[1]", "sram_din[2]", "sram_din[3]",
-    "sram_do[0]", "sram_do[1]", "sram_do[2]", "sram_do[3]"
+    "sram_do[0]", "sram_do[1]", "sram_do[2]", "sram_do[3]",
 }
 
 all_used_nets = set()
@@ -355,7 +428,7 @@ for inst in insts:
 scalar_wires = sorted(all_used_nets - port_and_bus_nets)
 
 v_lines = [
-    "// Synthesized and Buffered Gate-Level Netlist for c4004_core (Trial 06: 11 Rows)",
+    "// Synthesized and Buffered Gate-Level Netlist for c4004_core (Plan B + Full MCS-4 Spec)",
     "module c4004_core (",
     "  clk,",
     "  rst,",
@@ -397,8 +470,8 @@ v_lines.append("endmodule")
 with open(OUT_V, "w") as f:
     f.write("\n".join(v_lines) + "\n")
 
-total_sites = 0
-for inst in insts:
-    if inst["type"] != "SRAM128":
-        total_sites += int(CELL_INFO[inst["type"]]["sites"])
-print(f"Wrote {OUT_V}: {len(insts)} total instances ({len(insts)-1} stdcells + 1 SRAM128), {total_sites} sites (out of 3575 available sites = {total_sites*100.0/3575:.1f}% utilization)")
+total_sites = sum(int(CELL_INFO[inst["type"]]["sites"]) for inst in insts if inst["type"] != "SRAM128")
+print(
+    f"Wrote {OUT_V}: {len(insts)} total instances ({len(insts)-1} stdcells + 1 SRAM128), "
+    f"{total_sites} sites (out of 3575 available sites = {total_sites*100.0/3575:.1f}% utilization)"
+)

@@ -57,6 +57,27 @@ module tb_lockstep;
     rom[28] = 8'hFD; // DCL
 
     #110 rst = 0;
+    // Verify lockstep across all 34 post-reset SRAM zero-clear + sync clocks
+    for (ph = 0; ph < 34; ph = ph + 1) begin
+      @(negedge clk);
+      #1;
+      if ({d_out_r, d_oe_r, d_hiz_r, sync_r, cm_rom_r, cm_ram_r} !==
+          {d_out_g, d_oe_g, d_hiz_g, sync_g, cm_rom_g, cm_ram_g}) begin
+        $display("INIT MISMATCH negedge at init_clk=%0d: RTL=%b GATE=%b", ph,
+          {d_out_r, d_oe_r, d_hiz_r, sync_r, cm_rom_r, cm_ram_r},
+          {d_out_g, d_oe_g, d_hiz_g, sync_g, cm_rom_g, cm_ram_g});
+        err = err + 1;
+      end
+      @(posedge clk);
+      #1;
+      if ({d_out_r, d_oe_r, d_hiz_r, sync_r, cm_rom_r, cm_ram_r} !==
+          {d_out_g, d_oe_g, d_hiz_g, sync_g, cm_rom_g, cm_ram_g}) begin
+        $display("INIT MISMATCH posedge at init_clk=%0d: RTL=%b GATE=%b", ph,
+          {d_out_r, d_oe_r, d_hiz_r, sync_r, cm_rom_r, cm_ram_r},
+          {d_out_g, d_oe_g, d_hiz_g, sync_g, cm_rom_g, cm_ram_g});
+        err = err + 1;
+      end
+    end
     for (cyc = 0; cyc < 35; cyc = cyc + 1) begin
       for (ph = 0; ph < 8; ph = ph + 1) begin
         @(negedge clk);

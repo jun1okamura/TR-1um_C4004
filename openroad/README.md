@@ -1,6 +1,6 @@
 # `openroad/` — OpenROAD & Yosys 設定ファイル・LEF・スクリプト一覧
 
-本ディレクトリには、OpenSUSI TR-1um（1 µm CMOS、2層金属配線 `M1`/`M2`）プロセスにおいて `c4004_core`（618標準セル＋`SRAM128` マクロ、全670信号ネット）を DRC エラーおよびセル内ショート皆無で自動配置配線するための **OpenROAD 設定ファイル（LEF、Tcl スクリプト、ルーティングガイド、DEF）** および **Yosys 論理合成・ロックステップ検証ファイル** がまとめられています。
+本ディレクトリには、OpenSUSI TR-1um（1 µm CMOS、2層金属配線 `M1`/`M2`）プロセスにおいて `c4004_core`（`637` 標準セル＋`SRAM128` マクロ＝`638` 論理インスタンス、全 `715` 信号ネット）を DRC エラーおよびセル内ショート皆無で自動配置配線するための **OpenROAD 設定ファイル（LEF、Tcl スクリプト、ルーティングガイド、DEF）** および **Yosys 論理合成・ロックステップ検証ファイル** がまとめられています。
 
 ---
 
@@ -10,11 +10,11 @@
 
 | ファイル名 | 説明 |
 | :--- | :--- |
-| [`synth.ys`](synth.ys) | Yosys 論理合成スクリプト。`rtl/c4004_core.v` を読み込み、`dffe_map.v` によりイネーブル付 FF を `MUXDFFRB` に直接マッピングし、残りを `DFFRB` および TR-1um 標準セル (`tr1um_typ_5v0_25c.lib`) + `SRAM128.lib` に合成します。 |
+| [`synth.ys`](synth.ys) | Yosys 論理合成スクリプト。`rtl/c4004_core.v`（Plan B v2：全出力 FF 直出し＋事前演算レジスタ駆動 `SRAM128` 制御＋専用並列キャリー `pc_inc`＋MCS-4 `25/25` 完全準拠）を読み込み、`dffe_map.v` によりイネーブル付 FF を `MUXDFFRB` に直接マッピングし、クリティカル出力・`SRAM128` 直受けキャプチャ FF を純 `DFFRB` に保持して TR-1um 標準セル (`tr1um_typ_5v0_25c.lib`) + `SRAM128.lib` に合成します。 |
 | [`dffe_map.v`](dffe_map.v) | Yosys の `$_DFFE_*` セルを TR-1um の `MUXDFFRB` セルへ直接マッピングするための techmap ルール。 |
-| [`c4004_core_raw_syn.v`](c4004_core_raw_syn.v) | `synth.ys` が生成する初期ゲートレベルネットリスト。 |
-| [`c4004_core_syn.v`](c4004_core_syn.v) | [`scripts/insert_high_fo_buffers.py`](../scripts/insert_high_fo_buffers.py) により、`X1` `sram_do[3:0] -> MUXDFFRB.A` ゼロゲート直結化、`M1` `d_hiz`/`d_oe` 2段並列デコード化、初段シュミットトリガ `BUFTH`（7個）、行別クロック/リセットツリー、および高ファンアウト分割バッファ (`BUF_X2`, `FO <= 10`) を挿入した最終ゲートレベルネットリスト（`618` 標準セル + `1` `SRAM128`）。 |
-| [`primitives.v`](primitives.v), [`tb_lockstep.v`](tb_lockstep.v) | RTL (`rtl/c4004_core.v`) とゲートレベルネットリスト (`openroad/c4004_core_syn.v`) を280クロックフェーズにわたりサイクル単位で完全一致検証（Lockstep 0 errors）するためのテストベンチ。 |
+| [`c4004_core_raw_syn.v`](c4004_core_raw_syn.v) | `synth.ys` が生成する初期ゲートレベルネットリスト（`589` セル）。 |
+| [`c4004_core_syn.v`](c4004_core_syn.v) | [`scripts/insert_high_fo_buffers.py`](../scripts/insert_high_fo_buffers.py) により、全7外部入力へのシュミットトリガ `BUFTH`、`SRAM128.DO[3:0]` 直受けキャプチャ FF (`u_ff_sram_lat0..3`) 用の `3 × BUF_X2` (`+4.35 ns`) Useful-Skew クロックチェーン、エッジ固定出力 `DFFRB`（12個）、行別クロック/リセットツリー、および空間分割バッファ (`BUF_X2`, `FO <= 10`) を挿入した最終ゲートレベルネットリスト（`637` 標準セル + `1` `SRAM128` = `638` インスタンス、順序回路 `67` FF [`MUXDFFRB: 40`, `DFFRB: 27`]）。 |
+| [`primitives.v`](primitives.v), [`tb_lockstep.v`](tb_lockstep.v) | RTL (`rtl/c4004_core.v`) とゲートレベルネットリスト (`openroad/c4004_core_syn.v`) を34クロックのハードウェア `SRAM128` ゼロクリアを含む280クロックフェーズにわたりサイクル単位で完全一致検証（Lockstep 0 errors）するためのテストベンチ。 |
 
 ### 1.2 OpenROAD 用テクノロジ・セル・マクロ LEF ファイル
 
@@ -29,10 +29,10 @@
 
 | ファイル名 | 説明 |
 | :--- | :--- |
-| [`c4004_core_placed.def`](c4004_core_placed.def) | [`scripts/run_tap2_flow.py`](../scripts/run_tap2_flow.py) が出力した、11行×3セグメント (`TAP2` 4列 = `44`個) 配置＋アクティブデキャップ (`FILL3`×223, `FILL2`×23, **`FILL1`×0**) 完全充填済みの配置 DEF（全 `909` コンポーネント、全 `670` 信号ネット）。 |
+| [`c4004_core_placed.def`](c4004_core_placed.def) | [`scripts/run_tap2_flow.py`](../scripts/run_tap2_flow.py)（Lagrangian 行割当 + Simulated Annealing セル順序最適化）が出力した、11行×3セグメント (`TAP2` 4列 = `44`個、行ピッチ `145.8 µm`) 配置＋アクティブデキャップ (`FILL3`×108, `FILL2`×21 = `129`個、`366`サイト、**`FILL1`×0**) 完全充填済みの配置 DEF（全 `811` コンポーネント、論理占有率 `89.76%` [`3,209 / 3,575` サイト]、全 `715` 信号ネット、Legalized HPWL `275,880 µm`）。 |
 | [`run_grt.tcl`](run_grt.tcl) | **OpenROAD Global Route 実行スクリプト** (`openroad -exit openroad/run_grt.tcl`)。`c4004_core_placed.def` を読み込み、初期ルーティングガイド `route.guide` を出力します。 |
-| [`route_expanded.guide`](route_expanded.guide) | [`scripts/make_expanded_guide.py`](../scripts/make_expanded_guide.py) により `route.guide` を `±81.0 µm` チャネル幅に拡張した詳細配線ガイド。 |
-| [`run_apr.tcl`](run_apr.tcl) | **OpenROAD Detailed Route 実行スクリプト** (`openroad -exit openroad/run_apr.tcl`)。`TR-1um_cells_m2only.lef`、`c4004_core_placed.def`、`route_expanded.guide` を読み込み、TritonRoute (`detailed_route`) で全670ネットを詳細配線して `apr/c4004_core_routed.def`（**DRC 違反 `0` 件、総配線長 `431,812 µm`、総信号ビア `2,832` 個**）を出力します。 |
+| [`route_expanded.guide`](route_expanded.guide) | [`scripts/make_expanded_guide.py`](../scripts/make_expanded_guide.py) により `route.guide` を11行チャネル幅に拡張した詳細配線ガイド。 |
+| [`run_apr.tcl`](run_apr.tcl) | **OpenROAD Detailed Route 実行スクリプト** (`openroad -exit openroad/run_apr.tcl`)。`TR-1um_cells_m2only.lef`、`c4004_core_placed.def`、`route_expanded.guide` を読み込み、TritonRoute (`detailed_route`) で全 `715` ネットを詳細配線して `apr/c4004_core_routed.def`（**DRC 違反 `0` 件、総配線長 `409,187 µm` [`M1: 180,012 µm`, `M2: 229,175 µm`]、総信号ビア `2,900` 個**）を出力します。 |
 
 ---
 

@@ -7,10 +7,11 @@ device/cell/net statistics.
 
 import os
 import re
+import sys
 from collections import Counter
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EXT_PATH = os.path.join(BASE_DIR, "apr", "OSS_FRAME.extracted")
+EXT_PATH = sys.argv[1] if len(sys.argv) > 1 else os.path.join(BASE_DIR, "apr", "OSS_FRAME.extracted")
 SIM_OUT_PATH = os.path.join(BASE_DIR, "apr", "OSS_FRAME_sim.spice")
 
 
@@ -36,14 +37,23 @@ def convert_extracted_for_ngspice(ext_path, out_path):
         "* Post-Layout Extracted Netlist of OSS_FRAME prepared for ngspice",
     ]
 
+    cur_subckt = ""
     for line in joined:
+        if line.upper().startswith(".SUBCKT "):
+            cur_subckt = line.split()[1]
+        elif line.upper().startswith(".ENDS"):
+            cur_subckt = ""
+
         # Clean KLayout escaped identifiers: \$ -> _n_, | -> _
         clean = line.replace("\\$", "_n_").replace("$", "_d_").replace("|", "_")
 
         # Convert MOSFET lines starting with XM to direct M devices using *_mst models
         if re.match(r"^XM", clean):
             clean = re.sub(r"^XM", "M", clean)
-            clean = re.sub(r"\bPMOS\b", "PMOS_mst", clean)
+            m_l = re.search(r"\bL=([0-9.]+)u\b", clean)
+            l_val = float(m_l.group(1)) if m_l else 1.0
+            pmos_mdl = "MPE_mst" if (cur_subckt.startswith("OSS_") and l_val >= 1.9) else "PMOS_mst"
+            clean = re.sub(r"\bPMOS\b", pmos_mdl, clean)
             clean = re.sub(r"\bNMOS\b", "NMOS_mst", clean)
             clean = re.sub(r"\bNMOSE\b", "MNE_mst", clean)
 

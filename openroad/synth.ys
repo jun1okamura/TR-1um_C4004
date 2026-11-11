@@ -8,7 +8,7 @@ hierarchy -check -top c4004_core
 proc; opt -full; memory; opt -full
 wreduce; peepopt; opt_clean
 techmap -map /usr/local/share/yosys/techmap.v; opt -full
-opt_dff
+dfflegalize -cell $_DFFE_PN0P_ 01 -cell $_DFFE_PN0N_ 01 -cell $_DFF_PN0_ 01
 
 # Map enabled FFs directly to MUXDFFRB, remaining FFs to DFFRB / DFFS
 techmap -map openroad/dffe_map.v

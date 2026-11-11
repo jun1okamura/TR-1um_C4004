@@ -64,7 +64,7 @@ def load_library_subckts():
             subckts.update(parsed)
 
     # 2. Load macro (SRAM128 + SRAM_*) and pad (OSS_ESD_5V_* + OSS_*) subckts
-    ref_ext = EXTRACTED_PATH if os.path.exists(EXTRACTED_PATH) else "/Users/okamura/Dropbox/98_LSI_Design/TR-1um_C4004/src/tr_1um_jun1okamura.cir"
+    ref_ext = EXTRACTED_PATH if os.path.exists(EXTRACTED_PATH) else os.path.join(BASE_DIR, "src", "tr_1um_jun1okamura.cir")
     if os.path.exists(ref_ext):
         with open(ref_ext, "r") as f:
             ext_text = re.sub(r"(?m)^XM", "M", f.read())
