@@ -2,6 +2,8 @@
 
 [![check](https://github.com/OpenSUSI/TR-1um_MPW_template/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/OpenSUSI/TR-1um_MPW_template/actions/workflows/check.yml)
 
+![TR-1um C4004 Full-Chip Layout (2500 µm × 2500 µm)](docs/C4004.png)
+
 OpenSUSI **TR-1um PDK**（https://github.com/OpenSUSI/TR-1um — 1 µm シリコンゲート CMOS、2層配線 `M1`/`M2`、電源電圧 `5.0 V`）を用いて設計・自動配置配線・5項目サインオフ物理検証・実レイアウト抽出後（Post-Layout Extracted）フルチップ検証まで完了した **Intel 4004 / MCS-4 完全準拠 4-bit マイクロプロセッサ (`C4004` / `tr_1um_jun1okamura`)** です。
 
 > **PDK のセットアップ**: DRC / LVS / MDP / IP62 ルールデッキ（`libs.tech/klayout/tech/`）、SPICE デバイスモデル（`libs.tech/spice/models/`）、およびパッドフレーム GDSII（`libs.tech/klayout/libraries/TR-1um_frame_25x25.gds`）は公式 PDK リポジトリ https://github.com/OpenSUSI/TR-1um を使用します（ローカル実行時は `git clone https://github.com/OpenSUSI/TR-1um.git` で `TR-1um/` に配置、GitHub Actions CI では `info.yaml` の設定により自動チェックアウトされます）。
