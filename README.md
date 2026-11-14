@@ -2,6 +2,8 @@
 
 [![check](https://github.com/OpenSUSI/TR-1um_MPW_template/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/OpenSUSI/TR-1um_MPW_template/actions/workflows/check.yml)
 
+**English** | [日本語 (README_JP.md)](README_JP.md)
+
 ![TR-1um C4004 Full-Chip Layout (2500 µm × 2500 µm)](docs/C4004.png)
 
 **`C4004` (`tr_1um_jun1okamura`)** is a **fully Intel 4004 compatible and 100% MCS-4 compliant 4-bit microprocessor** designed, automatically placed and routed, verified through all 5 physical sign-off checks, and validated at the post-layout extracted full-chip transistor level using the OpenSUSI **TR-1um PDK** (https://github.com/OpenSUSI/TR-1um — 1 µm silicon-gate CMOS, 2-layer metal `M1`/`M2`, `5.0 V` supply).
